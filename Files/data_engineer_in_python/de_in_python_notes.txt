@@ -1,0 +1,6088 @@
+-------------------------------------------------------------
+UNDERSTANDING CLOUD COMPUTING                                |
+-------------------------------------------------------------
+
+Cloud computing -> delivery of technology services - including compute storage, database, networking, software, and many more - over the internet with pay-as-you-go pricing.
+
+Use case: hosting a website
+- Free week increases traffic
+- High traffic leads to slow service
+- Users stop learning on Datacamp
+- Hosting a website using on-premise servers
+    - Server -> powerful computer
+    - You can connect to remotely
+- Hosting a website using a cloud server 
+    - More people start using the website
+    - Access more cloud servers
+    - Easily release redundant cloud servers
+
+Cloud computing        | On-premise
+-------------------------------------------------------------
+- Scalable             | - Less scalable
+- Fast set-up speed    | - Takes time to setup
+- pay-as-you-go pricing| - High upfront costs & maintenance
+
+Other uses of cloud computing:
+- Store, backup, and recover data
+- Create cloud-native applications
+- Stream audio and video
+- Deliver software on demand
+- Analyze data
+- Embed artificial intelligence models
+
+Cloud services:
+- Compute -> provide the brains to process your workload
+- Storage -> save and store data
+
+On premise -> car owned
+IaaS -> car rental
+PaaS -> taxi
+SaaS -> public transport
+
+IaaS -> Servers, virtual machines, storage, networks
+PaaS -> Runtime, Operating system
+SaaS -> Application software, data
+
+Microfost Azure
+Alibaba Cloud
+Tencent Cloud
+IBM Cloud
+AWS
+Salesforce
+Orcale Cloud
+Google Cloud
+
+-------------------------------------------------------------
+INTRODUCTION TO PYTHON FOR DEVELOPERS                       |
+-------------------------------------------------------------
+
+Python function:
+str.replace(text_to_replace, replacement_text)
+str.upper() -> convert to uppercase
+str.lower() -> convert to lowercase
+"""text""" => multiline string
+
+List = store multiple values in a single variable, can contain different data types, mutable
+- List are ordered
+- Can use indexing to access elements
+- Counts from 0
+
+Accessing elements in a list:
+- List = []
+- Subsetting = a_list[index]
+a_list = [1, 2, 3, 4, 5]
+a_list[0] -> 1
+a_list[-1] -> 5
+a_list[1:3] -> [2, 3] -> 3rd element is not included
+a_list[:3] -> [1, 2, 3] -> 4th element is not included
+a_list[3:] -> [4, 5] -> 3rd element is included
+a_list[::2] -> [1, 3, 5] -> step size of 2
+a_list[1::3] -> [2, 5] -> start from 2nd element and step size of 3
+
+Dictionary = store key-value pairs, mutable, ordered, can contain different data types
+a_dict = {'key1': 'value1', 'key2': 'value2'}
+
+Accessing elements in a dictionary:
+- a_dict['key1'] -> 'value1'
+- get all values -> a_dict.values()
+- get all keys -> a_dict.keys()
+- get all key-value pairs -> a_dict.items()
+- add a new key-value pair -> a_dict['key3'] = 'value3'
+
+Sets = store unique values, unordered, mutable, ideal to identify unique elements
+
+Accessing elements in a set:
+- a_set = {1, 2, 3, 4, 5}
+- convert a list to a set -> set(a_list)
+- sorting a set -> sorted(a_set) -> return a list
+
+Tuples
+- immutable - cannot change values
+- No adding values
+- No removing values
+- No changing values
+- Can subset values by indexing
+- tuple = (1, 2, 3, 4, 5)
+- convert a list to a tuple -> tuple(a_list)
+- tuple[0] -> 1
+
+Data structure    | Syntax        | Immutable | Allow duplicates | Ordered | Subset with []
+--------------------------------------------------------------------------------------------
+List             | [1, 2, 3]      | No        | Yes              | Yes     | Yes
+Dictionary       | {key:value}    | No        | Yes              | Yes     | Yes
+Set              | {1, 2, 3}      | No        | No               | No      | No
+Tuple            | (1, 2, 3)      | Yes       | Yes              | Yes     | Yes
+
+# Check if September inflation is less than August inflation
+if inflation_september < inflation_august:
+  print("Inflation decreased")
+
+# Check if September inflation is more than August inflation
+elif inflation_september > inflation_august:
+  print("Inflation increased")
+  
+# Confirm that they are equal
+else:
+  print("Inflation remained stable")
+
+
+for value in sequence:
+    action
+
+- sequence = list, dictionary, set, tuple
+- value = variable that represents the value in the sequence, iterator
+
+prices = [10, 20, 30, 40, 50]
+for price in prices:
+    print(price)
+
+for price in prices:
+    if price > 10:
+        print("More than 10")
+    elif price == 10:
+        print("Equal to 10")
+    else:
+        print("Less than 10")
+
+Looping through strings:
+username = "Datacamp"
+for letter in username:
+    print(letter)
+
+Looping through dictionaries:
+a_dict = {'key1': 'value1', 'key2': 'value2'}
+for key, value in a_dict.items():
+    print(key, value)
+
+for key in a_dict.keys():
+    print(key)
+
+for value in a_dict.values():
+    print(value)
+
+range(start, end + 1, step)
+start = inclusive
+end = exclusive
+
+for i in range(1, 6):
+    print(i)
+1
+2
+3
+4
+5
+
+visits = 0
+for i in range(1, 11):
+    visits += 1 # Add 1 to visits during each iteration
+print(visits)
+
+-------------------------------------------------------------
+# Create the tickets_sold variable
+tickets_sold = 0
+
+# Create the max_capacity variable
+max_capacity = 30
+
+# Loop through a range up to and including max_capacity's value
+for tickets in range(1, max_capacity + 1):
+  
+  # Add one to tickets_sold in each iteration
+  tickets_sold += 1
+  
+print("Sold out:", tickets_sold, "tickets sold!")
+-------------------------------------------------------------
+# Loop through the dictionary's keys and values
+for key, value in courses.items():
+  
+  # Check if the value is "AI"
+  if value == "AI":
+    print(key, "is an AI course")
+  
+  # Check if the value is "Programming"
+  elif value == "Programming":
+    print(key, "is a Programming course")
+  
+  # Otherwise, print that it is a "Data Engineering" course
+  else:
+    print(key, "is a Data Engineering course")
+
+While loop:
+while condition:
+    action
+
+stock = 10
+num_purchases = 0
+
+while num_purchases < stock:
+    num_purchases += 1
+    print("Purchase made")
+
+while runs until the condition is False
+
+while num_purchases < stock:
+    print(stock - num_purchases, "items left")
+
+    break -> exit the loop
+
+while num_purchases < stock:
+    num_purchases += 1
+    if stock - num_purchases == 7:
+        print("Plenty of items left")
+    elif stock - num_purchases == 3:
+        print("Only a few items left")
+    elif stock - num_purchases == 1:
+        print("Last item left")
+    else:
+        print("No items left")
+
+-------------------------------------------------------------
+
+release_date = 26
+current_date = 22
+
+# Create a conditional loop while current_date is less than or equal to the release_date
+while current_date <= release_date
+  
+  # Increment current_date by one
+  current_date += 1
+  
+  # Promote purchases
+  if current_date <= 24:
+    print("Purchase before the 25th for early access")
+  
+  # Check if the date is equal to the 25th
+  elif current_date == 25:
+    print("Coming soon!")
+  else:
+    print("Available now!")
+
+-------------------------------------------------------------
+# Create an empty list
+authors_below_twenty_five = []
+
+# Loop through the authors dictionary
+for key, value in authors.items():
+  
+  # Check for values less than 25
+  if value < 25:
+    
+    # Append the author to the list
+    authors_below_twenty_five.append(key)
+    
+print(authors_below_twenty_five)
+
+-------------------------------------------------------------
+for genre, average_sale in genre_sales.items():
+    
+    # Filter for the maximum sales value
+    if average_sale == 5166000000:
+      
+      # Print the genre
+      print("Most popular genre: ", genre)
+      print("Average sales: ", average_sale)
+    
+    # Filter for the minimum sales value
+    elif average_sale == 80000000:
+      
+      # Print the genre
+      print("Least popular genre: ", genre)
+      print("Average sales: ", average_sale)
+
+-------------------------------------------------------------
+# Loop through the dictionary
+for genre, sale in genre_sales.items():
+  
+  # Check if genre is Horror or Mystery
+  if genre == "Horror" or genre == "Mystery":
+    print(genre, sale)
+  
+  # Check if genre is Thriller and sale is at least 3 million
+  elif genre == "Thriller" and sale >= 3000000:
+    print(genre, sale)
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+INTERMEDIATE PYTHON FOR DEVELOPERS                          |
+-------------------------------------------------------------
+
+built-in functions:
+- len() -> length of a string, list, dictionary, set, tuple
+- type() -> data type of a variable
+- max() -> maximum value in a list
+- min() -> minimum value in a list
+- sum() -> sum of values in a list
+- sorted() -> sort a list
+- reversed() -> reverse a list
+- abs() -> absolute value of a number
+- round() -> round a number to a specified number of decimal places
+- all() -> return True if all elements in an iterable are True
+- any() -> return True if any element in an iterable is True
+- zip() -> combine two lists into a list of tuples
+- enumerate() -> return an index and value of an iterable
+
+Modules:
+- Files ending in .py
+- Contain functions and attributes
+- Can contain other modules
+- Python comes with many built-in modules
+
+os -> interpreting and interacting with the operating system
+collections -> advanced data structure types and functions
+string -> performing string operations
+logging -> to log in information when testing or running software
+subprocess -> to run system commands
+
+import os
+os.getcwd() -> get the current working directory
+os.chdir() -> change the current working directory
+
+Module functions: for task 
+Module attributes: for information and values
+
+os.environ -> get environment variables
+Don't use parentheses when calling attributes
+
+Importing a single function from a module:
+from module_name import function_name
+
+from os import getcwd, chdir
+
+-------------------------------------------------------------
+# Import the string module
+import string 
+
+# Print all ASCII lowercase characters
+print(string.ascii_lowercase)
+
+# Print all punctuation
+print(string.punctuation)
+-------------------------------------------------------------
+# Import date from the datetime module
+from datetime import date 
+
+# Create a variable called deadline
+deadline = date(2024, 1, 19)
+
+# Check the data type
+print(type(deadline))
+
+# Print the deadline
+print(deadline)
+
+-------------------------------------------------------------
+Packages: collection of modules
+
+Module = python file
+Packages = library
+
+python3 -m pip install package_name
+
+import pandas as pd
+sales = {"item": ["A", "B", "C"], "price": [10, 20, 30]}
+sales_df = pd.DataFrame(sales) -> function 
+sales_df.head() -> method 
+
+Function = code that performs a specific task
+Method = function that belongs to an object
+
+# Read in sales.csv
+sales_df = pd.read_csv("sales.csv")
+
+# Print the mean order_value
+print(sales_df["order_value"].mean())
+
+# Print the total value of sales
+print(sales_df["order_value"].sum())
+
+-------------------------------------------------------------
+Defining a custom function:
+Considerations when defining a function:
+- Number of lines
+- Code complexity
+- Frequency of use
+
+# Creating a custom function to calculate the average value
+def average(values):
+    # Calculate the average 
+    average_value = sum(values) / len(values)
+
+    # Round the results
+    rounded_average = round(average_value, 2)
+
+    return rounded average
+
+sales = [10, 20, 30, 40, 50]
+average(sales)
+
+-------------------------------------------------------------
+# Create the clean_string function
+def clean_string(text):
+  
+  # Replace spaces with underscores
+  no_spaces = text.replace(" ", "_")
+  
+  # Convert to lowercase
+  clean_text = no_spaces.lower()
+  
+  # Return the final text as an output
+  return clean_text
+
+converted_text = clean_string("I LoVe dATaCamP!")
+print(converted_text)
+
+-------------------------------------------------------------
+password = "not_very_secure_2023"
+
+# Define the password_checker function
+def password_checker(submission):
+  
+  # Check that the password variable and the submission match
+  if password == submission:
+    print("Successful login!")
+  
+  # Otherwise, print "Incorrect password"
+  else:
+    print("Incorrect password")
+
+# Call the function    
+password_checker("NOT_VERY_SECURE_2023")
+
+-------------------------------------------------------------
+- Arguments are values provided to a function or method
+- Function and methods have two types of arguments:
+    - Positional arguments
+    - Keyword arguments
+
+  
+Positional arguments:
+- Provide arguments in order, separated by commas
+Ex: round(3.14455555, 2)
+
+Keyword arguments:
+- Provide arguments by assigning values to keywords
+- Useful for interpretation and tracking arguments
+- keyword = value
+Ex: round(number=3.14455555, ndigits=2)
+
+None == no value/empty
+Default argument: way of setting a default value for an argument
+
+def average(values, rounded=False):
+  if rounded == True:
+    average_value = sum(values) / len(values)
+    rounded_average = round(average_value, 2)
+    return rounded_average
+  else:
+    average_value = sum(values) / len(values)
+    return average_value
+
+sales = [10, 20, 30, 40, 50]
+average(sales, rounded=False)
+
+-------------------------------------------------------------
+# Define clean_text
+def clean_text(text, lower=True):
+  if lower == False:
+    clean_text = text.replace(" ", "_")
+    return clean_text
+  else:
+    clean_text = text.replace(" ", "_")
+    clean_text = clean_text.lower()
+    return clean_text
+
+-------------------------------------------------------------
+# Define clean_text
+def clean_text(text, remove=None):
+  if remove != None:
+    clean_text = text.replace(remove, "")
+    clean_text = clean_text.lower()
+    return clean_text
+  else:
+    clean_text = text.lower()
+    return clean_text
+
+-------------------------------------------------------------
+# Create the convert_data_structure function
+def convert_data_structure(data, data_type="list"):
+  
+  # If data_type is "tuple"
+  if data_type == "tuple":
+    data = tuple(data)
+  
+  # Else if data_type is set, convert to a set
+  elif data_type == "set":
+    data = set(data)
+  else:
+    data = list(data)
+  return data
+
+# Call the function to convert to a set
+convert_data_structure({"a", 1, "b", 2, "c", 3}, data_type="set")
+
+-------------------------------------------------------------
+Docstrings: provide information about the function
+help(function_name) -> get information about the function
+help(round) -> get information about the round function
+round.__doc__ -> get information about the round function
+
+.__doc__ => "dunder doc" attribute
+
+def average(values, rounded=False):
+  """
+  Calculate the average of a list of values
+  
+  Parameters:
+  values: list of numerical values
+  rounded: boolean, round the average to two decimal places
+  
+  Returns:
+  average_value: float, the average of the values
+  """
+  if rounded == True:
+    average_value = sum(values) / len(values)
+    rounded_average = round(average_value, 2)
+    return rounded_average
+  else:
+    average_value = sum(values) / len(values)
+    return average_value
+
+-------------------------------------------------------------
+def clean_string(text):
+  
+  # Add a single-line docstring
+  """Swap spaces to underscores and convert text to lowercase."""
+  
+  no_spaces = text.replace(" ", "_")
+  clean_text = no_spaces.lower()
+  return clean_text
+
+# Access the docstring
+print(clean_string.__doc__)
+
+-------------------------------------------------------------
+# Create the convert_data_type function
+def convert_data_structure(data, data_type="list"):
+  # Add a multi-line docstring
+  """
+  Convert a data structure to a list, tuple, or set.
+  
+  Args:
+  	data (list, tuple, or set): A data structure to be converted.
+    data_type (str): String representing the type of structure to convert data to.
+    
+  Returns:
+  	data (list, tuple, or set): Converted data structure.
+  """
+  if data_type == "tuple":
+    data = tuple(data)
+  elif data_type == "set":
+    data = set(data)
+  else:
+    data = list(data)
+  return data
+
+print(help(convert_data_structure))
+
+-------------------------------------------------------------
+Arbitrary arguments-> is a way to pass a variable number of arguments to a function
+- Positional arguments
+- Keyword arguments
+
+Arbitrary arguments allows you to pass a variable number of arguments to a function
+
+Positional => def average(*args):
+
+* = Convert arguments to a single iterable (tuple)
+average(*[15, 29], *[4, 13])
+
+Keyword => def average(**kwargs):
+
+def average(**kwargs):
+  average_value = sum(kwargs.values()) / len(kwargs.values())
+  rounded_average = round(average_value, 2)
+  return rounded_average
+
+average(a=15, b=29, c=4, d=13)
+
+-------------------------------------------------------------
+# Define a function called concat
+def concat(*args):
+  
+  # Create an empty string
+  result = ""
+  
+  # Iterate over the Python args tuple
+  for arg in args:
+    result += " " + arg
+  return result
+
+# Call the function
+print(concat("Python", "is", "great!"))
+
+-------------------------------------------------------------
+# Define a function called concat
+def concat(**kwargs):
+  
+  # Create an empty string
+  result = ""
+  
+  # Iterate over the Python kwargs
+  for kwarg in kwargs.values():
+    result += " " + kwarg
+  return result
+
+# Call the function
+print(concat(start="Python", middle="is", end="great!"))
+
+-------------------------------------------------------------
+Lambda functions and error-handling
+
+Lambda functions:
+- Lambda keyword -> create an anonymous function
+
+lambda arguments(s): expression
+- Convention is to use x for a single argument
+- The expression is the equivalent of the function body
+- No return statement is required
+
+lambda x: sum(x) / len(x)
+
+- Using lambda functions:
+(lambda x: sum(x) / len(x))([10, 20, 30, 40, 50])
+
+average = lambda x: sum(x) / len(x)
+average([10, 20, 30, 40, 50])
+
+(lambda x, y: x**y)(2, 3)
+
+Lambda functions with iterables:
+- map() -> applies a function to all elements in an iterable
+names = ["alice", "bob", "charlie"]
+capitalize = map(lambda x: x.capitalize(), names)
+print(list(capitalize))
+
+- filter -> filters elements in an iterable
+numbers = [1, 2, 3, 4, 5]
+even = filter(lambda x: x % 2 == 0, numbers)
+print(list(even))
+
+- reduce -> applies a function to all elements in an iterable
+from functools import reduce
+numbers = [1, 2, 3, 4, 5]
+total = reduce(lambda x, y: x + y, numbers)
+print(total)
+
+-------------------------------------------------------------
+sale_price = 29.99
+
+# Define a lambda function called add_tax
+add_tax = lambda x: x * 1.2
+
+# Call the lambda function
+print(add_tax(sale_price)))
+-------------------------------------------------------------
+sale_price = 29.99
+
+# Call a lambda function adding 20% to sale_price
+print((lambda x: x * 1.2) (sale_price)) 
+-------------------------------------------------------------
+sales_prices = [29.99, 9.95, 14.50, 39.75, 60.00]
+
+# Create add_taxes to add 20% to each item in sales_prices
+add_taxes = map(lambda x: x * 1.2, sales_prices)
+
+# Use add_taxes to return a new list with updated values
+print(list(add_taxes))
+-------------------------------------------------------------
+Introduction to errors:
+
+What is an error?
+- code that violates one or more rules
+- Error = exception 
+- Cause our code to terminate
+
+TypeError -> unsupported operation. incorrect data type
+"Hello" + 5
+ValueError -> incorrect value, the value is not acceptable in an operation
+int("Hello")
+KeyError -> key not found in a dictionary
+
+Error-handling:
+except, raise, finally
+
+def average(values):
+  try:
+    average_value = sum(values) / len(values)
+    return average_value
+  except:
+    print("average() accepts a list or set. Please provide a correct data type")
+
+
+def average(values):
+  if type(values) in ["list", "set"]:
+    average_value = sum(values) / len(values)
+    return average_value
+  else:
+    raise TypeError("average() accepts a list or set. Please provide a correct data type")
+
+try-except:
+- avoid errors being produced
+- still execute subsequent code
+
+raise:
+- will produce an error
+- avoid executing subsequent code
+
+-------------------------------------------------------------
+def snake_case(text):
+  # Attempt to clean the text
+  try:
+    # Swap spaces for underscores
+    clean_text = text.replace(" ", "_")
+    clean_text = clean_text.lower()
+  # Run this code if an error occurs
+  except:
+    print("The snake_case() function expects a string as an argument, please check the data type provided.")
+    
+snake_case("User Name 187")
+
+-------------------------------------------------------------
+def snake_case(text):
+  # Check the data type
+  if type(text) == str:
+    clean_text = text.replace(" ", "_")
+    clean_text = clean_text.lower()
+  else:
+    # Return a TypeError error if the wrong data type was used
+    raise TypeError("The snake_case() function expects a string as an argument, please check the data type provided.")
+    
+snake_case("User Name 187")
+
+-------------------------------------------------------------   
+Introduction to Importing Data in Python                    |
+-------------------------------------------------------------
+Introduction and flat files
+
+filename = 'huck_fin.txt'
+file = open(filename, mode='r') # r is to read
+text = file.read()
+file.close()
+print(text)
+
+file = open(filename, mode='w') # w is to write
+file.write("I am writing a new line")
+file.close()
+
+with open(filename, mode='r') as file:
+  print(file.read())
+
+-------------------------------------------------------------
+# Open a file as read-only and bind it to file
+with open('moby_dick.txt', 'r') as file:
+  	# Print it
+    print(file.read())
+
+--------------------------------------------------------------
+# Read & print the first 3 lines
+with open('moby_dick.txt', 'r') as file:
+    print(file.readline())
+    print(file.readline())
+    print(file.readline())
+
+---------------------------------------------------------------
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+---------------------------------------------------------------
+Importing flat files using NumPy
+
+import numpy as np
+filename = 'MNIST.txt'
+data = np.loadtxt(filename, delimiter=',')
+data
+
+import numpy as np
+filename = 'MNIST.txt'
+data = np.loadtxt(filename, delimiter=',', skiprows=1, dtype=str)
+data
+
+---------------------------------------------------------------
+# Import packages
+import numpy as np
+
+# Assign filename to variable: file
+file = 'digits.csv'
+
+# Load file as array: digits
+digits = np.loadtxt(file, delimiter=',')
+
+# Print datatype of digits
+print(type(digits))
+
+# Select and reshape a row
+im = digits[21, 1:]
+im_sq = np.reshape(im, (28, 28))
+
+# Plot reshaped data (matplotlib.pyplot already loaded as plt)
+plt.imshow(im_sq, cmap='Greys', interpolation='nearest')
+plt.show()
+
+---------------------------------------------------------------
+# Import numpy
+import numpy as np
+
+# Assign the filename: file
+file = 'digits_header.txt'
+
+# Load the data: data
+data = np.loadtxt(file, delimiter='\t', skiprows=1, usecols=[0, 2])
+
+# Print data
+print(data)
+
+---------------------------------------------------------------
+# Assign filename: file
+file = 'seaslug.txt'
+
+# Import file: data
+data = np.loadtxt(file, delimiter='\t', dtype=str)
+
+# Print the first element of data
+print(data[0])
+
+# Import file as floats and skip the first row: data_float
+data_float = np.loadtxt(file, delimiter='\t', dtype=float, skiprows=1)
+
+# Print the 10th element of data_float
+print(data_float[9])
+
+# Plot a scatterplot of the data
+plt.scatter(data_float[:, 0], data_float[:, 1])
+plt.xlabel('time (min.)')
+plt.ylabel('percentage of larvae')
+plt.show()
+---------------------------------------------------------------
+Manipulating pandas DataFrames
+- Exploratory data analysis
+- Data wrangling
+- Data processing
+- Building models
+- Visualization
+
+import pandas as pd
+filename = 'titanic.csv'
+data = pd.read_csv(filename)
+data.head()
+
+data_array = data.to_numpy()
+---------------------------------------------------------------
+# Import pandas as pd
+import pandas as pd
+
+# Assign the filename: file
+file = 'titanic.csv'
+
+# Read the file into a DataFrame: df
+df = pd.read_csv(file)
+
+# View the head of the DataFrame
+print(df.head())
+---------------------------------------------------------------
+# Assign the filename: file
+file = 'digits.csv'
+
+# Read the first 5 rows of the file into a DataFrame: data
+data = pd.read_csv(file, header=None, nrows=5)
+
+# Build a numpy array from the DataFrame: data_array
+data_array = data.to_numpy()
+
+# Print the datatype of data_array to the shell
+print(type(data_array))
+---------------------------------------------------------------
+# Import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+
+# Assign filename: file
+file = 'titanic_corrupt.txt'
+
+# Import file: data
+data = pd.read_csv(file, sep='\t', comment='#', na_values='Nothing')
+
+# Print the head of the DataFrame
+print(data.head())
+
+# Plot 'Age' variable in a histogram
+pd.DataFrame.hist(data[['Age']])
+plt.xlabel('Age (years)')
+plt.ylabel('count')
+plt.show()
+---------------------------------------------------------------
+Other file types
+- Excel
+- SAS
+- Stata
+- HDF5
+- MATLAB
+- SQL
+- Pickled files
+
+Pickle = Python-specific data format
+Pickled files are serialized 
+Serialized -> convert object to bytestream
+
+import pickle
+with open('pickled_fruit.pkl', 'rb') as file: # rb is read binary
+  data = pickle.load(file)
+print(data)
+
+---------------------------------------------------------------
+import pandas as pd
+file = 'urbanpop.xlsx'
+data = pd.ExcelFile(file)
+print(data.sheet_names)
+
+df1 = data.parse('1960-1966') # sheet name as a string
+df2 = data.parse(0) # sheet index as an integer
+
+---------------------------------------------------------------
+# Import pickle package
+import pickle
+
+# Open pickle file and load data: d
+with open('data.pkl', 'rb') as file:
+    d = pickle.load(file)
+
+# Print d
+print(d)
+
+# Print datatype of d
+print(type(d))
+---------------------------------------------------------------
+# Import pandas
+import pandas as pd
+
+# Assign spreadsheet filename: file
+file = 'battledeath.xlsx'
+
+# Load spreadsheet: xls
+xls = pd.ExcelFile(file)
+
+# Print sheet names
+print(xls.sheet_names)
+
+# Load a sheet into a DataFrame by name: df1
+df1 = xls.parse('2004')
+
+# Print the head of the DataFrame df1
+print(df1.head())
+
+# Load a sheet into a DataFrame by index: df2
+df2 = xls.parse(0)
+
+# Print the head of the DataFrame df2
+print(df2.head())
+
+# Parse the first sheet and rename the columns: df1
+df1 = xls.parse(0, skiprows="0", names=['Country', 'AAM due to War (2002)'])
+
+# Print the head of the DataFrame df1
+print(df1.head())
+
+# Parse the first column of the second sheet and rename the column: df2
+df2 = xls.parse(1, usecols=[0], skiprows="0", names=['Country'])
+
+# Print the head of the DataFrame df2
+print(df2.head())
+---------------------------------------------------------------
+SAS and Statafiles
+- SAS -> statistical analysis system
+- Stata -> statistics and data science
+
+# SAS files
+import pandas as pd
+from sas7bdat import SAS7BDAT
+with SAS7BDAT('urbanpop.sas7bdat') as file:
+  df_sas = file.to_data_frame()
+
+# Stata files
+import pandas as pd
+data = pd.read_stata('urbanpop.dta')
+
+---------------------------------------------------------------
+# Import sas7bdat package
+from sas7bdat import SAS7BDAT
+
+# Save file to a DataFrame: df_sas
+with SAS7BDAT('sales.sas7bdat') as file:
+    df_sas = file.to_data_frame()
+
+# Print head of DataFrame
+print(df_sas.head())
+
+# Plot histogram of DataFrame features (pandas and pyplot already imported)
+pd.DataFrame.hist(df_sas[['P']])
+plt.ylabel('count')
+plt.show()
+---------------------------------------------------------------
+# Import pandas
+import pandas as pd
+
+# Load Stata file into a pandas DataFrame: df
+df = pd.read_stata('disarea.dta')
+
+# Print the head of the DataFrame df
+print(df.head())
+
+# Plot histogram of one column of the DataFrame
+pd.DataFrame.hist(df[['disa10']])
+plt.xlabel('Extent of disease')
+plt.ylabel('Number of countries')
+plt.show()
+
+---------------------------------------------------------------
+HDF5 files
+- Hierarchical Data Format version 5
+- Standard for storing large quantities of numerical data
+
+import h5py
+filename = 'LIGO_data.hdf5'
+data = h5py.File(filename, 'r')
+print(type(data))
+
+for key in data.keys():
+  print(key)
+
+for key in data['meta].keys():
+  print(key)
+
+print(np.array(data['meta']['Description']))
+---------------------------------------------------------------
+# Import packages
+import numpy as np
+import h5py
+
+# Assign filename: file
+file = 'LIGO_data.hdf5'
+
+# Load file: data
+data = h5py.File(file, 'r')
+
+# Print the datatype of the loaded file
+print(type(data))
+
+# Print the keys of the file
+for key in data.keys():
+    print(key)
+
+# Get the HDF5 group: group
+group = data['strain']
+
+# Check out keys of group
+for key in group.keys():
+    print(key)
+
+# Set variable equal to time series data: strain
+strain = np.array(data['strain']['Strain'])
+
+# Set number of time points to sample: num_samples
+num_samples = 10000
+
+# Set time vector
+time = np.arange(0, 1, 1/num_samples)
+
+# Plot data
+plt.plot(time, strain[:num_samples])
+plt.xlabel('GPS Time (s)')
+plt.ylabel('strain')
+plt.show()
+---------------------------------------------------------------
+MATLAB files
+- Matrix Laboratory
+- Numerical computing environment
+
+scipy.io.loadmat() -> read .mat files
+scipy.io.savemat() -> write .mat files
+
+import scipy.io
+filename = 'workspace.mat'
+mat = scipy.io.loadmat(filename)
+print(type(mat))
+
+keys = matlab variable names
+values = objects assigned to variables
+
+# Import package
+import scipy.io
+
+# Load MATLAB file: mat
+mat = scipy.io.loadmat('albeck_gene_expression.mat')
+
+# Print the datatype type of mat
+print(type(mat))
+
+# Print the keys of the MATLAB dictionary
+print(mat.keys())
+
+# Print the type of the value corresponding to the key 'CYratioCyt'
+print(type(mat['CYratioCyt']))
+
+# Print the shape of the value corresponding to the key 'CYratioCyt'
+print(np.shape(mat['CYratioCyt']))
+
+# Subset the array and plot it
+data = mat['CYratioCyt'][25, 5:]
+fig = plt.figure()
+plt.plot(data)
+plt.xlabel('time (min.)')
+plt.ylabel('normalized fluorescence (measure of expression)')
+plt.show()
+
+---------------------------------------------------------------
+Working with relational databases in Python
+
+Creating a database engine
+- SQLite database
+- SQLAlchemy -> SQL toolkit and Object-Relational Mapping (ORM) library
+
+from sqlalchemy import create_engine
+engine = create_engine('sqlite:///Northwind.sqlite')
+
+table_names = engine.table_names()
+print(table_names)
+---------------------------------------------------------------
+# Import necessary module
+from sqlalchemy import create_engine
+
+# Create engine: engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+
+# Save the table names to a list: table_names
+table_names = engine.table_names()
+
+# Print the table names to the shell
+print(table_names)
+---------------------------------------------------------------
+from sqlalchemy import create_engine
+import pandas as pd
+
+engine = create_engine('sqlite:///Northwind.sqlite')
+con = engine.connect()
+
+rs = con.execute('SELECT * FROM Orders')
+df = pd.DataFrame(rs.fetchall())
+df.columns = rs.keys()
+con.close()
+---------------------------------------------------------------
+from sqlalchemy import create_engine
+import pandas as pd
+engine = create_engine('sqlite:///Northwind.sqlite')
+
+with engine.connect() as con:
+  rs = con.execute("SELECT OrderID, OrderDate, ShipName FROM Orders")
+  df = pd.DataFrame(rs.fetchmany(size=5))
+  df.columns = rs.keys()
+
+---------------------------------------------------------------
+# Import packages
+from sqlalchemy import create_engine
+import pandas as pd
+
+# Create engine: engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+
+# Execute query and store records in DataFrame: df
+df = pd.read_sql_query("SELECT * FROM Album", engine)
+
+# Print head of DataFrame
+print(df.head())
+
+# Open engine in context manager and store query result in df1
+with engine.connect() as con:
+    rs = con.execute("SELECT * FROM Album")
+    df1 = pd.DataFrame(rs.fetchall())
+    df1.columns = rs.keys()
+
+# Confirm that both methods yield the same result
+print(df.equals(df1))
+---------------------------------------------------------------
+# Import packages
+from sqlalchemy import create_engine
+import pandas as pd
+
+# Create engine: engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+
+# Execute query and store records in DataFrame: df
+df = pd.read_sql_query("SELECT * FROM Employee WHERE EmployeeId >= 6 ORDER BY BirthDate", engine)
+
+# Print head of DataFrame
+print(df.head())
+
+---------------------------------------------------------------
+# Open engine in context manager
+# Perform query and save results to DataFrame: df
+with engine.connect() as con:
+    rs = con.execute("SELECT Title, Name FROM Album INNER JOIN Artist ON Album.ArtistID = Artist.ArtistID")
+    df = pd.DataFrame(rs.fetchall())
+    df.columns = rs.keys()
+
+# Print head of DataFrame df
+print(df.head())
+
+---------------------------------------------------------------
+INTERMEDIATE IMPORTING DATA IN PYTHON                         |
+---------------------------------------------------------------
+Importing flat files from the web
+- the urllib packages -> fethcing data across the web
+- urllib.request -> for opening and reading URLs
+- urlopen() -> accepts URLs instead of file names
+
+from url.request import urlretrieve
+url = 'http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv'
+urlretrieve(url, 'winequality-white.csv')
+---------------------------------------------------------------
+# Import package
+from urllib.request import urlretrieve
+
+# Import pandas
+import pandas as pd
+
+# Assign url of file: url
+url = 'https://assets.datacamp.com/production/course_1606/datasets/winequality-red.csv'
+
+# Save file locally
+urlretrieve(url, 'winequality-red.csv')
+
+# Read file into a DataFrame and print its head
+df = pd.read_csv('winequality-red.csv', sep=';')
+print(df.head())
+---------------------------------------------------------------
+# Import packages
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Assign url of file: url
+url = 'https://assets.datacamp.com/production/course_1606/datasets/winequality-red.csv'
+
+# Read file into a DataFrame: df
+df = pd.read_csv(url, sep=';')
+
+# Print the head of the DataFrame
+print(df.head())
+
+# Plot first column of df
+df.iloc[:, 0].hist()
+plt.xlabel('fixed acidity (g(tartaric acid)/dm$^3$)')
+plt.ylabel('count')
+plt.show()
+---------------------------------------------------------------
+# Import package
+import pandas as pd
+
+# Assign url of file: url
+url = 'https://assets.datacamp.com/course/importing_data_into_r/latitude.xls'
+
+# Read in all sheets of Excel file: xls
+xls = pd.read_excel(url, sheet_name=None)
+
+# Print the sheetnames to the shell
+print(xls.keys())
+
+# Print the head of the first sheet (using its name, NOT its index)
+print(xls['1700'].head())
+---------------------------------------------------------------
+HTTP requests to import files from the web 
+
+URL -> Uniform/Uniersal Resource Locator
+Consist of:
+- Protocol identifier - http:
+- Resource name - datacamp.com
+
+HTTP -> HyperText Transfer Protocol
+- Foundation of data communication for the web
+- HTTPS -> more secure form of HTTP
+- Going to a website = sending HTTP request
+  - GET request -> retrieve information from the web
+- urlretrieve() -> performs a GET request
+
+from urllib.request import urlopen, Request
+url = "https://www.wikipedia.org/"
+request = Request(url)
+response = urlopen(request)
+html = respense.read()
+response.close()
+
+Get requests using requests package
+import requests
+url = "https://www.wikipedia.org/"
+r = requests.get(url)
+text = r.text
+
+---------------------------------------------------------------
+# Import packages
+from urllib.request import urlopen, Request
+
+# Specify the url
+url = "https://campus.datacamp.com/courses/1606/4135?ex=2"
+
+# This packages the request
+request = Request(url)
+
+# Sends the request and catches the response: response
+response = urlopen(request)
+
+# Extract the response: html
+html = response.read()
+
+# Print the html
+print(html)
+
+# Be polite and close the response!
+response.close()
+---------------------------------------------------------------
+# Import package
+import requests
+
+# Specify the url: url
+url = "http://www.datacamp.com/teach/documentation"
+
+# Packages the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Extract the response: text
+text = r.text
+
+# Print the html
+print(text)
+---------------------------------------------------------------
+Scraping the web in Python 
+
+BeautifulSoup 
+from bs4 import BeautifulSoup
+url = 'https://www.crummy.com/software/BeautifulSoup/'
+r = requests.get(url)
+html_doc = r.txt
+soup = BeautifulSoup(html_doc)
+print(soup.prettify())
+print(soup.title)
+print(soup.get_text())
+
+for link in soup.find_all('a'):
+  print(link.get('href))
+---------------------------------------------------------------
+# Import packages
+import requests
+from bs4 import BeautifulSoup
+
+# Specify url: url
+url = 'https://www.python.org/~guido/'
+
+# Package the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Extract the response as html: html_doc
+html_doc = r.text
+
+# Create a BeautifulSoup object from the HTML: soup
+soup = BeautifulSoup(html_doc)
+
+# Get the title of Guido's webpage: guido_title
+guido_title = soup.title
+
+# Print the title of Guido's webpage to the shell
+print(guido_title)
+
+# Get Guido's text: guido_text
+guido_text = soup.get_text()
+
+# Print Guido's text to the shell
+print(guido_text)
+---------------------------------------------------------------
+# Import packages
+import requests
+from bs4 import BeautifulSoup
+
+# Specify url
+url = 'https://www.python.org/~guido/'
+
+# Package the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Extracts the response as html: html_doc
+html_doc = r.text
+
+# create a BeautifulSoup object from the HTML: soup
+soup = BeautifulSoup(html_doc)
+
+# Print the title of Guido's webpage
+print(soup.title)
+
+# Find all 'a' tags (which define hyperlinks): a_tags
+a_tags = soup.find_all('a')
+
+# Print the URLs to the shell
+for link in a_tags:
+    print(link.get('href'))
+---------------------------------------------------------------
+APIs and JSONs
+
+- API -> Application Programming Interface
+- Protocols and tools for building software applications
+
+JSONs -> Javascript Object Notation 
+- Real time server-to-browser communication
+
+import json 
+with open('snakes.json', 'r) as json_file:
+   json_data = json.load(json_file)
+
+for key, value in json_data.items():
+  print(key + ':', value)
+
+---------------------------------------------------------------
+# Load JSON: json_data
+with open("a_movie.json") as json_file:
+    json_data = json.load(json_file)
+
+# Print each key-value pair in json_data
+for k in json_data.keys():
+    print(k + ': ', json_data[k])
+---------------------------------------------------------------
+APIs and interacting with the world wide web
+
+APIs = allows communication between software applications
+
+import requests
+url = 'http://www.omdbapi.com/?t=hackers'
+r = requests.get(url)
+json_data = r.json()
+for key, value in json_date.items():
+  print(key + ':', value)
+
+?t=hackers -> query string, title Hackers
+?apikey=72bc447a&t=the+social+network -> query string, title The Social Network, apikey 72bc447a
+---------------------------------------------------------------
+# Import requests package
+import requests
+
+# Assign URL to variable: url
+url = 'http://www.omdbapi.com/?apikey=72bc447a&t=the+social+network'
+
+# Package the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Print the text of the response
+print(r.text)
+
+---------------------------------------------------------------
+# Import package
+import requests
+
+# Assign URL to variable: url
+url = 'http://www.omdbapi.com/?apikey=72bc447a&t=social+network'
+
+# Package the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Decode the JSON data into a dictionary: json_data
+json_data = r.json()
+
+# Print each key-value pair in json_data
+for k in json_data.keys():
+    print(k + ': ', json_data[k])
+---------------------------------------------------------------
+# Import package
+import requests
+
+# Assign URL to variable: url
+url = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=pizza'
+
+# Package the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Decode the JSON data into a dictionary: json_data
+json_data = r.json()
+
+# Print the Wikipedia page extract
+pizza_extract = json_data['query']['pages']['24768']['extract']
+print(pizza_extract)
+
+---------------------------------------------------------------
+Twitter API and Authentication 
+
+- Twitter API -> allows access to Twitter data
+- Tweepy -> Python package for accessing the Twitter API
+
+import tweepy, json 
+access_token = "..."
+access_token_secret = "..."
+consumer_key = "..."
+consumer-secret = "..."
+
+stream = tweepy.Stream(consumer_key, consumer_secret, access_token, access_token_secret)
+stream.filter(track=['apples', 'oranges'])
+---------------------------------------------------------------
+# Store credentials in relevant variables
+consumer_key = "nZ6EA0FxZ293SxGNg8g8aP0HM"
+consumer_secret = "fJGEodwe3KiKUnsYJC3VRndj7jevVvXbK2D5EiJ2nehafRgA6i"
+access_token = "1092294848-aHN7DcRP9B4VMTQIhwqOYiB14YkW92fFO8k8EPy"
+access_token_secret = "X4dHmhPfaksHcQ7SCbmZa2oYBBVSD2g8uIHXsp5CTaksx"
+
+# Create your Stream object with credentials
+stream = tweepy.Stream(consumer_key, consumer_secret, access_token, access_token_secret)
+
+# Filter your Stream variable
+stream.filter(track=['clinton', 'trump', 'sanders', 'cruz'])
+---------------------------------------------------------------
+# Import package
+import json
+
+# String of path to file: tweets_data_path
+tweets_data_path = 'tweets.txt'
+
+# Initialize empty list to store tweets: tweets_data
+tweets_data = []
+
+# Open connection to file
+tweets_file = open(tweets_data_path, "r")
+
+# Read in tweets and store in list: tweets_data
+for line in tweets_file:
+    tweet = json.loads(line)
+    tweets_data.append(tweet)
+
+# Close connection to file
+tweets_file.close()
+
+# Print the keys of the first tweet dict
+print(tweets_data[0].keys())
+---------------------------------------------------------------
+# Import package
+import pandas as pd
+
+# Build DataFrame of tweet texts and languages
+df = pd.DataFrame(tweets_data, columns=['text', 'lang'])
+
+# Print head of DataFrame
+print(df.head())
+
+---------------------------------------------------------------
+import re
+
+def word_in_text(word, text):
+    word = word.lower()
+    text = text.lower()
+    match = re.search(word, text)
+
+    if match:
+        return True
+    return False
+
+# Initialize list to store tweet counts
+[clinton, trump, sanders, cruz] = [0, 0, 0, 0]
+
+# Iterate through df, counting the number of tweets in which
+# each candidate is mentioned
+for index, row in df.iterrows():
+    clinton += word_in_text('clinton', row['text'])
+    trump += word_in_text('trump', row['text'])
+    sanders += word_in_text('sanders', row['text'])
+    cruz += word_in_text('cruz', row['text'])
+
+# Import packages
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Set seaborn style
+sns.set(color_codes=True)
+
+# Create a list of labels:cd
+cd = ['clinton', 'trump', 'sanders', 'cruz']
+
+# Plot the bar chart
+ax = sns.barplot(cd, [clinton, trump, sanders, cruz])
+ax.set(ylabel="count")
+plt.show()
+
+---------------------------------------------------------------
+CLEANING DATA IN PYTHON                                      |
+---------------------------------------------------------------
+Urutan:                                           |
+- Data type constraints                           |
+- Data range constraints                          |
+- Uniqueness constraints                          |
+- Consistency constraints                         |
+- Completeness constraints                        |
+--------------------------------------------------
+
+Data type constraints:
+
+Text data: first name, last name, address
+Integers: age, number of items, products sold
+Decimals: temperature, exchange rate
+Binary: is married, is employed, is present
+Dates: Order dates, ship dates
+Categories: marriage status, employment status, product type
+
+# Get data types of columns
+sales.dtypes
+
+# String to Integers
+# Remove $ from Revenue column
+sales['Revenue'] = sales['Revenue'].str.strip('$')
+sales['Revenue'] = sales['Revenue'].astype('int')
+
+# Verify data type
+assert sales['Revenue'].dtype == 'int'
+
+# Convert numerical data to categorical data
+df['marriage_status'] = df['marriage_status'].astype('category')
+df.describe()
+
+---------------------------------------------------------------
+# Print the information of ride_sharing
+print(ride_sharing.info())
+
+# Print summary statistics of user_type column
+print(ride_sharing['user_type'].describe())
+
+# Print the information of ride_sharing
+print(ride_sharing.info())
+
+# Print summary statistics of user_type column
+print(ride_sharing['user_type'].describe())
+
+# Convert user_type from integer to category
+ride_sharing['user_type_cat'] = ride_sharing['user_type'].astype('category')
+
+# Write an assert statement confirming the change
+assert ride_sharing['user_type_cat'].dtype == 'category'
+
+# Print new summary statistics 
+print(ride_sharing['user_type_cat'].describe())
+---------------------------------------------------------------
+# Strip duration of minutes
+ride_sharing['duration_trim'] = ride_sharing['duration'].str.strip("minutes")
+
+# Convert duration to integer
+ride_sharing['duration_time'] = ride_sharing['duration_trim'].astype('int')
+
+# Write an assert statement making sure of conversion
+assert ride_sharing['duration_time'].dtype == 'int'
+
+# Print formed columns and calculate average ride duration 
+print(ride_sharing[['duration','duration_trim','duration_time']])
+print(ride_sharing['duration_time'].mean())
+---------------------------------------------------------------
+Data range constraints:
+
+How to deal with out of range data:
+- Dropping data (depending the size of the dataset), drop data when it is not significant
+- Setting custom minimums and maximums
+- Treat as missing and impute
+- Setting custome value depending on business assumptions
+
+# Drop values using .drop()
+movies.drop(movies[movies['avg_rating'] > 5].index, inplace=True)
+assert movies['avg_rating'].max() <= 5
+
+# Convert avg_rating > 5 to 5
+movies.loc[movies['avg_rating'] > 5, 'avg_rating'] = 5
+
+user_signups['subsription_date'] = pd.to_datetime(user_signups['subsription_date']).dt.date
+
+# Drop values using .drop()
+user_signups.drop(user_signups[user_signups['subscription_date'] > today_date].index, inplace=True)
+
+---------------------------------------------------------------
+# Convert tire_sizes to integer
+ride_sharing['tire_sizes'] = ride_sharing['tire_sizes'].astype('int')
+
+# Set all values above 27 to 27
+ride_sharing.loc[ride_sharing['tire_sizes'] > 27, 'tire_sizes'] = 27
+
+# Reconvert tire_sizes back to categorical
+ride_sharing['tire_sizes'] = ride_sharing['tire_sizes'].astype('category')
+
+# Print tire size description
+print(ride_sharing['tire_sizes'].describe())
+---------------------------------------------------------------
+# Convert ride_date to date
+ride_sharing['ride_dt'] = pd.to_datetime(ride_sharing['ride_date']).dt.date
+
+# Save today's date
+today = dt.date.today()
+
+# Set all in the future to today's date
+ride_sharing.loc[ride_sharing['ride_dt'] > today, 'ride_dt'] = today
+
+# Print maximum of ride_dt column
+print(ride_sharing['ride_dt'].max())
+---------------------------------------------------------------
+Uniqueness constraints:
+
+How to find duplicates value:
+
+# Get duplicates across all columns
+duplicates = height_weight.duplicated()
+print(duplicates)
+
+# Get duplicate rows
+duplicates = height_weight.duplicated()
+height_weight[duplicates]
+
+The .duplicated() method:
+- subset -> column labels to consider
+- keep -> whether to keep first, last, or all duplicates
+- inplace -> whether to drop duplicates in place
+
+column_names = ['first_name', 'last_name', 'address']
+duplicates = height_weight.duplicated(subset=column_names, keep=False) # keep=False to mark all duplicates as True
+height_weight[duplicates]
+
+height_weight[duplicates].sort_values(by = 'first_name')
+height_weight.drop_duplicates(subset=column_names, inplace=True)
+
+# Group by column names and produce statistical summaries
+column_names = ['first_name', 'last_name', 'address']
+summaries = {'height': 'max', 'weight': 'mean'}
+height_weight = height_weight.groupby(column_names).agg(summaries).reset_index()
+duplicates = height_weight.duplicated(subset = column_names, keep = False)
+height_weight[duplicates].sort_values(by = 'first_name')
+
+---------------------------------------------------------------
+# Find duplicates
+duplicates = ride_sharing.duplicated(subset = 'ride_id', keep=False)
+
+# Sort your duplicated rides
+duplicated_rides = ride_sharing[duplicates].sort_values('ride_id')
+
+# Print relevant columns of duplicated_rides
+print(duplicated_rides[['ride_id','duration','user_birth_year']])
+
+# Drop complete duplicates from ride_sharing
+ride_dup = ride_sharing.drop_duplicates()
+
+# Create statistics dictionary for aggregation function
+statistics = {'user_birth_year': 'min', 'duration': 'mean'}
+
+# Group by ride_id and compute new statistics
+ride_unique = ride_dup.groupby('ride_id').agg(statistics).reset_index()
+
+# Find duplicated values again
+duplicates = ride_unique.duplicated(subset = 'ride_id', keep = False)
+duplicated_rides = ride_unique[duplicates == True]
+
+# Assert duplicates are processed
+assert duplicated_rides.shape[0] == 0
+---------------------------------------------------------------
+Finding inconsistent categories:
+
+inconsistent_categories = set(study_data['blood_type']).difference(categories['blood_type'])
+print(inconsistent_categories)
+
+inconsistent_rows = study_data['blood_type'].isin(inconsistent_categories)
+study_data[inconsistent_rows]
+
+# Drop inconsistent categories and get consistent data
+consistent_data = study_data[~inconsistent_rows]
+
+---------------------------------------------------------------
+# Print categories DataFrame
+print(categories)
+
+# Print unique values of survey columns in airlines
+print('Cleanliness: ', airlines['cleanliness'].unique(), "\n")
+print('Safety: ', airlines['safety'].unique(), "\n")
+print('Satisfaction: ', airlines['satisfaction'].unique, "\n")
+
+# Find the cleanliness category in airlines not in categories
+cat_clean = set(airlines['cleanliness']).difference(categories['cleanliness'])
+
+# Find rows with that category
+cat_clean_rows = airlines['cleanliness'].isin(cat_clean)
+
+# Print rows with inconsistent category
+print(airlines[cat_clean_rows])
+
+# Print rows with consistent categories only
+print(airlines[~cat_clean_rows])
+---------------------------------------------------------------
+What type of errors could we have?
+1. Value inconsistency
+2. Collapsign too many categories
+3. making sure data is of type category
+
+1. Value inconsistency:
+# Get marriage status column
+marriage_status = demographics['marriage_status']
+marriage_status.value_counts()
+
+# Get value counts on DataFrame
+marriage_status.groupby('marriage_status').count()
+
+# Capitalize 
+marriage_status['marriage_status'] = marriage_status['marriage_status'].str.upper()
+marriage_status['marriage_status'].value_counts()
+
+# lowercase
+marriage_status['marriage_status'] = marriage_status['marriage_status'].str.lower()
+marriage_status['marriage_status'].value_counts()
+
+# Trailing spaces
+marriage_status = demographics['marriage_status']
+marriage_status.value_counts()
+
+demographics['marriage_status'] = demographics['marriage_status'].str.strip()
+demographics['marriage_status'].value_counts()
+---------------------------------------------------------------
+2. Collapsing too many categories:
+# Using qcut()
+import pandas as pd
+group_names = ['0-200k', '200k-500k', '500k-1m', '1m+']
+demographics['income_group'] = pd.qcut(demographics['household_income'], q=4, labels=group_names)
+
+demographics[['income_group', 'household_income']]
+
+# Using cut()
+import pandas as pd
+ranges = [0, 200000, 500000, np.inf]
+group_names = ['0-200k', '200k-500k', '500k+']
+demographics['income_group'] = pd.cut(demographics['household_income'], bins=ranges, labels=group_names)
+demographics[['income_group', 'household_income']]
+
+# Mapping categories to fewer oranges
+operating systm column is: Microsoft, MacOS, IOS, Android, Linux
+operating_system column should become DEsktopOS and MobileOS
+
+mapping = {'Microsoft': 'DesktopOS', 'MacOS': 'DesktopOS', 'Linux': 'DesktopOS', 'IOS': 'MobileOS', 'Android': 'MobileOS'}
+devices['operating_system'] = devices['operating_system'].replace(mapping)
+devices['operating_system'].unqiue()
+---------------------------------------------------------------
+# Print unique values of both columns
+print(airlines['dest_region'].unique())
+print(airlines['dest_size'].unique())
+
+# Lower dest_region column and then replace "eur" with "europe"
+airlines['dest_region'] = airlines['dest_region'].str.lower() 
+airlines['dest_region'] = airlines['dest_region'].replace({'eur':'europe'})
+
+# Remove white spaces from `dest_size`
+airlines['dest_size'] = airlines['dest_size'].str.strip()
+
+# Verify changes have been effected
+print(airlines['dest_region'].unique())
+print(airlines['dest_size'].unique())
+
+---------------------------------------------------------------
+# Create ranges for categories
+label_ranges = [0, 60, 180, np.inf]
+label_names = ['short', 'medium', 'long']
+
+# Create wait_type column
+airlines['wait_type'] = pd.cut(airlines['wait_min'], bins = label_ranges, 
+                                labels = label_names)
+
+# Create mappings and replace
+mappings = {'Monday':'weekday', 'Tuesday':'weekday', 'Wednesday': 'weekday', 
+            'Thursday': 'weekday', 'Friday': 'weekday', 
+            'Saturday': 'weekend', 'Sunday': 'weekend'}
+
+airlines['day_week'] = airlines['day'].replace(mappings)
+
+---------------------------------------------------------------
+Cleaning text data
+
+Common text data problems:
+- Data inconsistency
+  +6282981201 or 0921218
+- Fixed length violations
+- Typos
+
+# Fixing the phone number column
+# Replace "+" with "00"
+phone["Phone number"] = phone["Phone number"].str.replace("+", "00")
+phones
+
+# Replace "-" with ""
+phone["Phone number"] = phone["Phone number"].str.replace("-", "")
+phones
+
+# Replace phone numbers with lower than 10 digits with np.nan
+digits = phone["Phone number"].str.len()
+phone.loc[digits < 10, "Phone number"] = np.nan
+phone
+
+# Find length of each phone number
+sanity_check = phone["Phone number"].str.len()
+assert sanity_check.min() >= 10
+
+# Assert all numbers do not have "+" or "-"
+assert phone["Phone number"].str.contains("+|-").any() == False
+
+Assert returns nothing if the condition is true
+
+---------------------------------------------------------------
+# Regex to clean text data
+
+# Replace letters with nothing
+phone["Phone number"] = phone["Phone number"].str.replace(r'\D+', '')
+phone.head()
+
+---------------------------------------------------------------
+# Replace "Dr." with empty string ""
+airlines['full_name'] = airlines['full_name'].str.replace("Dr.", "")
+
+# Replace "Mr." with empty string ""
+airlines['full_name'] = airlines['full_name'].str.replace("Mr.", "")
+
+# Replace "Miss" with empty string ""
+airlines['full_name'] = airlines['full_name'].str.replace("Miss", "")
+
+# Replace "Ms." with empty string ""
+airlines['full_name'] = airlines['full_name'].str.replace("Ms.", "")
+
+# Assert that full_name has no honorifics
+assert airlines['full_name'].str.contains('Ms.|Mr.|Miss|Dr.').any() == False
+
+# Store length of each row in survey_response column
+resp_length = airlines['survey_response'].str.len()
+
+# Find rows in airlines where resp_length > 40
+airlines_survey = airlines[resp_length > 40]
+
+# Assert minimum survey_response length is > 40
+assert airlines_survey['survey_response'].str.len().min() > 40
+
+# Print new survey_response column
+print(airlines_survey['survey_response'])
+---------------------------------------------------------------
+Advanced data problems
+
+1. Uniformity
+# Check for uniformity
+import matplotlib.pyplot as plt
+plt.scatter(x='Date', y='Temperature', data=temperature)
+plt.title('Temperature in Celcius March 2019 - NYC')
+plt.xlabel('Dates')
+plt.ylabel('Temperature in Celcius')
+plt.show()
+
+c = (F-32) * 5/9
+temp_fah = remperatures.loc[temperatures['Temperature'] > 40, 'Temperature]
+temp_cels = (temp_fah - 32) * 59
+temperatures.loc[temperatures['Temperature'] > 40, 'Temperature'] = temp_cels
+
+assert temperatures['Temperature].max() < 40
+
+---------------------------------------------------------------
+Datetime formatting
+
+pandas.to_datetime() -> convert string to datetime
+birthdays['Birthday'] = pd.to_datetime(birthdays['Birthday'], infer_datetime_format=True, errors='coerce')
+
+birthdays['Birthday'] = birthdays['Birthday'].dt.strftime("%d-%m-%Y)
+
+Treating ambigous date data:
+Is 2019-03-08 in August or March?
+- Convert to NA and treat accordingly
+- Infer format by understanding data source
+
+---------------------------------------------------------------
+# Find values of acct_cur that are equal to 'euro'
+acct_eu = banking['acct_cur'] == 'euro'
+
+# Convert acct_amount where it is in euro to dollars
+banking.loc[acct_eu, 'acct_amount'] = banking.loc[acct_eu, 'acct_amount'] * 1.1
+
+# Unify acct_cur column by changing 'euro' values to 'dollar'
+banking.loc[acct_eu, 'acct_cur'] = 'dollar'
+
+# Assert that only dollar currency remains
+assert banking['acct_cur'].unique() == 'dollar'
+---------------------------------------------------------------
+# Print the header of account_opend
+print(banking['account_opened'].head())
+
+# Convert account_opened to datetime
+banking['account_opened'] = pd.to_datetime(banking['account_opened'],
+                                           # Infer datetime format
+                                           infer_datetime_format = True,
+                                           # Return missing value for error
+                                           errors = 'coerce') 
+
+# Get year of account opened
+banking['acct_year'] = banking['account_opened'].dt.strftime('%Y')
+
+# Print acct_year
+print(banking['acct_year'])
+---------------------------------------------------------------
+Cross field validation
+-> The use of multiple fields in a dataset to danity check data integrity
+
+sum_class = flight[['economy_class', 'business_class', 'first_class']].sum(axis=1)
+passenger_equ = sum_classes == flight['total_passengers']
+
+inconsistent_pass = flight[~passenger_equ]
+consistent_pass = flight[passenger_equ]
+
+# Cross validation age and birth date
+
+import pandas as pd
+import datetime as dt
+
+users['Birthday'] = pd.to_datetime(users['Birthday'])
+today = dt.date.today()
+
+age_manual = today.year - users['Birthday'].dt.year
+age_equ = age_manual == users['Age']
+inconsistent_age = users[~age_equ]
+consistent_age = users[age_equ]
+
+What to do when we catch inconsistencies?
+- Dropping data
+- Set to missing and impute
+- Apply rules from domain knowledge
+---------------------------------------------------------------
+# Store fund columns to sum against
+fund_columns = ['fund_A', 'fund_B', 'fund_C', 'fund_D']
+
+# Find rows where fund_columns row sum == inv_amount
+inv_equ = banking[fund_columns].sum(axis=1) == banking['inv_amount']
+
+# Store consistent and inconsistent data
+consistent_inv = banking[inv_equ]
+inconsistent_inv = banking[~inv_equ]
+
+# Store consistent and inconsistent data
+print("Number of inconsistent investments: ", inconsistent_inv.shape[0])
+
+# Store today's date and find ages
+today = dt.date.today()
+ages_manual = today.year - banking['birth_date'].dt.year
+
+# Find rows where age column == ages_manual
+age_equ = ages_manual == banking['age']
+
+# Store consistent and inconsistent data
+consistent_ages = banking[age_equ]
+inconsistent_ages = banking[~age_equ]
+
+# Store consistent and inconsistent data
+print("Number of inconsistent ages: ", inconsistent_ages.shape[0])
+---------------------------------------------------------------
+Completeness constraints
+
+Missing data: 
+- Missing data can be:
+  - NaN
+  - NA
+  - 0
+  - Unknown
+  - Not applicable
+- Technical or human error
+
+# Return missing values
+airquality.isna()
+airquality.isna().sum()
+
+Missingno package:
+
+import missingno as msno
+import matplotlib.pyplot as plt
+msno.matrix(airquality)
+plt.show()
+
+# Isolate missing and complete values aside
+missing = airquality[airquality['CO2'].isna()]
+complete = airquality[~airquality['CO2'].isna()]
+
+sorted_airquality = airquality.sort_values('Temperature')
+msno.matrix(sorted_airquality)
+plt.show()
+
+Missingness types:
+- Missing completely a random (MCAR) -> no relationship between missing data and any values, missing data is random, data entry error
+- Missing at random (MAR) -> Systemic relationship between missing data and observed data, missing ozone data for high temperature
+- Missing not at random (MNAR) -> Systematic relationship between missing data and unobserved data, missing temperature values for high temperature
+
+How to deal with missing data?
+- Drop missing data
+- Impute with statistical measures (mean, median, mode)
+- Impute using an algorithmic approach, machine learning models
+
+# Drop missing values
+airquality_dropped =airquality.dropna(subset=['CO2'])
+
+# Replacing with statistical measures
+co2_mean = airquality['CO2'].mean()
+airquality_imputed = airquality.fillna({'CO2':co2_mean})
+
+---------------------------------------------------------------
+# Print number of missing values in banking
+print(banking.isna().sum())
+
+# Visualize missingness matrix
+msno.matrix(banking)
+plt.show()
+
+# Isolate missing and non missing values of inv_amount
+missing_investors = banking[banking['inv_amount'].isna()]
+investors = banking[~banking['inv_amount'].isna()]
+
+# Sort banking by age and visualize
+banking_sorted = banking.sort_values('age')
+msno.matrix(banking_sorted)
+plt.show()
+
+# Drop missing values of cust_id
+banking_fullid = banking.dropna(subset = ['cust_id'])
+
+# Compute estimated acct_amount
+acct_imp = banking_fullid['inv_amount'] * 5
+
+# Impute missing acct_amount with corresponding acct_imp
+banking_imputed = banking_fullid.fillna({'acct_amount':acct_imp})
+
+# Print number of missing values
+print(banking_imputed.isna().sum())
+
+---------------------------------------------------------------
+Record linkage
+
+Comparing strings:
+- Minimum edit distance -> Least possible amount of steps needed to transition from one string to another
+
++ inserting
++ deleting
++ substituting
++ transposing
+
+algorithm:
+- Damerau-Levenshtein distance = insertion, deletion, substitution, transposition
+- Levenshtein distance = insertion, deletion, substitution
+- Hamming distance = substitution
+- Jaro distance = transposition
+
+Possible packages: nltk, thefuzz, textdistance
+
+from thefuzz import fuzz
+fuzz.WRatio('Reeding', 'Reading')
+-> 86
+
+from thefuzz import process
+string = "Houston Rockets vs Los Angeles Lakers"
+choices = ["Houston Rockets vs Los Angeles Clippers", "Chicago Bulls vs Miami Heat", "Los Angeles Lakers vs Houston Rockets"]
+process.extract(string, choices, limit=2)
+-> [('Houston Rockets vs Los Angeles Clippers', 95), ('Los Angeles Lakers vs Houston Rockets', 95)]
+
+# For each correct category
+for state in categories['state']:
+  # Find potential mathes in states with typoes
+  matches = process.extract(state, survey['state'], limit = survey.shape[0])
+
+  # for each potential match match 
+  for potential_match in matches:
+    if potential_match[1] >= 80:
+      survey.loc[survey['state'] == potential_match[0], 'state'] = state
+  
+---------------------------------------------------------------
+# Import process from thefuzz
+from thefuzz import process
+
+# Store the unique values of cuisine_type in unique_types
+unique_types = restaurants['cuisine_type'].unique()
+
+# Calculate similarity of 'asian' to all values of unique_types
+print(process.extract('asian', unique_types, limit = len(unique_types)))
+
+# Calculate similarity of 'american' to all values of unique_types
+print(process.extract('american', unique_types, limit = len(unique_types)))
+
+# Calculate similarity of 'italian' to all values of unique_types
+print(process.extract('italian', unique_types, limit = len(unique_types)))
+
+---------------------------------------------------------------
+# Create a list of matches, comparing 'italian' with the cuisine_type column
+matches = process.extract('italian', restaurants['cuisine_type'], limit = restaurants.shape[0])
+
+# Inspect the first 5 matches
+print(matches[0:5])
+
+# Create a list of matches, comparing 'italian' with the cuisine_type column
+matches = process.extract('italian', restaurants['cuisine_type'], limit=len(restaurants.cuisine_type))
+
+# Iterate through the list of matches to italian
+for match in matches:
+  # Check whether the similarity score is greater than or equal to 80
+  if match[1] >= 80 :
+    # Select all rows where the cuisine_type is spelled this way, and set them to the correct cuisine
+    restaurants.loc[restaurants['cuisine_type'] == match[0], 'cuisine_type'] = 'italian'
+
+# Iterate through categories
+for cuisine in categories:  
+  # Create a list of matches, comparing cuisine with the cuisine_type column
+  matches = process.extract(cuisine, restaurants['cuisine_type'], limit=len(restaurants.cuisine_type))
+
+  # Iterate through the list of matches
+  for match in matches:
+     # Check whether the similarity score is greater than or equal to 80
+    if match[1] >= 80:
+      # If it is, select all rows where the cuisine_type is spelled this way, and set them to the correct cuisine
+      restaurants.loc[restaurants['cuisine_type'] == match[0]] = cuisine
+      
+# Inspect the final result
+print(restaurants['cuisine_type'].unique())
+---------------------------------------------------------------
+Generating pairs
+
+Blocking = grouping similar records together
+
+import recordlinkage
+indexer = recordlinkage.Index()
+
+# Generate pairs blocked on state
+indexer.block('state')
+pairs = indexer.index(census_A, census_B)
+
+# Comparing the DataFrames
+pairs = indexer.index(census_A, census_B)
+compare_cl = recordlinkage.Compare()
+
+compare_cl.exact('date_of_birth', 'date_of_birth', label='date_of_birth')
+compare_cl.exact('state', 'state', label='state')
+
+compare_cl.string('surname', 'surname', threshold=0.85, label='surname')
+compare_cl.string('address', 'address', threshold=0.85, label='address')
+
+potential_matches = compare_cl.compute(pairs, census_A, census_B)
+potential_matches[potential_matches.sum(axis=1) >= 2]
+
+---------------------------------------------------------------
+# Create an indexer and object and find possible pairs
+indexer = recordlinkage.Index()
+
+# Block pairing on cuisine_type
+indexer.block('cuisine_type')
+
+# Generate pairs
+pairs = indexer.index(restaurants, restaurants_new)
+
+# Create a comparison object
+comp_cl = recordlinkage.Compare()
+
+# Find exact matches on city, cuisine_types 
+comp_cl.exact('city', 'city', label='city')
+comp_cl.exact('cuisine_type', 'cuisine_type', label = 'cuisine_type')
+
+# Find similar matches of rest_name
+comp_cl.string('rest_name', 'rest_name', label='name', threshold = 0.8) 
+
+# Get potential matches and print
+potential_matches = comp_cl.compute(pairs, restaurants, restaurants_new)
+print(potential_matches)
+
+---------------------------------------------------------------
+Linking DataFrames
+
+matches.index
+duplicate_rows = matches.index.get_level_values(1)
+print(census_B_index)
+
+census_B_duplicates = census_B[census_B.index.isin(duplicate_rows)]
+census_B_new = census_B[~census_B.index.isin(duplicate_rows)]
+
+full_census = census_A.append(census_B_new)
+
+---------------------------------------------------------------
+# Isolate potential matches with row sum >=3
+matches = potential_matches[potential_matches.sum(axis = 1) >= 3]
+
+# Get values of second column index of matches
+matching_indices = matches.index.get_level_values(1)
+
+# Subset restaurants_new based on non-duplicate values
+non_dup = restaurants_new[~restaurants_new.index.isin(matching_indices)]
+
+# Append non_dup to restaurants
+full_restaurants = restaurants.append(non_dup)
+print(full_restaurants)
+
+---------------------------------------------------------------
+WRITING EFFICIENT PYTHON CODE                                 |
+---------------------------------------------------------------
+Efficient:
+- Fast runtime (minimal completion time)
+- Small memory footprint (Minimal resource consumption)
+- Focus on readability
+- Using Python constructs as intended
+
+# Print the list created using the Non-Pythonic approach
+i = 0
+new_list= []
+while i < len(names):
+    if len(names[i]) >= 6:
+        new_list.append(names[i])
+    i += 1
+print(new_list)
+---------------------------------------------------------------
+# Print the list created by looping over the contents of names
+better_list = []
+for name in names:
+    if len(name) >= 6:
+        better_list.append(name)
+print(better_list)
+---------------------------------------------------------------
+# Print the list created by using list comprehension
+best_list = [name for name in names if len(name) >= 6]
+print(best_list)
+---------------------------------------------------------------
+The Python Standard library
+
+Built-in types:
+- list, tuple, set, dict, and others
+
+Built-in functions:
+- print(), len(), range(), round(), enumerate(), map(), zip(), and others.
+
+Built-in modules:
+- os, sys, ietrtools, collections, math, and others.
+
+range():
+nums = range(1, 11)
+num_list = list(nums)
+print(num_list)
+-> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+nums = range(11)
+num_list = list(nums)
+print(num_list)
+-> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+even_nums = range(2, 11, 2) => start from 2, end at 11, step 2
+even_nums_list = list(even_nums)
+print(even_nums_list)
+-> [2, 4, 6, 8, 10]
+
+enumerate():
+letters = ['a', 'b', 'c', 'd']
+indexed_letters = enumerate(letters)
+indexed_letters_list = list(indexed_letters)
+print(indexed_letters_list)
+-> [(0, 'a'), (1, 'b'), (2, 'c'), (3, 'd')]
+
+letters = ['a', 'b', 'c', 'd']
+indexed_letters = enumerate(letters, start=5)
+indexed_letters_list = list(indexed_letters)
+print(indexed_letters_list)
+-> [(5, 'a'), (6, 'b'), (7, 'c'), (8, 'd')]
+
+maps():
+nums = [1.5, 2.3, 3.4, 4.6]
+rnd_nums = map(round, nums)
+print(list(rnd_nums))
+-> [2, 2, 3, 5]
+
+nums = [1, 2, 3, 4]
+sqrd_numms = map(lambda x: x ** 2, nums)
+print(list(sqrd_numms))
+-> [1, 4, 9, 16]
+
+---------------------------------------------------------------
+# Create a range object that goes from 0 to 5
+nums = range(0, 6)
+print(type(nums))
+
+# Convert nums to a list
+nums_list = list(nums)
+print(nums_list)
+
+# Create a new list of odd numbers from 1 to 11 by unpacking a range object
+nums_list2 = [*range(1, 12, 2)] -> unpacking range object to list
+print(nums_list2)
+
+---------------------------------------------------------------
+# Rewrite the for loop to use enumerate
+indexed_names = []
+for i,name in enumerate(names):
+    index_name = (i,name)
+    indexed_names.append(index_name) 
+print(indexed_names)
+
+# Rewrite the above for loop using list comprehension
+indexed_names_comp = [(i, name) for i,name in enumerate(names)]
+print(indexed_names_comp)
+
+# Unpack an enumerate object with a starting index of one
+indexed_names_unpack = [*enumerate(names, 1)]
+print(indexed_names_unpack)
+
+---------------------------------------------------------------
+# Use map to apply str.upper to each element in names
+names_map  = map(lambda x: x.upper(), names)
+
+# Print the type of the names_map
+print(type(names_map))
+
+# Unpack names_map into a list
+names_uppercase = [*map(lambda x: x.upper(), names)]
+
+# Print the list created above
+print(names_uppercase)
+---------------------------------------------------------------
+Numpy arrays:
+
+nums_list = list(range(5))
+
+import numpy as np
+nums_np = np.array(range(5))
+nums_np.dtype
+
+numpy arrays: homogeneous data types
+
+---------------------------------------------------------------
+sqrd_nums = []
+for nums in nums:
+  sqrd_numms.append(num ** 2)
+print(sqrd_nums)
+
+sqrd_nums = [num ** 2 for num in nums]
+print(sqrd_nums)
+
+nums_np = np.array([-2, -1, 0, 1, 2])
+nums_np ** 2
+
+nums_np > 0
+-> array([False, False, False, True, True])
+
+nums_np[nums_np > 0]
+-> array([1, 2])
+
+---------------------------------------------------------------
+# Print second row of nums
+print(np.array(nums[1,:]))
+
+# Print all elements of nums that are greater than six
+print(nums[nums > 6])
+
+# Double every element of nums
+nums_dbl = np.array(nums) * 2
+print(nums_dbl)
+
+# Replace the third column of nums
+nums[:,2] = nums[:, 2] + 1
+print(nums)
+---------------------------------------------------------------
+# Create a list of arrival times
+arrival_times = [*range(10,60,10)]
+
+# Convert arrival_times to an array and update the times
+arrival_times_np = np.array(arrival_times)
+new_times = arrival_times_np - 3
+
+# Use list comprehension and enumerate to pair guests to new times
+guest_arrivals = [(names[i],time) for i,time in enumerate(new_times)]
+
+# Map the welcome_guest function to each (guest,time) pair
+welcome_map = map(lambda x: welcome_guest(x), guest_arrivals)
+
+guest_welcomes = [*welcome_map]
+print(*guest_welcomes, sep='\n')
+---------------------------------------------------------------
+Timing and profiling code
+
+Examining runtime:
+Calculate runtime with IPyhton magic comans %timeit
+
+%lsmagic -> list all available magic commands
+
+import numpy as np
+rand_nums = np.random.rand(1000)
+%timeit rand_nums = np.random.rand(1000)
+
+# Set numbers of runs to 2 (-r2)
+# Set number of loops to 10 (-n10)
+
+%timeit -r2 -n10 rand_nums = np.random.rand(1000)
+
+%%timeit -> time the entire cell
+times = %timeit -o rand_nums = np.random.rand(1000)
+
+times.timings -> list of all runtimes
+times.best -> best runtime
+times.worst -> worst runtime
+times.average -> average runtime
+times.stdev -> standard deviation of runtimes
+
+---------------------------------------------------------------
+Code profiling for runtime
+- Detailed stats on frequency and duration of function calls
+- Line by line analysis of code runtime
+- Package used for profiling: line_profiler
+
+pip install line_profiler
+
+def convert_units(heroes, heights, weights):
+  new_hts = [ht * 0.39370 for ht in heights]
+  new_wts = [wt * 2.20462 for wt in weights]
+
+  hero_data = {}
+
+  for i, hero in enumerate(heroes):
+    hero_data[hero] = (new_hts[i], new_wts[i])
+
+  return hero_data
+
+%load_ext line_profiler
+%lprun -f convert_units convert_units(heroes, hts, wts)
+
+---------------------------------------------------------------
+Code profiling for memory usage
+
+import sys 
+
+num_list = [*range(1000)]
+sys.getsizeof(num_list) -> get memory usage of num_list
+-> 9112
+
+nums_np = np.array(range(1000))
+sys.getsizeof(nums_np) -> get memory usage of nums_np
+-> 8096
+
+memory profiler package:
+
+from hero_funcs import convert_units
+
+%load_ext memory_profiler
+%mprun -f convert_units convert_units(heroes, hts, wts)
+
+---------------------------------------------------------------
+def calc_bmi_lists(sample_indices, hts, wts):
+
+    # Gather sample heights and weights as lists
+    s_hts = [hts[i] for i in sample_indices]
+    s_wts = [wts[i] for i in sample_indices]
+
+    # Convert heights from cm to m and square with list comprehension
+    s_hts_m_sqr = [(ht / 100) ** 2 for ht in s_hts]
+
+    # Calculate BMIs as a list with list comprehension
+    bmis = [s_wts[i] / s_hts_m_sqr[i] for i in range(len(sample_indices))]
+
+    return bmis
+
+---------------------------------------------------------------
+def get_publisher_heroes(heroes, publishers, desired_publisher):
+
+    desired_heroes = []
+
+    for i,pub in enumerate(publishers):
+        if pub == desired_publisher:
+            desired_heroes.append(heroes[i])
+
+    return desired_heroes
+def get_publisher_heroes_np(heroes, publishers, desired_publisher):
+
+    heroes_np = np.array(heroes)
+    pubs_np = np.array(publishers)
+
+    desired_heroes = heroes_np[pubs_np == desired_publisher]
+
+    return desired_heroes
+
+# Use get_publisher_heroes() to gather Star Wars heroes
+star_wars_heroes = get_publisher_heroes(heroes, publishers, 'George Lucas')
+
+print(star_wars_heroes)
+print(type(star_wars_heroes))
+
+# Use get_publisher_heroes_np() to gather Star Wars heroes
+star_wars_heroes_np = get_publisher_heroes_np(heroes, publishers, 'George Lucas')
+
+print(star_wars_heroes_np)
+print(type(star_wars_heroes_np))
+
+---------------------------------------------------------------
+Gaining efficiencies
+
+names = ['Bulbasaur', 'Charmander', 'Squirtle']
+hps = [45, 39, 44]
+
+combines = []
+
+for i, pokemon in enumerate(names):
+  combines.append((pokemon, hps[i]))
+print(combines)
+-> [('Bulbasaur', 45), ('Charmander', 39), ('Squirtle', 44)]
+
+combined_zip = zip(names, hps)
+combines_zip_list = [*combined_zip]
+print(combines_zip_list)
+
+Collection module:
+- namedtuple -> create tuple subclasses with named fields
+- deque -> list-like container with fast appends and pops on either end
+- Counter -> dict subclass for counting hashable objects
+- OrderedDict -> dict subclass that remembers the order entries were added
+- defaultdict -> dict subclass that calls a factory function to supply missing values
+
+Counting with loop:
+poke_types = ['Grass', 'Dark', 'Fire', 'Water', 'Fire', 'Bug', ...]
+type_counts = {}
+for poke_type in poke_types:
+  if poke_type not in type_counts:
+    type_counts[poke_type] = 1
+  else:
+    type_counts[poke_type] += 1
+print(type_counts)
+
+
+Counting with Counter:
+poke_types = ['Grass', 'Dark', 'Fire', 'Water', 'Fire', 'Bug', ...]
+
+from collections import Counter
+type_counts = Counter(poke_types)
+
+
+Itertools module:
+- Infinite iterators: count(), cycle(), repeat()
+- Finite iterators: accumulate(), chain(), zip_longest()
+- Combination generators: product(), permutations(), combinations()
+
+Combination with loop:
+poke_types = ['Grass', 'Dark', 'Fire', 'Water', 'Fire', 'Bug']
+combos = []
+
+for x in poke_types:
+  for y in poke_types:
+    if x == y:
+      continue
+    if((x, y) not in combos) & ((y, x) not in combos):
+      combos.append((x, y))
+print(combos)
+
+Combination with itertools:
+poke_types = ['Grass', 'Dark', 'Fire', 'Water', 'Fire', 'Bug']
+from itertools import combinations
+combos_obj = combinations(poke_types, 2)
+combos = [*combos_obj]
+print(combos)
+
+---------------------------------------------------------------
+# Combine names and primary_types
+names_type1 = [*zip(names, primary_types)]
+
+print(*names_type1[:5], sep='\n')
+
+# Combine all three lists together
+names_types = [*zip(names, primary_types, secondary_types)]
+
+print(*names_types[:5], sep='\n')
+
+# Combine five items from names and three items from primary_types
+differing_lengths = [*zip(names[:5], primary_types[:3])]
+
+print(*differing_lengths, sep='\n')
+
+---------------------------------------------------------------
+# Collect the count of primary types
+type_count = Counter(primary_types)
+print(type_count, '\n')
+
+# Collect the count of generations
+gen_count = Counter(generations)
+print(gen_count, '\n')
+
+# Use list comprehension to get each Pokémon's starting letter
+starting_letters = [name[0] for name in names]
+
+# Collect the count of Pokémon for each starting_letter
+starting_letters_count = Counter(starting_letters)
+print(starting_letters_count)
+---------------------------------------------------------------
+# Import combinations from itertools
+from itertools import combinations
+
+# Create a combination object with pairs of Pokémon
+combos_obj = combinations(pokemon, 2)
+print(type(combos_obj), '\n')
+
+# Convert combos_obj to a list by unpacking
+combos_2 = [*combos_obj]
+print(combos_2, '\n')
+
+# Collect all possible combinations of 4 Pokémon directly into a list
+combos_4 = [*combinations(pokemon, 4)]
+print(combos_4)
+
+---------------------------------------------------------------
+Set theory
+
+- intersection() -> elements in both sets
+- difference() -> elements in one set but not the other
+- symmetric_difference() -> all elements in exactly one set
+- union() -> all elements in both sets
+
+list_a = ['Bulbasaur', 'Charmander', 'Squirtle']
+list_b = ['Caterpie', 'Pidgey', 'Squirtle']
+
+Using loops:
+in_common = []
+for pokemon_a in list_a:
+  for pokemon_b in list_b:
+    if pokemon_a == pokemon_b:
+      in_common.append(pokemon_a)
+
+print(in_common)
+
+Using sets:
+set_a = set(list_a)
+set_b = set(list_b)
+
+in_common = set_a.intersection(set_b) -> 'Squirtle'
+difference_a = set_a.difference(set_b) -> 'Bulbasaur', 'Charmander'
+difference_b = set_b.difference(set_a) -> 'Caterpie', 'Pidgey'
+all_pokemon = set_a.union(set_b) -> 'Bulbasaur', 'Charmander', 'Squirtle', 'Caterpie', 'Pidgey'
+---------------------------------------------------------------
+# Convert both lists to sets
+ash_set = set(ash_pokedex)
+misty_set = set(misty_pokedex)
+
+# Find the Pokémon that exist in both sets
+both = ash_set.intersection(misty_set)
+print(both)
+
+# Find the Pokémon that Ash has and Misty does not have
+ash_only = ash_set.difference(misty_set)
+print(ash_only)
+
+# Find the Pokémon that are in only one set (not both)
+unique_to_set = ash_set.symmetric_difference(misty_set)
+print(unique_to_set)
+---------------------------------------------------------------
+Eliminating loops:
+
+for loop : interate over sequence piece by piece
+while loop : repeat until condition is met
+nested loop : loop inside another loop
+
+Flat is better than nested!!
+
+poke_stats = [
+  [90, 92, 75],
+  [25, 20, 15],
+  [65, 130, 60]
+]
+
+# Using for loop
+totals = []
+for row in poke_stats:
+  totals.append(sum(row))
+
+# Using list comprehension
+totals_comp = [sum(row) for row in poke_stats]
+
+# Using map
+totals_map = [*map(sum, poke_stats)]
+
+avgs_np = poke_stats.mean(axis=1)
+
+---------------------------------------------------------------
+# Collect Pokémon that belong to generation 1 or generation 2
+gen1_gen2_pokemon = [name for name,gen in zip(poke_names, poke_gens) if gen < 3]
+
+# Create a map object that stores the name lengths
+name_lengths_map = map(len, gen1_gen2_pokemon)
+
+# Combine gen1_gen2_pokemon and name_lengths_map into a list
+gen1_gen2_name_lengths = [*zip(gen1_gen2_pokemon, name_lengths_map)]
+
+print(gen1_gen2_name_lengths_loop[:5])
+print(gen1_gen2_name_lengths[:5])
+
+---------------------------------------------------------------
+# Create a total stats array
+total_stats_np = stats.sum(axis=1)
+
+# Create an average stats array
+avg_stats_np = stats.mean(axis=1)
+
+# Combine names, total_stats_np, and avg_stats_np into a list
+poke_list_np = [*zip(names, total_stats_np, avg_stats_np)]
+
+print(poke_list_np == poke_list, '\n')
+print(poke_list_np[:3])
+print(poke_list[:3], '\n')
+top_3 = sorted(poke_list_np, key=lambda x: x[1], reverse=True)[:3]
+print('3 strongest Pokémon:\n{}'.format(top_3))
+
+---------------------------------------------------------------
+Writing better loops:
+- Understanding what is being done with each loop iteration
+- Move one-time calculations outside(above) the loop
+- Use holistic conversions outside the loop
+- Anything that is done once should be done outside the loop
+
+import numpy as np
+
+names = ['Abomasnow', 'Abra', 'Absol', 'Accelgor', 'Aerodactyl']
+attacks = np.array([92, 20, 130, 70, 105])
+for pokemon, attack in zip(names, attacks):
+  total_attack_avg = attacks.mean()
+  if attack > total_attack_avg:
+    print(
+      "{}'s attack: {} > average: {}!"
+      .format(pokemon, attack, total_attack_avg)
+    )
+
+# Mean above or below the loop 
+total_attack_avg = attacks.mean()
+for pokemon, attack in zip(names, attacks):
+  if attack > total_attack_avg:
+    print(
+      "{}'s attack: {} > average: {}!"
+      .format(pokemon, attack, total_attack_avg)
+    )
+
+# Using holistic conversion
+names = ['Abomasnow', 'Abra', 'Absol', 'Accelgor', 'Aerodactyl']
+legend_status = [False, False, False, False, True]
+generations = [4, 1, 3, 5, 1]
+
+poke_data = []
+for poke_tuple in zip(names, legend_status, generations):
+  poke_list = list(poke_tuple)
+  poke_data.append(poke_list)
+print(poke_data)
+
+poke_data_tuples = []
+for poke_tuple in zip(names, legend_status, generations):
+  poke_data_tuples.append(poke_tuple)
+poke_data = [*map(list, poke_data_tuples)]
+
+---------------------------------------------------------------
+
+for gen,count in gen_counts.items():
+    total_count = len(generations)
+    gen_percent = round(count / total_count * 100, 2)
+    print(
+      'generation {}: count = {:3} percentage = {}'
+      .format(gen, count, gen_percent)
+    )
+
+# Import Counter
+from collections import Counter
+
+# Collect the count of each generation
+gen_counts = Counter(generations)
+
+# Improve for loop by moving one calculation above the loop
+total_count = []
+
+for gen,count in gen_counts.items():
+    gen_percent = round(count / total_count * 100, 2)
+    print('generation {}: count = {:3} percentage = {}'
+          .format(gen, count, gen_percent))
+---------------------------------------------------------------
+# Import Counter
+from collections import Counter
+
+# Collect the count of each generation
+gen_counts = Counter(generations)
+
+# Improve for loop by moving one calculation above the loop
+total_count = len(generations)
+
+for gen,count in gen_counts.items():
+    gen_percent = round(count / total_count * 100, 2)
+    print('generation {}: count = {:3} percentage = {}'
+          .format(gen, count, gen_percent))
+---------------------------------------------------------------
+# Collect all possible pairs using combinations()
+possible_pairs = [*combinations(pokemon_types, 2)]
+
+# Create an empty list called enumerated_tuples
+enumerated_tuples = []
+
+# Append each enumerated_pair_tuple to the empty list above
+for i,pair in enumerate(possible_pairs, 1):
+    enumerated_pair_tuple = (i,) + pair
+    enumerated_tuples.append(enumerated_pair_tuple)
+
+# Convert all tuples in enumerated_tuples to a list
+enumerated_pairs = [*map(list, enumerated_tuples)]
+print(enumerated_pairs)
+
+---------------------------------------------------------------
+# Calculate the total HP avg and total HP standard deviation
+hp_avg = hps.mean()
+hp_std = hps.std()
+
+# Use NumPy to eliminate the previous for loop
+z_scores = (hps - hp_avg)/hp_std
+
+# Combine names, hps, and z_scores
+poke_zscores2 = [*zip(names, hps, z_scores)]
+print(*poke_zscores2[:3], sep='\n')
+
+# Calculate the total HP avg and total HP standard deviation
+hp_avg = hps.mean()
+hp_std = hps.std()
+
+# Use NumPy to eliminate the previous for loop
+z_scores = (hps - hp_avg)/hp_std
+
+# Combine names, hps, and z_scores
+poke_zscores2 = [*zip(names, hps, z_scores)]
+print(*poke_zscores2[:3], sep='\n')
+
+# Use list comprehension with the same logic as the highest_hp_pokemon code block
+highest_hp_pokemon2 = [(name, hp, z_score) for name,hp,z_score in poke_zscores2 if z_score > 2]
+print(*highest_hp_pokemon2, sep='\n')
+---------------------------------------------------------------
+Intro to pandas DataFrame iteration
+
+impot numpy as np
+def calc_win_per(wins, games_played):
+  win_perc = wins / games_played
+  return np.round(win_perc, 2)
+
+win_perc_list = []
+for in in range(len(baseball_df)):
+  row = baseball_df.iloc[i]
+  wins = row['W']
+  games_played = row['G']
+  win_perc = calc_win_per(wins, games_played)
+  win_perc_list.append(win_perc)
+
+baseball_df['WP'] = win_perc_list
+
+---------------------------------------------------------------
+win_perc_list = []
+
+for i, row in baseball_df.iterrows():
+  wins = row['W']
+  games_played = row['G']
+  win_perc = calc_win_per(wins, games_played)
+  win_perc_list.append(win_perc)
+
+baseball_df['WP'] = win_perc_list
+
+---------------------------------------------------------------
+# Iterate over pit_df and print each row
+for i,row in pit_df.iterrows():
+    print(row)
+
+# Iterate over pit_df and print each index variable, row, and row type
+for i,row in pit_df.iterrows():
+    print(i)
+    print(row)
+    print(type(row))
+
+# Use one variable instead of two to store the result of .iterrows()
+for row_tuple in pit_df.iterrows():
+    print(row_tuple)
+
+# Create an empty list to store run differentials
+run_diffs = []
+
+# Write a for loop and collect runs allowed and runs scored for each row
+for i,row in giants_df.iterrows():
+    runs_scored = row['RS']
+    runs_allowed = row['RA']
+    
+    # Use the provided function to calculate run_diff for each row
+    run_diff = calc_run_diff(runs_scored, runs_allowed)
+    
+    # Append each run differential to the output list
+    run_diffs.append(run_diff)
+
+giants_df['RD'] = run_diffs
+print(giants_df)
+
+---------------------------------------------------------------
+.itertuples()
+
+for row_namedtuple in pit_df.itertuples():
+    print(row_namedtuple.Team)
+
+---------------------------------------------------------------
+# Loop over the DataFrame and print each row's Index, Year and Wins (W)
+for row in rangers_df.itertuples():
+  i = row.Index
+  year = row.Year
+  wins = row.W
+  
+  # Check if rangers made Playoffs (1 means yes; 0 means no)
+  if row.Playoffs in rangers_df.itertuples() == 1:
+    print(i, year, wins)
+
+---------------------------------------------------------------
+run_diffs = []
+
+# Loop over the DataFrame and calculate each row's run differential
+for row in yankees_df.itertuples():
+    
+    runs_scored = row.RS
+    runs_allowed = row.RA
+
+    run_diff = calc_run_diff(runs_scored, runs_allowed)
+    
+    run_diffs.append(run_diff)
+
+# Append new column
+yankees_df['RD'] = run_diffs
+print(yankees_df)
+
+---------------------------------------------------------------
+Pandas alternatives to looping
+
+.apply() -> apply a function along an axis of the DataFrame
+axis = 0 -> apply function to each column, vertical
+axis = 1 -> apply function to each row, horizontal
+
+✅ "0" untuk ke bawah (vertikal, baris akan diproses)
+✅ "1" untuk ke samping (horizontal, kolom akan diproses)
+
+run_diff_apply = baseball_df.apply(
+  lambda row: calc_run_diff(row['RS'], row['RA']),
+  axis = 1
+)
+baseball_df['RD'] = run_diff_apply
+
+---------------------------------------------------------------
+# Gather sum of all columns
+stat_totals = rays_df.apply(sum, axis=0)
+print(stat_totals)
+
+# Gather total runs scored in all games per year
+total_runs_scored = rays_df[['RS', 'RA']].apply(sum, axis=1)
+print(total_runs_scored)
+
+# Convert numeric playoffs to text by applying text_playoffs()
+textual_playoffs = rays_df.apply(lambda row: text_playoffs(row['Playoffs']), axis=1)
+print(textual_playoffs)
+
+---------------------------------------------------------------
+# Display the first five rows of the DataFrame
+print(dbacks_df.head())
+
+# Create a win percentage Series 
+win_percs = dbacks_df.apply(lambda row: calc_win_perc(row['W'], row['G']), axis=1)
+print(win_percs, '\n')
+
+# Append a new column to dbacks_df
+dbacks_df['WP'] = win_percs
+print(dbacks_df, '\n')
+
+# Display dbacks_df where WP is greater than 0.50
+print(dbacks_df[dbacks_df['WP'] >= 0.50])
+---------------------------------------------------------------
+Optimal pandas iterating
+
+baseball_df['RS'].values - baseball_df['RA'].values
+
+win_perc_preds_loop = []
+
+# Use a loop and .itertuples() to collect each row's predicted win percentage
+for row in baseball_df.itertuples():
+    runs_scored = row.RS
+    runs_allowed = row.RA
+    win_perc_pred = predict_win_perc(runs_scored, runs_allowed)
+    win_perc_preds_loop.append(win_perc_pred)
+
+# Apply predict_win_perc to each row of the DataFrame
+win_perc_preds_apply = baseball_df.apply(lambda row: predict_win_perc(row['RS'], row['RA']), axis=1)
+
+# Calculate the win percentage predictions using NumPy arrays
+win_perc_preds_np = predict_win_perc(baseball_df['RS'].values, baseball_df['RA'].values)
+baseball_df['WP_preds'] = win_perc_preds_np
+print(baseball_df.head())
+
+urutan teroptimal:
+- numpy arrays
+- .itertuples()
+- .apply()
+
+---------------------------------------------------------------
+STREAMLINED DATA INGESTION WITH PANDAS                        |
+---------------------------------------------------------------
+
+# Create dataframe of next 500 rows with labeled columns
+vt_data_next500 = pd.read_csv("vt_tax_data_2016.csv", 
+                       		  nrows=500,
+                       		  skiprows=500,
+                       		  header=None,
+                       		  names=vt_data_first500.columns)
+
+# View the Vermont dataframes to confirm they're different
+print(vt_data_first500.head())
+print(vt_data_next500.head())
+
+error_bad_lines=False -> skip rows with errors
+warn_bad_lines=True -> show warning for bad lines
+
+---------------------------------------------------------------
+# Create dict specifying data types for agi_stub and zipcode
+data_types = {'agi_stub' : "category",
+			  'zipcode': str}
+
+# Load csv using dtype to set correct data types
+data = pd.read_csv("vt_tax_data_2016.csv", dtype=data_types)
+
+# Print data types of resulting frame
+print(data.dtypes.head())
+
+---------------------------------------------------------------
+# Create dict specifying that 0s in zipcode are NA values
+null_values = {'zipcode': 0}
+
+# Load csv using na_values keyword argument
+data = pd.read_csv("vt_tax_data_2016.csv", 
+                   na_values=null_values)
+
+# View rows with NA ZIP codes
+print(data[data.zipcode.isna()])
+---------------------------------------------------------------
+try:
+  # Set warn_bad_lines to issue warnings about bad records
+  data = pd.read_csv("vt_tax_data_2016_corrupt.csv", 
+                     error_bad_lines=False, 
+                     warn_bad_lines=True)
+  
+  # View first 5 records
+  print(data.head())
+  
+except pd.errors.ParserError:
+    print("Your data contained rows that could not be parsed.")
+
+---------------------------------------------------------------
+# Load pandas as pd
+import pandas as pd
+
+# Read spreadsheet and assign it to survey_responses
+survey_responses = pd.read_excel('fcc_survey.xlsx')
+
+# View the head of the dataframe
+print(survey_responses.head())
+
+---------------------------------------------------------------
+# Create string of lettered columns to load
+col_string = 'AD, AW:BA'
+
+# Load data with skiprows and usecols set
+survey_responses = pd.read_excel("fcc_survey_headers.xlsx", 
+                        skiprows=2, 
+                        usecols=col_string)
+
+# View the names of the columns selected
+print(survey_responses.columns)
+---------------------------------------------------------------
+# Create df from second worksheet by referencing its position
+responses_2017 = pd.read_excel("fcc_survey.xlsx",
+                               sheet_name=1)
+
+# Graph where people would like to get a developer job
+job_prefs = responses_2017.groupby("JobPref").JobPref.count()
+job_prefs.plot.barh()
+plt.show()
+
+---------------------------------------------------------------
+# Create df from second worksheet by referencing its name
+responses_2017 = pd.read_excel("fcc_survey.xlsx",
+                               sheet_name='2017')
+
+# Graph where people would like to get a developer job
+job_prefs = responses_2017.groupby("JobPref").JobPref.count()
+job_prefs.plot.barh()
+plt.show()
+
+---------------------------------------------------------------
+# Load both the 2016 and 2017 sheets by name
+all_survey_data = pd.read_excel("fcc_survey.xlsx",
+                                sheet_name=['2016', '2017'])
+
+# View the data type of all_survey_data
+print(type(all_survey_data))
+
+# Load all sheets in the Excel file
+all_survey_data = pd.read_excel("fcc_survey.xlsx",
+                                sheet_name = [0, '2017'])
+
+# View the sheet names in all_survey_data
+print(all_survey_data.keys())
+
+---------------------------------------------------------------
+# Load all sheets in the Excel file
+all_survey_data = pd.read_excel("fcc_survey.xlsx",
+                                sheet_name=None)
+
+# View the sheet names in all_survey_data
+print(all_survey_data.keys())
+
+---------------------------------------------------------------
+# Create an empty dataframe
+all_responses = pd.DataFrame()
+
+# Set up for loop to iterate through values in responses
+for df in responses.values():
+  # Print the number of rows being added
+  print("Adding {} rows".format(df.shape[0]))
+  # Concatenate all_responses and df, assign result
+  all_responses = pd.concat([all_responses, df])
+
+# Graph employment statuses in sample
+counts = all_responses.groupby("EmploymentStatus").EmploymentStatus.count()
+counts.plot.barh()
+plt.show()
+---------------------------------------------------------------
+# Load the data
+survey_data = pd.read_excel("fcc_survey_subset.xlsx")
+
+# Count NA values in each column
+print(survey_data.isna().sum())
+
+# Set dtype to load appropriate column(s) as Boolean data
+survey_data = pd.read_excel("fcc_survey_subset.xlsx",
+                            dtype={'HasDebt': bool})
+
+# View financial burdens by Boolean group
+print(survey_data.groupby('HasDebt').sum())
+
+# Load file with Yes as a True value and No as a False value
+survey_subset = pd.read_excel("fcc_survey_yn_data.xlsx",
+                              dtype={"HasDebt": bool,
+                              "AttendedBootCampYesNo": bool},
+                              true_values=['Yes'],
+                              false_values=['No'])
+
+# View the data
+print(survey_subset.head())
+
+---------------------------------------------------------------
+# Load file, with Part1StartTime parsed as datetime data
+survey_data = pd.read_excel("fcc_survey.xlsx",
+                            parse_dates=['Part1StartTime'])
+
+# Print first few values of Part1StartTime
+print(survey_data.Part1StartTime.head(1))
+
+---------------------------------------------------------------
+# Create dict of columns to combine into new datetime column
+datetime_cols = {"Part2Start": ['Part2StartDate', 'Part2StartTime']}
+
+
+# Load file, supplying the dict to parse_dates
+survey_data = pd.read_excel("fcc_survey_dts.xlsx",
+                            parse_dates=datetime_cols)
+
+# View summary statistics about Part2Start
+print(survey_data.Part2Start.describe())
+---------------------------------------------------------------
+# Parse datetimes and assign result back to Part2EndTime
+survey_data["Part2EndTime"] = pd.to_datetime(survey_data["Part2EndTime"], 
+                                             format="%m%d%Y %H:%M:%S")
+
+# Print first few values of Part2EndTime
+print(survey_data['Part2EndTime'].head())
+
+---------------------------------------------------------------
+Importing data from database
+
+import pandas as pd
+from sqlalchemy import create_engine
+
+engine = create_engine("sqlite:///data.db")
+print(engine.table_names())
+
+weather = pd.read_sql("SELECT * FROM wether", engine)
+
+------------------------------------------------------------------------
+# Create database engine for data.db
+engine = create_engine("sqlite:///data.db")
+
+# Write query to get date, tmax, and tmin from weather
+query = """
+SELECT date, 
+       tmax, 
+       tmin
+  FROM weather;
+"""
+
+# Make a dataframe by passing query and engine to read_sql()
+temperatures = pd.read_sql(query, engine)
+
+# View the resulting dataframe
+print(temperatures)
+
+---------------------------------------------------------------------------
+# Create query to get hpd311calls records about safety
+query = """
+SELECT *
+FROM hpd311calls
+WHERE complaint_type LIKE '%SAFETY%';
+"""
+
+# Query the database and assign result to safety_calls
+safety_calls = pd.read_sql(query, engine)
+
+# Graph the number of safety calls by borough
+call_counts = safety_calls.groupby('borough').unique_key.count()
+call_counts.plot.barh()
+plt.show()
+---------------------------------------------------------------------------
+# Create query for records with max temps <= 32 or snow >= 1
+query = """
+SELECT *
+  FROM weather
+  WHERE tmax <= 32 OR snow >= 1;
+"""
+
+# Query database and assign result to wintry_days
+wintry_days = pd.read_sql(query, engine)
+
+# View summary stats about the temperatures
+print(wintry_days.describe())
+---------------------------------------------------------------------------
+Importing JSON Data and Working with APIs
+
+import pandas as pd
+death_cause = pd.read_json("nyc_death_cause.json", orient="split")
+
+---------------------------------------------------------------------------
+# Load pandas as pd
+import pandas as pd
+
+# Load the daily report to a dataframe
+pop_in_shelters = pd.read_json("dhs_daily_report.json")
+
+# View summary stats about pop_in_shelters
+print(pop_in_shelters.describe())
+
+---------------------------------------------------------------------------
+try:
+    # Load the JSON without keyword arguments
+    df = pd.read_json("dhs_report_reformatted.json", orient="split")
+    
+    # Plot total population in shelters over time
+    df["date_of_census"] = pd.to_datetime(df["date_of_census"])
+    df.plot(x="date_of_census", 
+            y="total_individuals_in_shelter")
+    plt.show()
+    
+except ValueError:
+    print("pandas could not parse the JSON.")
+
+---------------------------------------------------------------------------
+API
+
+import requests
+import pandas as pd
+
+api_url = "https://api.yelp.com/v3businesses/search
+
+#Setup the parameters of the request
+params = {"term": "bookstore",
+          "location": "NYC"}
+
+# Setup header dictionary w/ API key according to documentation
+header = {"Authorization": "Bearer {}".format(api_key)}
+
+# Call the API
+response = requests.get(api_url, headers=header, params=params)
+
+data = response.json()
+print(data)
+
+bookstrores = pd.DataFrame(data["businesses"])
+print(bookstores.head())
+
+---------------------------------------------------------------------------
+api_url = "https://api.yelp.com/v3/businesses/search"
+
+# Get data about NYC cafes from the Yelp API
+response = requests.get(api_url, 
+                headers=headers, 
+                params=params)
+
+# Extract JSON data from the response
+data = response.json()
+
+# Load data to a dataframe
+cafes = pd.DataFrame(data['businesses'])
+
+# View the data's dtypes
+print(cafes.dtypes)
+---------------------------------------------------------------------------
+pandas.io.json => read and write JSON
+json_normalize() => flatten nested JSON data -> attribute.nestedattribute
+
+
+import pandas as pd
+import requests
+from pandas.io.json import json_normalize
+
+api_url = "https://api.yelp.com/v3/businesses/search"
+
+# Get data about NYC cafes from the Yelp API
+response = requests.get(api_url, 
+                headers=headers, 
+                params=params)
+
+# Extract JSON data from the response
+data = response.json()
+
+# Load data to a dataframe
+bookstores = json_normalize(data['businesses'], sep="_", 
+                            record_path="categories", 
+                            meta=["name", 
+                                  "rating", 
+                                  ["location", "zip_code"]], 
+                            meta_prefix="biz_")
+print(list(bookstores))
+---------------------------------------------------------------------------
+Combining multiple datasets
+
+pd.concat([df1, df2, df3], axis=0) -> stack dataframes on top of each other
+pd.concat([df1, df2, df3], axis=1) -> stack dataframes side by side
+
+merge() -> combine data on a common column
+---------------------------------------------------------------------------
+# Add an offset parameter to get cafes 51-100
+params = {"term": "cafe", 
+          "location": "NYC",
+          "sort_by": "rating", 
+          "limit": 50,
+          "offset": 50}
+
+result = requests.get(api_url, headers=headers, params=params)
+next_50_cafes = json_normalize(result.json()["businesses"])
+
+# Concatenate the results, setting ignore_index to renumber rows
+cafes = pd.concat([top_50_cafes, next_50_cafes], ignore_index=True)
+
+# Print shape of cafes
+print(cafes.shape)
+
+---------------------------------------------------------------------------
+# Merge crosswalk into cafes on their zip code fields
+cafes_with_pumas = cafes.merge(crosswalk, left_on="location_zip_code", right_on="zipcode")
+# Merge pop_data into cafes_with_pumas on puma field
+cafes_with_pop = cafes_with_pumas.merge(pop_data, on="puma")
+
+# View the data
+print(cafes_with_pop.head())
+
+---------------------------------------------------------------------------
+SOFTWARE ENGINEERING PRINCIPLES IN PYTHON                                 |
+---------------------------------------------------------------------------
+Software engineering concepts:
+- Modularity
+- Documenetation
+- Testing
+- Version control & git
+
+Benefits of modularity:
+- Improve readibility
+- Improve maintainability
+- Solve problem only once
+
+Benefits of documentation:
+- Show users how to use your project
+- Prevent confusion from your collaborators
+- Prevent frustation from future you
+
+Benefits of automated testing:
+- Save time over manual testing
+- Find and fix more bugs
+- Run tests anytime/anywhere
+
+---------------------------------------------------------------------------
+# load the Counter function into our environment
+from collections import Counter
+
+# View the documentation for Counter.most_common
+help(Counter.most_common)
+
+# use Counter to find the top 5 most common words
+top_5_words = Counter(words).most_common(5)
+
+# display the top 5 most common words
+print(top_5_words)
+
+---------------------------------------------------------------------------
+Conventions and PEP 8
+
+- Convention: a set of agreed-upon rules followed by a group of developers
+- PEP 8: Style Guide for Python Code
+
+pycode_style -> check code for PEP 8 compliance
+
+# Import needed package
+import pycodestyle
+
+# Create a StyleGuide instance
+style_checker = pycodestyle.StyleGuide()
+
+# Run PEP 8 check on multiple files
+result = style_checker.check_files(['nay_pep8.py', 'yay_pep8.py'])
+
+# Print result of PEP 8 style check
+print(result.messages)
+---------------------------------------------------------------------------
+# Import local packages
+import MY_PACKAGE
+import py_package
+
+# View the help for each package
+help(MY_PACKAGE)
+help(py_package)
+
+
+- Minimal required for make a package: __init__.py file
+
+---------------------------------------------------------------------------
+- working in work_dir/my_package/utils.py
+
+def we_need_to_talk(break_up=False):
+  """Helper for communicating with significant others"""
+  if break_up:
+    print("It's not you, it's me...")
+  else:
+    print("I <3 U!")
+
+- working in work_dir/my_script.py
+
+import my_package.utils as utils
+
+utils.we_need_to_talk(break_up=True)
+
+- working in work_dir/my_package/__init__.py
+from .utils import we_need_to_talk
+
+---------------------------------------------------------------------------
+# Import needed functionality
+from collections import Counter
+
+def plot_counter(counter, n_most_common=5):
+  # Subset the n_most_common items from the input counter
+  top_items = counter.most_common(n_most_common)
+  # Plot `top_items`
+  plot_counter_most_common(top_items)
+
+# Import needed functionality
+from collections import Counter
+
+def sum_counters(counters):
+  # Sum the inputted counters
+  return sum(counters, Counter())
+
+
+from .counter_utils import plot_counter, sum_counters
+---------------------------------------------------------------------------
+# Import local package
+import text_analyzer 
+
+# Sum word_counts using sum_counters from text_analyzer
+word_count_totals = text_analyzer.sum_counters(word_counts)
+
+# Plot word_count_totals using plot_counter from text_analyzer
+text_analyzer.plot_counter(word_count_totals)
+
+---------------------------------------------------------------------------
+requirements.txt
+
+numpy==1.15.4
+pandas==0.23.4
+matplotlib==3.0.2
+
+pip install -r requirements.txt
+
+setup.py
+
+from setuptools import setup
+
+setup(name='my_package',
+      version='0.0.1',
+      description='An example package for Datacamp.',
+      author='Adam Spannbauer',
+      author_email='spannbaueradam@gmail.com',
+      packages=['my_package'],
+      install_requires=['numpy', 'pandas', 'matplotlib'])
+
+python setup.py install
+pip install .
+
+---------------------------------------------------------------------------
+# Specify where to istall requirements from
+--index-url https://pypi.python.org/simple/
+
+requirements = """
+matplotlib>=3.0.0
+numpy==1.15.4
+pandas<=0.22.0
+pycodestyle
+"""
+
+---------------------------------------------------------------------------
+# Import needed function from setuptools
+from setuptools import setup
+
+# Create proper setup to be used by pip
+setup(name='text_analyzer',
+      version='0.0.1',
+      description='Perform and visualize a text analysis.',
+      author='Nia Ulan Sari',
+      packages=['text_analyzer'])
+
+---------------------------------------------------------------------------
+# Import needed function from setuptools
+from setuptools import setup
+
+# Create proper setup to be used by pip
+setup(name='text_analyzer',
+      version='0.0.1',
+      description='Perform and visualize a text analysis.',
+      author='Nia Ulan Sari',
+      packages=['text_analyzer'],
+      install_requires=['matplotlib>=3.0.0'])
+
+---------------------------------------------------------------------------
+Class in python:
+
+working in work_dir/my_package/my_class.py
+
+class MyClass:
+  """ A minimal example class
+
+  """
+
+  # Method to create a new instance of MyClass
+  def __init__(self, value):
+    #  Define attribute with the contents of value parameter
+    self.attribute = value
+
+
+working in work_dir/my_package/__init__.py
+
+from .my_class import MyClass
+
+my_instance = my_package.MyClass(value='class attribute value')
+print(my_instance.attribute)
+
+---------------------------------------------------------------------------
+# Define Document class
+class Document:
+    """A class for text analysis
+    
+    :param text: string of text to be analyzed
+    :ivar text: string of text to be analyzed; set by `text` parameter
+    """
+    # Method to create a new instance of Document
+    def __init__(self, text):
+        # Store text parameter to the text attribute
+        self.text = text
+
+# Import custom text_analyzer package
+import text_analyzer
+
+# Create an instance of Document with datacamp_tweet
+my_document = text_analyzer.Document(text=datacamp_tweet)
+
+# Print the text attribute of the Document instance
+print(my_document.text)
+---------------------------------------------------------------------------
+from .token_utils import tokenize
+
+class Document:
+  def __init__(self, text, token_regex=r'[a-zA-Z+']):
+    self.text = text
+    self.tokens = self._tokenize() # Attribute to store tokens
+
+  def _tokenize(self): # non-public method
+    return tokenize(self.text)
+
+doc = Document('test doc)
+print(doc.tokens)
+
+---------------------------------------------------------------------------
+class Document:
+  def __init__(self, text):
+    self.text = text
+    # pre tokenize the document with non-public tokenize method
+    self.tokens = self._tokenize()
+    # pre tokenize the document with non-public count_words
+    self.word_counts = self._count_words()
+
+  def _tokenize(self):
+    return tokenize(self.text)
+	
+  # non-public method to tally document's word counts with Counter
+  def _count_words(self):
+    return Counter(self.tokens)
+
+# create a new document instance from datacamp_tweets
+datacamp_doc = Document(datacamp_tweets)
+
+# print the first 5 tokens from datacamp_doc
+print(datacamp_doc.tokens[:5])
+
+# print the top 5 most used words in datacamp_doc
+print(datacamp_doc.word_counts.most_common(5))
+---------------------------------------------------------------------------
+Class and the DRY principle
+
+DRY -> Don't Repeat Yourself
+
+Inheritance in Python
+
+from .parent_class import ParentClass
+
+#  Create a child class with inheritance
+class ChildClass(ParentClass):
+  def __init__(self):
+    # Call parent's __init__ method
+    ParentClass.__init__(self)
+    self.child_attribute = "I'm a child class attribute!
+
+child_class = ChildClass()
+print(child_class.child_attribute)
+print(child_class.parent_attribute)
+
+---------------------------------------------------------------------------
+# Parent Class
+class Document:
+    # Initialize a new Document instance
+    def __init__(self, text):
+        self.text = text
+        # Pre tokenize the document with non-public tokenize method
+        self.tokens = self._tokenize()
+        # Pre tokenize the document with non-public count_words
+        self.word_counts = self._count_words()
+
+    def _tokenize(self):
+        return tokenize(self.text)
+
+    # Non-public method to tally document's word counts
+    def _count_words(self):
+        # Use collections.Counter to count the document's tokens
+        return Counter(self.tokens)
+
+# Child Class
+# Define a SocialMedia class that is a child of the `Document class`
+class SocialMedia(Document):
+    def __init__(self, text):
+        Document.__init__(self, text)
+        self.hashtag_counts = self._count_hashtags()
+        self.mention_counts = self._count_mentions()
+        
+    def _count_hashtags(self):
+        # Filter attribute so only words starting with '#' remain
+        return filter_word_counts(self.word_counts, first_char='#')      
+    
+    def _count_mentions(self):
+        # Filter attribute so only words starting with '@' remain
+        return filter_word_counts(self.word_counts, first_char='@')
+
+# Import custom text_analyzer package
+import text_analyzer
+
+# Create a SocialMedia instance with datacamp_tweets
+dc_tweets = text_analyzer.SocialMedia(text=datacamp_tweets)
+
+# Print the top five most mentioned users
+print(dc_tweets.mention_counts.most_common(5))
+
+# Plot the most used hashtags
+text_analyzer.plot_counter(dc_tweets.hashtag_counts)
+
+---------------------------------------------------------------------------
+Multilevel inheritance
+
+class Parent:
+  def __init__(self):
+    print("I'm a parent")
+
+class Child(Parent):
+  def__init__(self):
+    Parent.__init__(self)
+    print("I'm a child!")
+
+class SuperChild(Child):
+  def __init__(self):
+  super().__init__()
+  print("I'm a super child!")
+
+---------------------------------------------------------------------------
+# Import needed package
+import text_analyzer
+
+# Create instance of document
+my_doc = text_analyzer.Document(datacamp_tweets)
+
+# Run help on my_doc's plot method
+help(my_doc.plot_counts)
+
+# Plot the word_counts of my_doc
+my_doc.plot_counts()
+---------------------------------------------------------------------------
+# Define a Tweet class that inherits from SocialMedia
+class Tweets(SocialMedia):
+    def __init__(self, text):
+        # Call parent's __init__ with super()
+        super().__init__()
+        # Define retweets attribute with non-public method
+        self.retweets = self._process_retweets()
+
+    def _process_retweets(self):
+        # Filter tweet text to only include retweets
+        retweet_text = filter_lines(self.text, first_chars='RT')
+        # Return retweet_text as a SocialMedia object
+        return SocialMedia(retweet_text)
+
+---------------------------------------------------------------------------
+# Import needed package
+import text_analyzer
+
+# Create instance of Tweets
+my_tweets = text_analyzer.Tweets(datacamp_tweets)
+
+# Import needed package
+import text_analyzer
+
+# Create instance of Tweets
+my_tweets = text_analyzer.Tweets(datacamp_tweets)
+
+# Plot the most used hashtags in the tweets
+my_tweets.plot_counts('hashtag_counts')
+
+# Import needed package
+import text_analyzer
+
+# Create instance of Tweets
+my_tweets = text_analyzer.Tweets(datacamp_tweets)
+
+# Plot the most used hashtags in the retweets
+my_tweets.retweets.plot_counts('hashtag_counts')
+
+
+---------------------------------------------------------------------------
+inheritance (pewarisan), polymorphism, encapsulation, dan abstraction.
+
+- Encapsulation adalah konsep di mana atribut atau metode dalam class dibatasi aksesnya. Ini dapat dilakukan dengan menentukan tingkat akses:
+Public (self.atribut) → Bisa diakses dari mana saja.
+Protected (self._atribut) → Bisa diakses dari dalam class dan turunannya.
+Private (self.__atribut) → Hanya bisa diakses dari dalam class itu sendiri.
+class Bank:
+    def __init__(self, saldo):
+        self.__saldo = saldo  # Private attribute
+
+    def cek_saldo(self):
+        print(f"Saldo: {self.__saldo}")
+
+    def tambah_saldo(self, jumlah):
+        self.__saldo += jumlah
+        print(f"Saldo bertambah menjadi: {self.__saldo}")
+
+# Membuat objek
+akun = Bank(1000000)
+akun.cek_saldo()  # Output: Saldo: 1000000
+
+# akun.__saldo = 5000  # Ini akan error karena atribut bersifat private
+
+- Polymorphism memungkinkan penggunaan metode yang sama dengan implementasi yang berbeda di class yang berbeda.
+class Burung:
+    def bersuara(self):
+        print("Cuit cuit")
+
+class Ayam:
+    def bersuara(self):
+        print("Kukuruyuk")
+
+# Contoh Polymorphism
+def buat_suara(hewan):
+    hewan.bersuara()
+
+burung1 = Burung()
+ayam1 = Ayam()
+
+buat_suara(burung1)  # Output: Cuit cuit
+buat_suara(ayam1)    # Output: Kukuruyuk
+
+- Abstraksi digunakan untuk menyembunyikan detail implementasi dan hanya menampilkan fungsi yang relevan. Di Python, kita bisa menggunakan modul ABC (Abstract Base Class) untuk membuat kelas abstrak.
+from abc import ABC, abstractmethod
+
+class Kendaraan(ABC):
+    @abstractmethod
+    def bergerak(self):
+        pass
+
+class Mobil(Kendaraan):
+    def bergerak(self):
+        print("Mobil berjalan di jalan.")
+
+class Pesawat(Kendaraan):
+    def bergerak(self):
+        print("Pesawat terbang di udara.")
+
+mobil = Mobil()
+pesawat = Pesawat()
+
+mobil.bergerak()   # Output: Mobil berjalan di jalan.
+pesawat.bergerak() # Output: Pesawat terbang di udara.
+
+---------------------------------------------------------------------------
+Konsep utama dalam OOP adalah:
+
+Class dan Object → Blueprint dan instansiasi objek.
+Inheritance → Pewarisan atribut dan metode.
+Encapsulation → Mengatur akses data.
+Polymorphism → Metode dengan nama sama tetapi perilaku berbeda.
+Abstraction → Menyembunyikan detail implementasi.
+---------------------------------------------------------------------------
+Maintainability
+
+Documentation in python:
+- Comments -> #
+- Docstrings -> """ """
+
+Docstrings
+
+def function(x):
+  """High level description of function
+
+  Additional details on function 
+
+  :param x: description of parameter x
+  :return: description of return value
+
+  >>> # Example function usage 
+  Expected output of example function usage
+  """
+
+# Example
+def square(x):
+  """Square the number xlabel
+
+  :param x: number to square 
+  :return: x squared
+
+  >>> square(2)
+  4
+
+  # 'x * x' is faster than 'x ** 2'
+  # reference: https://stackoverflow.com/a/2596215
+  """
+  return x * x
+
+---------------------------------------------------------------------------
+# Complete the function's docstring
+def tokenize(text, regex=r'[a-zA-z]+'):
+  """Split text into tokens using a regular expression
+
+  :param text: text to be tokenized
+  :param regex: regular expression used to match tokens using re.findall 
+  :return: a list of resulting tokens
+
+  >>> tokenize('the rain in spain')
+  ['the', 'rain', 'in', 'spain']
+  """
+  return re.findall(regex, text, flags=re.IGNORECASE)
+
+# Print the docstring
+help(tokenize)
+
+---------------------------------------------------------------------------
+def hypotenuse_length(leg_a, leg_b):
+    """Find the length of a right triangle's hypotenuse
+
+    :param leg_a: length of one leg of triangle
+    :param leg_b: length of other leg of triangle
+    :return: length of hypotenuse
+    
+    >>> hypotenuse_length(3, 4)
+    5
+    """
+    return math.sqrt(leg_a**2 + leg_b**2)
+
+
+# Print the length of the hypotenuse with legs 6 & 8
+print(hypotenuse_length(6, 8))
+---------------------------------------------------------------------------
+def polygon_perimeter(n_sides, side_len):
+    return n_sides * side_len
+
+
+def polygon_apothem(n_sides, side_len):
+    denominator = 2 * math.tan(math.pi / n_sides)
+    return side_len / denominator
+
+def polygon_area(n_sides, side_len):
+    perimeter = polygon_perimeter(n_sides, side_len)
+    apothem = polygon_apothem(n_sides, side_len)
+
+    return perimeter * apothem / 2
+
+# Print the area of a hexagon with legs of size 10
+print(polygon_area(n_sides=6, side_len=10))
+
+---------------------------------------------------------------------------
+Unit testing
+
+Testing in python:
+- doctest
+- pytest
+
+
+- doctest
+def square(x):
+  """Square the number xlabel
+
+  :param x: number to square 
+  :return: x squared
+
+  >>> square(2)
+  4
+
+  # 'x * x' is faster than 'x ** 2'
+  # reference: https://stackoverflow.com/a/2596215
+  """
+  return x * x
+
+import doctest
+doctest.testmod()
+
+---------------------------------------------------------------------------
+work in workdir/tests/test_document.py
+
+from text_analyzer import Document
+
+# Test tokens attribue on Document object
+def test_document_tokens():
+  doc = Document('a e i o u')
+  assert doc.tokens == ['a', 'e', 'i', 'o', 'u']
+
+# Test edge case of black document
+def test_document_empty():
+  doc = Document('')
+
+  assert doc.tokens == []
+  assert doc.word_counts == Counter()
+
+# Create 2 identical Document objects
+doc_a = Document('a e i o u')
+doc_b = Document('a e i o u')
+
+# Check if objects are equal
+print(doc_a == doc_b)
+
+---------------------------------------------------------------------------
+def sum_counters(counters):
+    """Aggregate collections.Counter objects by summing counts
+
+    :param counters: list/tuple of counters to sum
+    :return: aggregated counters with counts summed
+
+    >>> d1 = text_analyzer.Document('1 2 fizz 4 buzz fizz 7 8')
+    >>> d2 = text_analyzer.Document('fizz buzz 11 fizz 13 14')
+    >>> sum_counters([d1.word_counts, d2.word_counts])
+    Counter({'fizz': 4, 'buzz': 2})
+    """
+    return sum(counters, Counter())
+
+doctest.testmod()
+
+---------------------------------------------------------------------------
+test_social_media.py
+
+from collections import Counter
+from text_analyzer import SocialMedia
+
+# Create an instance of SocialMedia for testing
+test_post = 'learning #python & #rstats is awesome! thanks @datacamp!'
+sm_post = SocialMedia(test_post)
+
+# Test hashtag counts are created properly
+def test_social_media_hashtags():
+    expected_hashtag_counts = Counter({'#python': 1, '#rstats': 1})
+    assert sm_post.hashtag_counts == expected_hashtag_counts
+---------------------------------------------------------------------------
+Sphinx -> documentation generator
+Travis Ci -> continuous integration and test code
+Git and GitHub -> version control and collaboration
+Codecov -> code coverage
+Code climate -> code quality
+---------------------------------------------------------------------------
+from text_analyzer import Document
+
+class SocialMedia(Document):
+    """Analyze text data from social media
+    
+    :param text: social media text to analyze
+
+    :ivar hashtag_counts: Counter object containing counts of hashtags used in text
+    :ivar mention_counts: Counter object containing counts of @mentions used in text
+    """
+    def __init__(self, text):
+        Document.__init__(self, text)
+        self.hashtag_counts = self._count_hashtags()
+        self.mention_counts = self._count_mentions()
+
+---------------------------------------------------------------------------
+ETL & ELT IN PYTHON                                                       |
+---------------------------------------------------------------------------
+Data pipelines -> are responsible for moving data from a source to a destination, and transforming it somewhere along the way.
+
+ETL -> Extract, Transform, Load
+- Traditional data pipeline design pattern
+- Sources may be tabular or non-tabular
+- Leverage python with pandas
+
+ELT -> Extract, Load, Transform
+- More recent pattern
+- Data warehouses
+- Typically tabular data
+---------------------------------------------------------------------------
+ETL 
+def load(data_frame, target_table):
+  # Some custom-built python logic to load data to SQL
+  data_frame.to_sql(name=target_table, con=POSTGRES_CONNECTION)
+  print(f"Loading data to the {target_table} table")
+
+# Now, run the data pipeline
+extracted_data = extract(file_name="raw_data.csv")
+transformed_data = transform(data_frame=extracted_data)
+load(data_frame=transformed_data, target_table="clean_data")
+
+---------------------------------------------------------------------------
+ELT
+def transform(source_table, target_table):
+  data_warehouse.run_sql("""
+    CREATE TABLE {target_table} AS
+      SELECT 
+        columne1 column2
+      FROM {source_table};
+  """)
+
+# Similar to ETL pipeline, but with the transform step moved to the data warehouse
+extracted_data = extract(file_name="raw_data.csv")
+load(data_frame=extracted_data, table_name="raw_data")
+transform(source_table="raw_data", target_table="clean_data")
+
+---------------------------------------------------------------------------
+-ETL
+def extract(file_name):
+    print(f"Extracting data from {file_name}")
+    return pd.read_csv(file_name)
+
+# Extract data from the raw_data.csv file
+extracted_data = extract(file_name="raw_data.csv")
+
+# Transform the extracted_data
+transformed_data = transform(data_frame=extracted_data)
+
+# Load the transformed_data to cleaned_data.csv
+load(data_frame=transformed_data, target_table="cleaned_data")
+
+---------------------------------------------------------------------------
+- ELT
+# Extract data from the raw_data.csv file
+raw_data = extract(file_name="raw_data.csv")
+
+# Load the extracted_data to the raw_data table
+load(data_frame=raw_data, table_name="raw_data")
+
+# Transform data in the raw_data table
+transform(
+  source_table="raw_data", 
+  target_table="cleaned_data"
+)
+
+---------------------------------------------------------------------------
+Building ETL and ELT Pipelines
+
+# Extract data from a csv file
+import pandas as pd
+
+# Read in the csv file to a dataframe
+data_frame = pd.read_csv("raw_data.csv")
+
+# Display the first few rows of the dataframe
+print(data_frame.head())
+
+# First, filter by rows
+data_frame.loc[data_frame["name"] == "Apparel", :]
+
+# Then by columns
+data_frame.loc[:, ["name", "num_firms"]]
+
+# Write a dataframe to a csv
+data_frame.to_csv("cleaned_data.csv")
+
+# Other option -> to_sql(), to_json(), to_excel()
+
+# Running SQL queries
+data_warehouse.execute( 
+  """
+  CREATE TABLE total_sales AS
+    SELECT 
+      ds, 
+      SUM(sales)
+    FROM raw_sales_data
+    GROUP BY ds;
+  """
+)
+
+---------------------------------------------------------------------------
+# Define extract(), transform(), load() functions
+...
+
+def transform(data_frame, value):
+  return data_frame.loc[data_frame["name"] == value, ["name", "num_firms]]
+
+# Extract
+extracted_data = extract(file_name="raw_data.csv")
+
+# Transform
+transformed_data = transform(data_frame=extracted_data, value="Apparel")
+
+# Load
+load(data_frame=transformed_data, target_table="cleaned_data")
+
+---------------------------------------------------------------------------
+def load(data_frame, file_name):
+  # Write cleaned_data to a CSV using file_name
+  data_frame.to_csv(file_name)
+  print(f"Successfully loaded data to {file_name}")
+
+extracted_data = extract(file_name="raw_data.csv")
+
+# Transform extracted_data using transform() function
+transformed_data = transform(data_frame=extracted_data)
+
+# Load transformed_data to the file transformed_data.csv
+load(data_frame=transformed_data, file_name="transformed_data.csv")
+
+---------------------------------------------------------------------------
+# Complete building the transform() function
+def transform(source_table, target_table):
+  data_warehouse.execute(f"""
+  CREATE TABLE {target_table} AS
+      SELECT
+          CONCAT("Product ID: ", product_id),
+          quantity * price
+      FROM {source_table};
+  """)
+
+extracted_data = extract(file_name="raw_sales_data.csv")
+load(data_frame=extracted_data, table_name="raw_sales_data")
+
+# Populate total_sales by transforming raw_sales_data
+transform(source_table="raw_sales_data", target_table="total_sales")
+
+---------------------------------------------------------------------------
+def extract(file_name):
+  return pd.read_csv(file_name)
+
+def transform(data_frame):
+  return data_frame.loc[:, ["industry_name", "number_of_firms"]]
+
+def load(data_frame, file_name):
+  data_frame.to_csv(file_name)
+  
+extracted_data = extract(file_name="raw_industry_data.csv")
+transformed_data = transform(data_frame=extracted_data)
+
+# Pass the transformed_data DataFrame to the load() function
+load(data_frame=transformed_data, file_name="number_of_firms.csv")
+
+---------------------------------------------------------------------------
+source of data:
+- csv files
+- parquet files
+- json files
+- SQL databases
+- APIs
+- Data Lakes
+- Data Warehouses
+- Web scraping
+- Streaming data
+-...
+
+- Reading in parquet files
+import pandas as pd
+raw_stock_data = pd.read_parquet("raw_stock_data.parquet", engine="fastparquet)
+
+- Connecting to SQL databases
+import pandas as pd
+import sqlalchemy
+
+connection_uri = "postgresql+psycompg2://repl:password@localhost:5432/market # schema_identifier://username:password@host:port/database
+db_engine = sqlalchemy.create_engine(connection_uri)
+
+raw_stock_data = pd.read_sql("SELECT * FROM raw_stock_data LIMIT 10", db_engine)
+
+---------------------------------------------------------------------------
+Modularity
+
+def extract_from_sql(connection_uri, query):
+  db_engine = sqlalchemy.create_engine(connection_uri)
+  return pd.read_sql(query, db_engine)
+
+
+extract_from_sql("postgresql+psycompg2://repl:password@localhost:5432/market", "SELECT * FROM raw_stock_data LIMIT 10")
+
+---------------------------------------------------------------------------
+import pandas as pd
+
+# Read the sales data into a DataFrame
+sales_data = pd.read_parquet("sales_data.parquet", engine="fastparquet")
+
+# Check the data type of the columns of the DataFrames
+print(sales_data.dtypes)
+
+# Print the shape of the DataFrame, as well as the head
+print(sales_data.shape)
+print(sales_data.head())
+
+import sqlalchemy
+
+# Create a connection to the sales database
+db_engine = sqlalchemy.create_engine("postgresql+psycopg2://repl:password@localhost:5432/sales")
+
+# Query the sales table
+raw_sales_data = pd.read_sql("SELECT * FROM sales", db_engine)
+print(raw_sales_data)
+---------------------------------------------------------------------------
+# Extract
+def extract():
+    connection_uri = "postgresql+psycopg2://repl:password@localhost:5432/sales"
+    db_engine = sqlalchemy.create_engine(connection_uri)
+    raw_data = pd.read_sql("SELECT * FROM sales WHERE quantity_ordered = 1", db_engine)
+    
+    # Print the head of the DataFrame
+    print(raw_data.head())
+    
+    # Return the extracted DataFrame
+    return raw_data
+    
+# Call the extract() function
+raw_sales_data = extract()
+
+# Transform
+# Filtering records with .loc[]
+
+# Keep only non-zero entries
+cleaned = raw_stock_data.loc[raw_stock_data["open"] > 0, :]
+
+# Remove excess columns
+cleaned = raw_stock_data.loc[:, ["timestamps", "open", "close"]]
+
+# Combine both steps
+cleaned = raw_stock_data.loc[raw_stock_data["open"] > 0, ["timestamps", "open", "close"]]
+
+cleaned = raw_stock_data.iloc[[0:50], [0, 1, 2]]
+
+cleaned["timestamps"] = pd.to_datetime(cleaned["timestamps"], format="%Y%m%d%H%M%S")
+
+---------------------------------------------------------------------------
+# Extract data from the sales_data.parquet path
+raw_sales_data = extract("sales_data.parquet")
+
+def transform(raw_data):
+  	# Only keep rows with `Quantity Ordered` greater than 1
+    clean_data = raw_data.loc[raw_data["Quantity Ordered"] > 1, :]
+    
+    # Only keep columns "Order Date", "Quantity Ordered", and "Purchase Address"
+    clean_data = clean_data.loc[:, ["Order Date", "Quantity Ordered", "Purchase Address"]]
+    
+    # Return the filtered DataFrame
+    return clean_data
+    
+transform(raw_sales_data)
+
+---------------------------------------------------------------------------
+raw_sales_data = extract("sales_data.csv")
+
+def transform(raw_data):
+    # Convert the "Order Date" column to type datetime
+    raw_data["Order Date"] = pd.to_datetime(raw_data["Order Date"], format="%m/%d/%y %H:%M")
+    
+    # Only keep items under ten dollars
+    clean_data = raw_data.loc[raw_data["Price Each"] < 10, :]
+    return clean_data
+
+clean_sales_data = transform(raw_sales_data)
+
+# Check the data types of each column
+print(clean_sales_data.dtypes)
+---------------------------------------------------------------------------
+def extract(file_path):
+    raw_data = pd.read_parquet(file_path)
+    return raw_data
+
+raw_sales_data = extract("sales_data.parquet")
+
+def transform(raw_data):
+  	# Filter rows and columns
+    clean_data = raw_data.loc[raw_data["Quantity Ordered"] == 1, ["Order ID", "Price Each", "Quantity Ordered"]]
+    return clean_dsata
+
+# Transform the raw_sales_data
+clean_sales_data = transform(raw_sales_data)
+
+clean_sales_data.nlargest(1, "Price Each")
+---------------------------------------------------------------------------
+def transform(raw_data):
+	# Find the items prices less than 25 dollars
+	return raw_data.loc[raw_data["Price Each"] < 25, ["Order ID", "Product", "Price Each", "Order Date"]]
+
+def load(clean_data):
+	# Write the data to a CSV file without the index column
+	clean_data.to_csv("transformed_sales_data.csv", index=False)
+
+
+clean_sales_data = transform(raw_sales_data)
+
+# Call the load function on the cleaned DataFrame
+load(clean_sales_data)
+
+---------------------------------------------------------------------------
+# Import the os library
+import os
+
+# Load the data to a csv file with the index, no header and pipe separated
+def load(clean_data, path_to_write):
+	clean_data.to_csv(path_to_write, header=False, sep="|")
+
+load(clean_sales_data, "clean_sales_data.csv")
+
+# Check that the file is present.
+file_exists = os.path.exists("clean_sales_data.csv")
+print(file_exists)
+---------------------------------------------------------------------------
+def load(clean_data, file_path):
+    # Write the data to a file
+    clean_data.to_csv(file_path, header=False, index=False)
+
+    # Check to make sure the file exists
+    file_exists = os.path.exists(file_path)
+    if not file_exists:
+        raise Exception(f"File does NOT exists at path {file_path}")
+
+# Load the transformed data to the provided file path
+load(clean_sales_data, "transformed_sales_data.csv")
+---------------------------------------------------------------------------
+Monitoring a data pipeline
+
+Data pipelines should be monitored for changes to data and failures in execution.
+- Missing data
+- Shifting data types
+- Packages deprecation or functionality change
+
+Logging data pipeline performance
+- Document performance at excecution 
+- Provides a starting point when a solution failures
+
+import logging
+logging.basicConfig(format='%(levelname)s: %(message)s', level=LEVEL.DEBUG)
+
+# Create different types of logs
+logging.debug(f"variable has value {path}")
+logging.info("Data has been transformed and will now be loaded.")
+logging.warning("Unexpected number of rows detected.")
+logging.error("{ke} arose in execution.")
+
+---------------------------------------------------------------------------
+Handling with try and except
+
+try:
+  clean_stock_data = transform(raw_stock_data)
+  logging.info("Successfullt filtered DataFrame by 'price_change'")
+
+except KeyError as ke:
+  logging.warning(f"{ke}: Cannot filter DataFrame by 'price_change'")
+  raw_stock_data["price_change"] = raw_stock_data["close"] - raw_stock_data["open"]
+  clean_stock_data = transform(raw_stock_data)
+
+---------------------------------------------------------------------------
+def transform(raw_data):
+    raw_data["Order Date"] = pd.to_datetime(raw_data["Order Date"], format="%m/%d/%y %H:%M")
+    clean_data = raw_data.loc[raw_data["Price Each"] < 10, :]
+    
+    # Create an info log regarding transformation
+    logging.info("Transformed 'Order Date' column to type 'datetime'.")
+    
+    # Create debug-level logs for the DataFrame before and after filtering
+    logging.debug(f"Shape of the DataFrame before filtering: {raw_data.shape}")
+    logging.debug(f"Shape of the DataFrame after filtering: {clean_data.shape}")
+    
+    return clean_data
+  
+clean_sales_data = transform(raw_sales_data)
+
+---------------------------------------------------------------------------
+def extract(file_path):
+    return pd.read_parquet(file_path)
+
+# Update the pipeline to include a try block
+try:
+	# Attempt to read in the file
+    raw_sales_data = extract("sales_data.parquet")
+	
+# Catch the FileNotFoundError
+except FileNotFoundError as file_not_found:
+	# Write an error-level log
+	logging.error(file_not_found)
+
+---------------------------------------------------------------------------
+def transform(raw_data):
+	return raw_data.loc[raw_data["Total Price"] > 1000, :]
+
+try:
+	clean_sales_data = transform(raw_sales_data)
+	logging.info("Successfully filtered DataFrame by 'Total Price'")
+
+except KeyError as ke:
+	logging.warning(f"{ke}: Cannot filter DataFrame by 'Total Price'")
+	
+	# Create the "Total Price" column, transform the updated DataFrame
+	raw_sales_data["Total Price"] = raw_sales_data["Price Each"] * raw_sales_data["Quantity Ordered"]
+	clean_sales_data = transform(raw_sales_data)
+
+---------------------------------------------------------------------------
+Advanced ETL Techniques
+
+Types of non-tabular data:
+- Text
+- Audio
+- Image
+- Video
+- Spatial
+- IoT
+- APIs
+
+# Reading JSON files with pandas
+raw_stock_data = pd.read_json("raw_stock_data.json", orient="columns")
+
+Nested or unstructured JSON data
+- Nested objects
+- Varyung "schema"
+
+import json 
+with open("raw_stcok_data.json", "r") as file:
+  raw_stock_data = json.load(file)
+
+print(type(raw_stock_data))
+
+---------------------------------------------------------------------------
+def extract(file_path):
+  # Read the JSON file into a DataFrame
+  return pd.read_json(file_path, orient="records")
+
+# Call the extract function with the appropriate path, assign to raw_testing_scores
+raw_testing_scores = extract("testing_scores.json")
+
+# Output the head of the DataFrame
+print(raw_testing_scores.head())
+
+---------------------------------------------------------------------------
+def extract(file_path):
+  	# Read the JSON file into a DataFrame, orient by index
+	return pd.read_json(file_path, orient="index")
+
+# Call the extract function, pass in the desired file_path
+raw_testing_scores = extract("nested_scores.json")
+print(raw_testing_scores.head())
+
+---------------------------------------------------------------------------
+# Import the json library
+import json
+
+def extract(file_path):
+    with open(file_path, "r") as json_file:
+        # Load the data from the JSON file
+        raw_data = json.load(json_file)
+    return raw_data
+
+raw_testing_scores = extract("nested_scores.json")
+
+# Print the raw_testing_scores
+print(raw_testing_scores)
+
+---------------------------------------------------------------------------
+# Parse data from dictionary using .get()
+volume = entry.get("volume")
+
+# Call .get() twice to parse nested dictionary
+price = entry.get("price").get("regular")
+
+---------------------------------------------------------------------------
+# Creating a dataframe from a list of lists
+
+raw_data = pd.DataFrame(flattened_rows)
+raw_data.columns = ["name", "age", "city", "state"]
+
+# Set an index using .set_index()
+raw_data.set_index("name", inplace=True)
+
+---------------------------------------------------------------------------
+parsed_stock_data = []
+
+for timestamp, ticker_info in raw_stock_data.items():
+  parsed_stock_data.append([
+    timestamp, 
+    ticker_info.get("price", {}).get("open", 0),
+    ticker_info.get("price", {}).get("close", 0),
+    ticker_info.get("volume", 0)
+  ])
+
+transformed_stock_data = pd.DataFrame(parsed_stock_data)
+transformed_stock_data.columns = ["timestamp", "open", "close", "volume"]
+transformed_stock_data.set_index("timestamp")
+
+---------------------------------------------------------------------------
+# Keys
+raw_testing_scores_keys = []
+
+# Iterate through the keys of the raw_testing_scores dictionary
+for school_id in raw_testing_scores.keys():
+  	# Append each key to the raw_testing_scores_keys list
+	raw_testing_scores_keys.append(school_id)
+    
+print(raw_testing_scores_keys[0:3])
+
+# Values
+raw_testing_scores_values = []
+
+# Iterate through the values of the raw_testing_scores dictionary
+for school_info in raw_testing_scores.values():
+	raw_testing_scores_values.append(school_info)
+    
+print(raw_testing_scores_values[0:3])
+
+# Items
+raw_testing_scores_keys = []
+raw_testing_scores_values = []
+
+# Iterate through the values of the raw_testing_scores dictionary
+for school_id, school_info in raw_testing_scores.items():
+	raw_testing_scores_keys.append(school_id)
+	raw_testing_scores_values.append(school_info)
+
+print(raw_testing_scores_keys[0:3])
+print(raw_testing_scores_values[0:3])
+
+---------------------------------------------------------------------------
+# Parse the street_address from the dictionary
+street_address = school.get("street_address")
+
+# Parse the scores dictionary
+scores = school.get("scores")
+
+# Try to parse the math, reading and writing values from scores
+math_score = scores.get("math", 0)
+reading_score = scores.get("reading", 0)
+writing_score = scores.get("writing", 0)
+
+print(f"Street Address: {street_address}")
+print(f"Math: {math_score}, Reading: {reading_score}, Writing: {writing_score}")
+
+---------------------------------------------------------------------------
+normalized_testing_scores = []
+
+# Loop through each of the dictionary key-value pairs
+for school_id, school_info in raw_testing_scores.items():
+	normalized_testing_scores.append([
+    	school_id,
+    	school_info.get("street_address"),  # Pull the "street_address"
+    	school_info.get("city"),
+    	school_info.get("scores").get("math", 0),
+    	school_info.get("scores").get("reading", 0),
+    	school_info.get("scores").get("writing", 0),
+    ])
+
+print(normalized_testing_scores)
+
+# Create a DataFrame from the normalized_testing_scores list
+normalized_data = pd.DataFrame(normalized_testing_scores)
+
+# Set the column names
+normalized_data.columns = ["school_id", "street_address", "city", "avg_score_math", "avg_score_reading", "avg_score_writing"]
+
+normalized_data = normalized_data.set_index("school_id")
+print(normalized_data.head())
+---------------------------------------------------------------------------
+Advanced transformation with pandas
+
+- Filling missing values with pandas
+# Fill all NaN value with 0
+clean_stock_data = raw_stock_data.fillna(0)
+
+# Fill NaN values with spesific value for each column
+clean_stock_data = raw_stock_data.fillna(value={"open":0,"close":.5}, axis=1)
+
+# Fill NaN values using other columns 
+raw_stock_data["open"].fillna(raw_stock_data["close"], inplace=True)
+
+# using python to group by data by ticker, find the mean of the reaminign columns
+grouped_stock_data = raw_stock_data.groupby(by=["ticker"], axis=0).mean()
+
+---------------------------------------------------------------------------
+def classify_change(row):
+  change = row["close"] - row["open"]
+  if change > 0:
+    return "Increase"
+  else:
+    return "Decrease"
+
+# Apply method
+raw_stock_data["change"] = raw_stock_data.apply(classify_change, axis=1)
+
+axis=0, mean dihitung ke bawah untuk setiap kolom
+axis=1, mean dihitung melintasi kolom di setiap baris
+
+---------------------------------------------------------------------------
+# Fill NaN values with the average from that column
+raw_testing_scores["math_score"] = raw_testing_scores["math_score"].fillna(raw_testing_scores["math_score"].mean())
+
+# Print the head of the raw_testing_scores DataFrame
+print(raw_testing_scores.head())
+
+---------------------------------------------------------------------------
+def transform(raw_data):
+	raw_data.fillna(
+    	value={
+			# Fill NaN values with column mean
+			"math_score": raw_data["math_score"].mean(),
+			"reading_score": raw_data["reading_score"].mean(),
+			"writing_score": raw_data["writing_score"].mean()
+		}, inplace=True
+	)
+	return raw_data
+
+clean_testing_scores = transform(raw_testing_scores)
+
+# Print the head of the clean_testing_scores DataFrame
+print(clean_testing_scores.head())
+---------------------------------------------------------------------------
+def transform(raw_data):
+	# Use .loc[] to only return the needed columns
+	raw_data = raw_data.loc[:, ["city", "math_score", "reading_score", "writing_score"]]
+	
+    # Group the data by city, return the grouped DataFrame
+	grouped_data = raw_data.groupby(by=["city"], axis=0).mean()
+	return grouped_data
+
+# Transform the data, print the head of the DataFrame
+grouped_testing_scores = transform(raw_testing_scores)
+print(grouped_testing_scores.head())
+
+---------------------------------------------------------------------------
+def transform(raw_data):
+	# Use the apply function to extract the street_name from the street_address
+    raw_data["street_name"] = raw_data.apply(
+   		# Pass the correct function to the apply method
+        find_street_name,
+        axis=1
+    )
+    return raw_data
+
+# Transform the raw_testing_scores DataFrame
+cleaned_testing_scores = transform(raw_testing_scores)
+
+# Print the head of the cleaned_testing_scores DataFrame
+print(cleaned_testing_scores.head())
+
+---------------------------------------------------------------------------
+Loading data to a SQL database with pandas
+
+# Create connection object
+connection_uri = "postgresql+psycopg://repl:password@localhoost:5432/market"
+db_engine = sqlalchemy.create_engine(connection_uri)
+
+# Use the to_sql() method to write the data to the table
+clean_stock_data.to_sql(
+  name="filtered_stock_data",
+  con=db_engine,
+  if_exists="append",
+  index=True,
+  index_label="timestamps"
+)
+
+---------------------------------------------------------------------------
+# Update the connection string, create the connection object to the schools database
+db_engine = sqlalchemy.create_engine("postgresql+psycopg2://repl:password@localhost:5432/schools")
+
+# Write the DataFrame to the scores table
+cleaned_testing_scores.to_sql(
+	name="scores",
+	con=db_engine,
+	index=False,
+	if_exists="replace"
+)
+
+---------------------------------------------------------------------------
+def load(clean_data, con_engine):
+	# Store the data in the schools database
+    clean_data.to_sql(
+    	name="scores_by_city",
+		con=con_engine,
+		if_exists="replace",  # Make sure to replace existing data
+		index=True,
+		index_label="school_id"
+    )
+
+# Call the load function, passing in the cleaned DataFrame
+load(cleaned_testing_scores, db_engine)
+
+# Call query the data in the scores_by_city table, check the head of the DataFrame
+to_validate = pd.read_sql("SELECT * FROM scores_by_city", con=db_engine)
+print(to_validate.head())
+
+---------------------------------------------------------------------------
+Deploying and Maintaining a Data Pipeline
+
+Manually testing a data pipeline:
+- Validate that data is extracted, transformed, and loaded as expected
+
+Validating pipelines limits maintenance efforts after deployment:
+- Identify and fix data quality issues
+- Improves data reliability
+
+Tools and techniques to test data pipelines:
+- End-to-end testing
+- Validating data at "checkpoints"
+
+End-to-end testing:
+- Confirm that pipeline runs on repeated attempts
+- Validate data at pipeline checkpoints
+
+Validating pipeline checkpoints
+# ETL pipeline
+.........
+
+# Check data 
+loaded_data = pd.read_sql("SELECT * FROM clean_stock_data", con=db_engine)
+print(loaded_data.shape)
+
+---------------------------------------------------------------------------
+raw_tax_data = extract("raw_tax_data.csv")
+clean_tax_data = transform(raw_tax_data)
+load(clean_tax_data, "clean_tax_data.parquet")
+
+print(f"Shape of raw_tax_data: {raw_tax_data.shape}")
+print(f"Shape of clean_tax_data: {clean_tax_data.shape}")
+
+to_validate = pd.read_parquet("clean_tax_data.parquet")
+print(clean_tax_data.head(3))
+print(to_validate.head(3))
+
+# Check that the DataFrames are equal
+print(to_validate.equals(clean_tax_data))
+---------------------------------------------------------------------------
+# Trigger the data pipeline to run three times
+for attempt in range(0, 3):
+	print(f"Attempt: {attempt}")
+	raw_tax_data = extract("raw_tax_data.csv")
+	clean_tax_data = transform(raw_tax_data)
+	load(clean_tax_data, "clean_tax_data.parquet")
+	
+	# Print the shape of the cleaned_tax_data DataFrame
+	print(f"Shape of clean_tax_data: {clean_tax_data.shape}")
+    
+# Read in the loaded data, check the shape
+to_validate = pd.read_parquet("clean_tax_data.parquet")
+print(f"Final shape of cleaned data: {to_validate.shape}")
+
+---------------------------------------------------------------------------
+Unit-testing a data pipeline
+
+Unit-test:
+- Commonly used in software development
+- Ensure code works as expected
+- Help to validate data
+
+pytest for unit testing 
+
+from pipeline import extract, transform, load
+
+def test_trasnformed_data():
+  raw_stok_data = extract("raw_stock_data.csv")
+  clean_stock_data = transform(raw_data)
+  assert isinstance(clean_stock_data, pd.DataFrame)
+
+execute:
+python -m pytest test_pipeline.py
+
+pipeline_type = "ETL"
+
+# Check if pipeline_type is an instance of a string
+isinstance(pipeline_type, str)
+
+# Assert that the pipeline does indeed take value "ETL"
+assert pipeline_type == "ETL"
+
+assert isinstance(pipeline_type, str)
+
+---------------------------------------------------------------------------
+# Mocking data pipeline components with fixtures
+
+import pytest
+
+@pytest.fixture
+def clean_data():
+  raw_stock_data = extract("raw_stock_data.csv")
+  clean_stock_data = transform(raw_data)
+  return clean_stock_data
+
+def test_transformed_data(clean_data):
+  assert isinstance(clean_data, pd.DataFrame)
+  aseert len(clean_data.columns) == 4
+  assert clean_data["open].min() >= 0
+  assert clean_data["open"].min() >= 0 and clean_data["open"].max() <= 1000
+
+---------------------------------------------------------------------------
+raw_tax_data = extract("raw_tax_data.csv")
+clean_tax_data = transform(raw_tax_data)
+
+# Validate the number of columns in the DataFrame
+assert len(clean_tax_data.columns) == 5
+
+# Determine if the clean_tax_data DataFrames take type pd.DataFrame
+assert isinstance(clean_tax_data, pd.DataFrame)
+
+# Assert that clean_tax_data takes is an instance of a string
+try:
+	assert isinstance(clean_tax_data, str)
+except Exception as e:
+	print(e)
+
+---------------------------------------------------------------------------
+import pytest
+
+def test_transformed_data():
+    raw_tax_data = extract("raw_tax_data.csv")
+    clean_tax_data = transform(raw_tax_data)
+    
+    # Assert that the transform function returns a pd.DataFrame
+    assert isinstance(clean_tax_data, pd.DataFrame)
+    
+    # Assert that the clean_tax_data DataFrame has more columns than the raw_tax_data DataFrame
+    assert len(clean_tax_data.columns) > len(raw_tax_data.columns)
+
+---------------------------------------------------------------------------
+# Import pytest
+import pytest
+
+@pytest.fixture()
+def clean_tax_data():
+    raw_data = pd.read_csv("raw_tax_data.csv")
+    clean_data = transform(raw_data)
+    return clean_data
+
+# Pass the fixture to the function
+def test_tax_rate(clean_tax_data):
+    # Assert values are within the expected range
+    assert clean_tax_data["tax_rate"].max() <= 1 and clean_tax_data["tax_rate"].min() >= 0
+
+---------------------------------------------------------------------------
+Running a data pipeline in production 
+
+Data pipeline architecture patterns:
+- Separate file from the execution logic
+
+from pipeline_utils import extract, transform, load
+
+raw_stock_data = extract("raw_stock_data.csv")
+clean_stock_data = transform(raw_stock_data)
+load(clean_stock_data, "clean_stock_data.csv")
+
+---------------------------------------------------------------------------
+# Running a data pipeline end-to-end
+
+import logging
+from pipeline_utils import extract, transform, load
+
+logging.basicConfig(format='%(levelname)s : %(message)s', level=logging.DEBUG)
+
+try: 
+  raw_stock_data = extract("raw_stock_data.csv")
+  clean_stock_data = transform(raw_stock_data)
+  load(clean_stock_data)
+
+  logging.info("Successfully extracted, transformed, and loaded data.")
+
+except Exception as e:
+  logging.error(f"Pipeline failed with error: {e}")
+
+---------------------------------------------------------------------------
+import logging
+from pipeline_utils import extract, transform, load
+
+logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.DEBUG)
+
+try:
+	raw_tax_data = extract("raw_tax_data.csv")
+	clean_tax_data = transform(raw_tax_data)
+	load(clean_tax_data, "clean_tax_data.parquet")
+    
+	logging.info("Successfully extracted, transformed and loaded data.")  # Log a success message.
+    
+except Exception as e:
+	logging.error(f"Pipeline failed with error: {e}")  # Log failure message
+
+---------------------------------------------------------------------------
+INTRODUCTION TO APACHE AIRFLOW IN PYTHON                                  |
+---------------------------------------------------------------------------
+Data engineering:
+- Taking any action invloving data and turning it into a reliable, repeatable, and maintainable process
+
+Workflow:
+- A set of steps to accomplish a given data engineering task
+  - Such as : downloading files, copying data, filtering information, writing to a database, exact
+- Of varying level of complexity
+- A term with various meaning depending on context
+
+Workflow example:
+- Download sales data
+- Clean sales data
+- Run ML pipeline
+- Upload results to webserver
+- Generate report and email to CEO
+
+Aiflow:
+- A platform to program workflows, including:
+  - Creation
+  - Scheduling 
+  - Monitoring
+- Can implement programs from any language, but workflow are written in python 
+- Implements workflows as DAGs: Directed Acylic Graphs
+- Accessed via code, command-line, or via web interface/REST API
+
+Other workflow tools:
+- Luigi
+- SSIS
+- Bash scripting
+
+---------------------------------------------------------------------------
+DAGs
+- Directed Acylic Graph
+- In Airflow, this represents the set of tasks that make up your workflow
+- Consists of the tasks and the dependencies between tasks
+- Created with various details about the DAG, including the name, start date, owner, etc.
+
+Simple DAG code example:
+etl_dag = DAG(
+  dag_id='etl_pipeline',
+  default_args={"start_date":"2024-01-08"}
+)
+
+- Running a workflow in Airflow
+airflow tasks test <dag_id> <task_id> [execution_date]
+airflow tasks test example_etl download-file 2024-01-10
+
+airflow -h -> to see all the commands
+
+---------------------------------------------------------------------------
+DAG (Directes Acylic Graph)
+- Directed, there is an inherent flow representing dependencies between components
+- Acylic, does not loop/cycle/repeat
+- Graph, the actual set of components
+- Seen in Airflow, Apache Spark, dbt
+
+DAG in Airlflow:
+- Are written in Python (but can use components written in other languages)
+- Are made up of components (typically tasks) to be exceuted, suah as operators, sensors, etc.
+- Contain dependencies defines explicitly or implicitly
+  - Copy the file to the server before trying to import it to the database service.
+
+from airflow import DAG
+from datetime import datetime
+
+default_arguments = {
+  'owner': 'jdoe',
+  'email': 'jdoe@datacamp.com',
+  'start_date': datetime(2020, 1, 20)
+}
+
+with DAG('etl_workflow', default_args=default_arguments) as etl_dag:
+
+airflow -h -> for descriptions
+airflow dags list -> to show all recognized DAGs.
+
+Command line to:
+- Start airflow processes
+- Manually run DAGs/Tasks
+- Get logging information from Airflow
+
+Python to:
+- Create a DAG
+
+---------------------------------------------------------------------------
+# Import the DAG object
+from airflow import DAG
+
+# Define the default_args dictionary
+default_args = {
+  'owner': 'dsmith',
+  'start_date': datetime(2023, 1, 14),
+  'retries': 2
+}
+
+# Instantiate the DAG object
+with DAG('example_etl', default_args=default_args) as etl_dag:
+  pass
+
+---------------------------------------------------------------------------
+airflow <subcommand> -h -> to get help on a specific subcommand
+airflow webserver -p 9090 -> to start the webserver on port 9090
+
+---------------------------------------------------------------------------
+Implementing Airflow DAGs
+
+Airflow operators:
+- Represents a single task in a workflow
+- Run independently (usually)
+- generally do no tshane information 
+- Various operators to perform diffenrent tasks
+
+EmptyOperator(task_id='example') -> for troubleshooting
+
+- BashOperator 
+Exceute a given Bash command or script.
+Runs the command in a temporary directory.
+Can specify environment variables for the command.
+
+BashOperator(
+  task_id='bash_example',
+  bash_command='echo "Example!"',
+  dag=dag # old version
+)
+
+BashOperator examples:
+from airflow.operators.bash import BashOperator
+
+example_task = BashOperator(task_id='bash_ex', bash_command='echo 1')
+bash_task = BashOperator(
+  task_id='clean_addresses',
+  bash_command='cat addresses.txt | awk "NF==10" > cleaned.txt',
+)
+
+Operator gotchas
+- Not guaranteed to run in the same location/environment.
+- May require extansive use of Environment variables.
+- Can be difficult to run tasks with elevated privileges.
+
+---------------------------------------------------------------------------
+# Import the BashOperator
+from airflow.operators.bash import BashOperator
+
+with DAG(dag_id="test_dag", default_args={"start_date": "2024-01-01"}) as analytics_dag:
+  # Define the BashOperator 
+  cleanup = BashOperator(
+      task_id='cleanup_task',
+      # Define the bash_command
+      bash_command="cleanup.sh",
+  )
+
+  # Define a second operator to run the `consolidate_data.sh` script
+  consolidate = BashOperator(
+      task_id='consolidate_task',
+      bash_command="consolidate_data.sh"
+      )
+
+  # Define a final operator to execute the `push_data.sh` script
+  push_data = BashOperator(
+      task_id="pushdata_task",
+      bash_command="push_data.sh"
+      )
+
+---------------------------------------------------------------------------
+Tasks:
+- Instances of operators
+- Usually assigned to a variable in Python 
+  example_task = BashOperator(task_id='example', bash_command='echo 1')
+- Referred to by the task_id within the Airflow tools
+
+Task dependencies:
+- Define a given order of task completion 
+- Are not required for a given workflow, but usually present in most
+- Are referred to as upstream or downstream tasks
+- >> upstream operator -> before
+- << downstream operator -> after
+
+Simple task dendency
+task1 = BashOperator(task_id='first_task,
+                      bash_command='echo 1')
+task2 = BashOperator(task_id='second_task',
+                      bash_command='echo 2')
+
+# Set first_task to run before second_task
+task1 >> task2 or task2 << task1
+
+# Mixed dependencies
+task1 >> task2 << task3
+
+---------------------------------------------------------------------------
+# Define a new pull_sales task
+pull_sales = BashOperator(
+    task_id='pullsales_task',
+    bash_command="wget https://salestracking/latestinfo?json"
+)
+
+# Set pull_sales to run prior to cleanup
+pull_sales >> cleanup
+
+# Configure consolidate to run after cleanup
+consolidate << cleanup
+
+# Set push_data to run last
+consolidate >> push_data
+
+---------------------------------------------------------------------------
+Additional operators
+
+PythonOperator
+- Executes a python function/callable
+- Operates similarly to the BashOperator, with more options.
+- Can pass in arguments to the python code
+
+from airflow.operators.python import PythonOperator
+def printme():
+  print("This goes in the logs!")
+python_task = PythonOperator(
+    task_id='simple_print',
+    python_callable=printme
+)
+
+Arguments:
+- Support arguments to tasks (positional, keyword)
+- Use the op_kwargs dictionary.
+---------------------------------------------------------------------------
+def sleep(length_of_time):
+  time.sleep(length_of_time)
+
+sleep_task = PythonOperator(
+  task_id='sleep',
+  python_callable=sleep,
+  op_kwargs={'length_of_time':5}
+)
+
+---------------------------------------------------------------------------
+EmailOperator:
+- Found in the airflow.operators library
+- Sends an email
+- Can contain typical components  
+  - HTML contents
+  - Attachments
+- Does require the Airflow system to be configured with email server details
+
+email_task = EmailOperator(
+  task_id='email_sales_report',
+  to='sales_manager@example.com',
+  subject='Automated Sales Report',
+  html_content='Attached is the latest sales report',
+  files='latest_sales.xlsx'
+)
+
+---------------------------------------------------------------------------
+def pull_file(URL, savepath):
+    r = requests.get(URL)
+    with open(savepath, 'wb') as f:
+        f.write(r.content)   
+    # Use the print method for logging
+    print(f"File pulled from {URL} and saved to {savepath}")
+
+from airflow.operators.python import PythonOperator
+
+# Create the task
+pull_file_task = PythonOperator(
+    task_id='pull_file',
+    # Add the callable
+    python_callable=pull_file,
+    # Define the arguments
+    op_kwargs={'URL':'http://dataserver/sales.json', 'savepath':'latestsales.json'}
+)
+
+# Add another Python task
+parse_file_task = PythonOperator(
+    task_id='parse_file',
+    # Set the function to call
+    python_callable=parse_file,
+    # Add the arguments
+    op_kwargs={'inputfile':'latestsales.json', 'outputfile':'parsedfile.json'},
+)
+
+---------------------------------------------------------------------------
+# Import the Operator
+from airflow.operators.email import EmailOperator
+
+# Define the task
+email_manager_task = EmailOperator(
+    task_id='email_manager',
+    to='manager@datacamp.com',
+    subject='Latest sales JSON',
+    html_content='Attached is the latest sales JSON file as requested.',
+    files='parsedfile.json',
+    dag=process_sales_dag
+)
+
+# Set the order of tasks
+pull_file_task >> parse_file_task >> email_manager_task
+
+---------------------------------------------------------------------------
+Airflow scheduling:
+
+DAG Runs = spesific instance of a workflow at a point in time
+- Can be run manually or via schedule_interval
+- Maintain state for each workflow and the tasks within 
+  - running
+  - failed
+  - success
+
+Schedule details:
+When scheduling a DAG, there are several attributes of note:
+- start_date: The date / time to initially schedule the DAG run
+- end_date: Optional attribute for when to stop running new DAG instance
+- max_tries: Optional attribute for how many attempts to make
+- schedule_interval: How often to run 
+
+schedule_interval: 
+- How often to schedule the DAG
+- Between the start_date and end_date
+- Can be defined via cron style syntax or via built-in presets.
+
+cron syntax:
+* * * * * 
+minute(0-59)
+hour(0-23)
+day of the month(1-31)
+month(1-12)
+day of the week(0-6) (Sunday to saturday), 7 is also Sunday on some system
+0 Sunday
+1 Monday
+2 Tuesday
+3 Wednesday
+4 Thursday
+5 Friday
+6 Saturday
+
+- is pulled from the unix cron format
+- consists of 5 fields separated by a space
+
+0 12 * * * -> Run daily at noon 
+* * 25 2 * -> Run once per minute on February 25
+0,15,30,45 * * * * -> Run every 15 minutes
+
+Airflow scheduler presets
+Preset        Cron equivalent
+@hourly       0 * * * *
+@daily        0 0 * * * 
+@weekly       0 0 * * 0
+@monthly
+
+Special presets:
+- None -> Don't schedule ever, used for manually triggered DAGs
+- @once -> Schedule only once
+
+when scheduling a DAG, Airflow will:
+- Use the start_date as the earlist possible value
+- Schedule the task at start_date + schedule_interval
+
+'start_date': datetime(2020, 2, 5),
+'schedule_interval': @daily
+---------------------------------------------------------------------------
+# Update the scheduling arguments as defined
+default_args = {
+  'owner': 'Engineering',
+  'start_date': datetime(2023, 11, 1),
+  'email': ['airflowresults@datacamp.com'],
+  'email_on_failure': False,
+  'email_on_retry': False,
+  'retries': 3,
+  'retry_delay': timedelta(minutes=20)
+}
+
+dag = DAG('update_dataflows', default_args=default_args, schedule_interval='30 12 * * 3')
+
+---------------------------------------------------------------------------
+Maintaining and monitoring Airflow workflows
+
+Airflow sensors:
+- An operator that waits for a certain condition to be true
+  - Creation of a file
+  - Upload of a database record
+  - Certain response from a web request
+- Can define how often to check for the condition to be true
+- Are assigned to tasks
+
+Sensor details:
+- Derived from airflow.sensors.base_sensor_operator
+- Sensor arguments:
+  - mode -> how to poke for the condition
+    mode='poke' - The default, run repeatedly
+    mode='reschedule' - Give up task slot and try again later
+  - poke_interval - How often to wait between checks
+  - timeout - How long to wait before failing the task
+
+File sensor:
+- Is part of the airflow.sensors library
+- Checks for the existence of a file at a certain location
+- Can also check if any files exist within a directory
+
+from airflow.sensors.filesystem import FileSensor
+
+file_sensor_task = FileSensor(
+  task_id='file_sense',
+  filepath='salesdata.csv',
+  poke_interval=300,
+  dag-sales_report_dag
+)
+
+init_sales_cleanup >> file_sensor_task >> generate_report
+
+Other sensors:
+- ExternalTaskSensor -> wait for a task in another DAG to complete
+- HttpSensor -> Request a web URL and check for content
+- SqlSensor -> Run a SQL wuery to check for content
+
+airflow.sensors 
+airflow.providers.*.sensors
+
+Why sensors?
+- Uncertain when it will be true
+- If failure not immediately desired
+---------------------------------------------------------------------------
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
+from airflow.providers.http.operators.http import SimpleHttpOperator
+from airflow.sensors.filesystem import FileSensor
+
+dag = DAG(
+   dag_id = 'update_state',
+   default_args={"start_date": "2023-10-01"}
+)
+
+precheck = FileSensor(
+   task_id='check_for_datafile',
+   filepath='salesdata_ready.csv',
+   dag=dag)
+
+part1 = BashOperator(
+   task_id='generate_random_number',
+   bash_command='echo $RANDOM',
+   dag=dag
+)
+
+import sys
+def python_version():
+   return sys.version
+
+part2 = PythonOperator(
+   task_id='get_python_version',
+   python_callable=python_version,
+   dag=dag)
+   
+part3 = SimpleHttpOperator(
+   task_id='query_server_for_external_ip',
+   endpoint='https://api.ipify.org',
+   method='GET',
+   dag=dag)
+   
+precheck >> part3 >> part2
+---------------------------------------------------------------------------
+Airflow executor:
+- Executors run tasks
+- Different executr=ors handle running the tasks diffferently
+- Example:
+  - SequentialExecutor
+  - LocalExcecutor
+  - KubernetesExecutor
+
+SequentialExecutor:
+- The default Airflow executor
+- Runs one task at a time
+- Useful for debugging
+- While functional, not really recommended for production 
+
+LocalExecutor:
+- Runs on a single system 
+- Treats tasks as processes
+- Parallelism defined by the user
+- Can utilize all resources of a given host system 
+
+KubernetsExecutor:
+- Uses a Kubernetes as task manager
+- Multiple worker systems can be defined
+- Is significantly more difficult to setup & configure
+- Extremely powerful method for organization with extensive workflows
+
+Determien your executor:
+- Via airlfow.cf file
+- Look for the executor= line 
+cat airlofw/airflow.cfg | grep "executor = "executor = SequentialExecutor
+- airflow info 
+
+---------------------------------------------------------------------------
+Debugging and troubleshooting in Airflow
+
+Typical issues:
+- DAG won't run on schedule
+- DAG won't load
+- Syntax errors
+
+DAG won't run on schedule:
+- Check if scheduler is running 
+- Fix by running airflow scheduler from the command-line 
+- At least one schedule_interval hasn't passed.
+  - Modify the attributes to meet your requirements
+- Not enough tasks free within the executor to run.
+  - Change executor type.
+  - Add system resources.
+  - Add more systems.
+  - Change DAG scheduling 
+
+DAG won't load:
+- DAG not in web UI
+- DAG not in airflow dags list
+Possible solutions:
+- Verify DAG file is in correct folder.
+- Determine the DAGs folder via airflow.cfg
+- Note, the folder must be an absolute path 
+
+Syntax errors:
+- The most common reason a DAG file won't appear
+- Sometimes difficult to find errors in DAG
+- Two quick methods:
+  - Run airflow dags list-import-errors
+  - Run the python interpreter 
+    python3 dagfile.py
+
+---------------------------------------------------------------------------
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from airflow.sensors.filesystem import FileSensor
+from datetime import datetime
+
+report_dag = DAG(
+    dag_id = 'execute_report',
+    schedule_interval = "0 0 * * *"
+)
+
+precheck = FileSensor(
+    task_id='check_for_datafile',
+    filepath='salesdata_ready.csv',
+    start_date=datetime(2023,2,20),
+    mode='poke',
+    dag=report_dag)
+
+generate_report_task = BashOperator(
+    task_id='generate_report',
+    bash_command='generate_report.sh',
+    start_date=datetime(2023,2,20),
+    dag=report_dag
+)
+
+precheck >> generate_report_task
+---------------------------------------------------------------------------
+SLAs and reporting in Airflow
+
+SLAs -> Service Level Agreement
+- Within Airflow, the amount of time a task or a DAG should be require to run 
+- An SLA Miss is any time the task / DAG does not meet the expected timing 
+- If an SLA is missed, an email is sent out and a log is stored
+
+SLA Misses:
+- Found under Browse: SLA Misses (UI)
+
+Defining SLAs:
+- Using the 'sla' argument on the task 
+task1 = BashOperator(
+    task_id='sla_task',
+    sla=timedelta(seconds=30),
+    dag=dag
+)
+
+- On the default_args dictionary
+default_args={
+  'sla'=timedelta(minutes=20),
+  'start_date':datetime(2023, 2, 20)
+}
+dag = DAG('sla_dag', default_args=default_args)
+
+timedelta object 
+- In the datetime library
+- Accessed via from datetime imprt timedelta
+timedelta(seconds=30)
+timedelta(weeks=2)
+timedelta(days=4, hours=10, minutes=20, seconds=30)
+
+General reporting:
+- Options for success/failure/error
+- Keys in the default_args dictionary
+default_args={
+  'email':['airflowalerts@datacamp.com'],
+  'email_on_failure':True,
+  'email_on_retry:False,
+  'email_on_success':True,
+  .....
+}
+
+---------------------------------------------------------------------------
+# Import the timedelta object
+from datetime import timedelta
+
+# Create the dictionary entry
+default_args = {
+  'start_date': datetime(2024, 1, 20),
+  'sla': timedelta(minutes=30)
+}
+
+# Add to the DAG
+test_dag = DAG('test_workflow', default_args=default_args, schedule_interval=None)
+
+---------------------------------------------------------------------------
+# Import the timedelta object
+from datetime import timedelta
+
+test_dag = DAG('test_workflow', start_date=datetime(2024,1,20), schedule_interval=None)
+
+# Create the task with the SLA
+task1 = BashOperator(task_id='first_task',
+                     sla=timedelta(hours=3),
+                     bash_command='initialize_data.sh',
+                     dag=test_dag)
+
+---------------------------------------------------------------------------
+# Define the email task
+email_report = EmailOperator(
+        task_id='email_report',
+        to='airflow@datacamp.com',
+        subject='Airflow Monthly Report',
+        html_content="""Attached is your monthly workflow report - please refer to it for more detail""",
+        files=['monthly_report.pdf'],
+        dag=report_dag
+)
+
+# Set the email task to run after the report is generated
+email_report << generate_report
+---------------------------------------------------------------------------
+'from airflow import DAG
+from airflow.operators.bash import BashOperator
+from airflow.sensors.filesystem import FileSensor
+from datetime import datetime
+
+default_args={
+    'email': ['airflowalerts@datacamp.com', 'airflowadmin@datacamp.com'],
+    'email_on_failure': True,
+    'email_on_success': True
+}
+
+report_dag = DAG(
+    dag_id = 'execute_report',
+    schedule_interval = "0 0 * * *",
+    default_args=default_args
+)
+
+precheck = FileSensor(
+    task_id='check_for_datafile',
+    filepath='salesdata_ready.csv',
+    start_date=datetime(2023,2,20),
+    mode='reschedule',
+    dag=report_dag)
+
+generate_report_task = BashOperator(
+    task_id='generate_report',
+    bash_command='generate_report.sh',
+    start_date=datetime(2023,2,20),
+    dag=report_dag
+)
+
+precheck >> generate_report_task
+---------------------------------------------------------------------------
+Building production pipelines in Airflow
+
+Working with templates:
+- Template allow substituting information during a DAG run 
+- Provide added flexibility when defining tasks
+- Are created using the Jinja templating language
+
+Non-Templated BashOperator example
+Create a task to echo a list of files:
+t1 = BashOperator(
+  task_id='first_task',
+  bash_command='echo "Reading file1.txt"',
+  dag=dag
+)
+
+t2 = BashOperator(
+  task_id='first_task',
+  bash_command='echo "Reading file2.txt"',
+  dag=dag
+)
+
+Templated BashOperator example:
+template_command="""
+  echo "Reading {{params.filename}}
+"""
+
+t1 = BashOperator{
+  task_id='template_task',
+  bash_command=template_command,
+  params={'filename':'file1.txt'},
+  dag=example_dag
+}
+
+---------------------------------------------------------------------------
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from datetime import datetime
+
+default_args = {
+  'start_date': datetime(2023, 4, 15),
+}
+
+cleandata_dag = DAG('cleandata',
+                    default_args=default_args,
+                    schedule_interval='@daily')
+
+# Create a templated command to execute
+# 'bash cleandata.sh datestring'
+templated_command = """
+bash cleandata.sh {{ ds_nodash }}
+"""
+
+# Modify clean_task to use the templated command
+clean_task = BashOperator(task_id='cleandata_task',
+                          bash_command=templated_command,
+                          dag=cleandata_dag)
+---------------------------------------------------------------------------
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from datetime import datetime
+
+default_args = {
+  'start_date': datetime(2023, 4, 15),
+}
+
+cleandata_dag = DAG('cleandata',
+                    default_args=default_args,
+                    schedule_interval='@daily')
+
+# Modify the templated command to handle a
+# second argument called filename.
+templated_command = """
+  bash cleandata.sh {{ ds_nodash }} {{params.filename}}
+"""
+
+# Modify clean_task to pass the new argument
+clean_task = BashOperator(task_id='cleandata_task',
+                          bash_command=templated_command,
+                          params={'filename': 'salesdata.txt'},
+                          dag=cleandata_dag)
+
+# Create a new BashOperator clean_task2
+clean_task2 = BashOperator(task_id='cleandata_task2',
+                           bash_command=templated_command,
+                          params={'filename': 'supportdata.txt'},
+                          dag=cleandata_dag)
+                           
+# Set the operator dependencies
+clean_task >> clean_task2
+
+---------------------------------------------------------------------------
+More templates:
+template_command="""
+{% for filename in params.filenams %}
+  echo "Reading {{filename}}"
+{% endfor %}
+"""
+
+t1 = BashOperator(
+  task_id='template_task',
+  bash_command=template_command,
+  params={'filenames:['file1.txt','file2.txt']},
+  dag=example_dag
+)
+---------------------------------------------------------------------------
+Variables
+- Airflow built-in runtime variables
+- Provides assorted information about DAG runs, tasks, and even the system configuration
+
+Execution Data: {{ds}} -> 2023-04-15
+Execution Data, no dashes: {{ds_nodash  }} -> 20230415
+Previous execution date: {{prev_ds}} -> 2023-04-14
+Previous execution date, no dashes: {{prev_ds_nodash}} -> 20230414
+DAG object: {{dag}}
+Airflow config object: {{conf}}
+{{macros.datetime}} -> datetime.datetime object 
+{{macros.ds.add('2020-04-15, 5)}} -> Modify days from a date, this example returns 2020-04-20
+
+---------------------------------------------------------------------------
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from datetime import datetime
+
+filelist = [f'file{x}.txt' for x in range(30)]
+
+default_args = {
+  'start_date': datetime(2020, 4, 15),
+}
+
+cleandata_dag = DAG('cleandata',
+                    default_args=default_args,
+                    schedule_interval='@daily')
+
+# Modify the template to handle multiple files in a 
+# single run.
+templated_command = """
+  <% for filename in params.filenames %>
+  bash cleandata.sh {{ ds_nodash }} {{ filename }};
+  <% endfor %>
+"""
+
+# Modify clean_task to use the templated command
+clean_task = BashOperator(task_id='cleandata_task',
+                          bash_command=templated_command,
+                          params={'filenames': filelist},
+                          dag=cleandata_dag)
+---------------------------------------------------------------------------
+from airflow import DAG
+from airflow.operators.email import EmailOperator
+from datetime import datetime
+
+# Create the string representing the html email content
+html_email_str = """
+Date: {{ds}}
+Username: {{params.username}}
+"""
+
+email_dag = DAG('template_email_test',
+                default_args={'start_date': datetime(2023, 4, 15)},
+                schedule_interval='@weekly')
+                
+email_task = EmailOperator(task_id='email_task',
+                           to='testuser@datacamp.com',
+                           subject="{{ macros.uuid.uuid4() }}",
+                           html_content=html_email_str,
+                           params={'username': 'testemailuser'},
+                           dag=email_dag)
+---------------------------------------------------------------------------
+Branching 
+
+Branching in Airflow:
+- Provides conditional logic
+- Using BranchPythonOperator
+- from airflow.operators.python import BranchPythonOperator
+
+def branch_test(**kwargs):
+  if int(kwargs['ds_nodash']) % 2 == 0:
+    return 'even_day_task'
+  else:
+    return 'odd_day_task'
+
+branch_task = BranchPythonOperator(
+  task_id='branch_task',
+  dag=dag,
+  provide_context=True,
+  python_callable=branch_test
+)
+
+start_task >> branch_task >> even_day_task >> even_day_task2
+branch_task >> odd_day_task >> odd_day_task2
+
+---------------------------------------------------------------------------
+# Create a function to determine if years are different
+def year_check(**kwargs):
+    current_year = int(kwargs['ds_nodash'][0:4])
+    previous_year = int(kwargs['prev_ds_nodash'][0:4])
+    if current_year == previous_year:
+        return 'current_year_task'
+    else:
+        return 'new_year_task'
+
+# Define the BranchPythonOperator
+branch_task = BranchPythonOperator(task_id='branch_task', dag=branch_dag,
+                                   python_callable=year_check, provide_context=True)
+# Define the dependencies
+branch_task >> current_year_task
+branch_task >> new_year_task
+
+---------------------------------------------------------------------------
+Creating a production pipeline 
+
+- Running DAGs & Tasks
+airflow tasks test <dag_id> <task_id> [execution_date]
+
+- RUn a full DAG
+airflow dags trigger -e <date> <dag_id>
+
+- Operators reminder
+  - BashOperator -> expects a bash_command
+  - PythonOperator  -> expects a python_callable
+  - EmailOperator
+  - FileSensor -> requires filepath argument and might need mode or poke_interval attributes
+  - BranchPythonOperator - requires a python_callable and provide_context=True. The callable must accept **kwargs
+
+- Template reminders 
+
+1. Open python3 interpreter
+2. Import necessary libraries
+3. At prompt, run help(Airflow object) -> help(BashOperator)
+4. Look for a line that referencing the template_fields attribute
+
+---------------------------------------------------------------------------
+from airflow import DAG
+from airflow.sensors.filesystem import FileSensor
+
+# Import the needed operators
+from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
+from datetime import date, datetime
+
+def process_data(**context):
+  file = open('/home/repl/workspace/processed_data.tmp', 'w')
+  file.write(f'Data processed on {date.today()}')
+  file.close()
+
+    
+dag = DAG(dag_id='etl_update', default_args={'start_date': datetime(2023,4,1)})
+
+sensor = FileSensor(task_id='sense_file', 
+                    filepath='/home/repl/workspace/startprocess.txt',
+                    poke_interval=5,
+                    timeout=15,
+                    dag=dag)
+
+bash_task = BashOperator(task_id='cleanup_tempfiles', 
+                         bash_command='rm -f /home/repl/*.tmp',
+                         dag=dag)
+
+python_task = PythonOperator(task_id='run_processing', 
+                             python_callable=process_data,
+                             dag=dag)
+
+sensor >> bash_task >> python_task
+
+---------------------------------------------------------------------------
+from airflow import DAG
+from airflow.sensors.filesystem import FileSensor
+from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
+from dags.process import process_data
+from datetime import timedelta, datetime
+
+# Update the default arguments and apply them to the DAG
+default_args = {
+  'start_date': datetime(2023,1,1),
+  'sla':timedelta(minutes=90)
+}
+
+dag = DAG(dag_id='etl_update', default_args=default_args)
+
+sensor = FileSensor(task_id='sense_file', 
+                    filepath='/home/repl/workspace/startprocess.txt',
+                    poke_interval=45,
+                    dag=dag)
+
+bash_task = BashOperator(task_id='cleanup_tempfiles', 
+                         bash_command='rm -f /home/repl/*.tmp',
+                         dag=dag)
+
+python_task = PythonOperator(task_id='run_processing', 
+                             python_callable=process_data,
+                             provide_context=True,
+                             dag=dag)
+
+sensor >> bash_task >> python_task
+
+---------------------------------------------------------------------------
+from airflow import DAG
+from airflow.sensors.filesystem import FileSensor
+from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
+from airflow.operators.python import BranchPythonOperator
+from airflow.operators.empty import EmptyOperator
+from airflow.operators.email import EmailOperator
+from dags.process import process_data
+from datetime import datetime, timedelta
+
+# Update the default arguments and apply them to the DAG.
+
+default_args = {
+  'start_date': datetime(2023,1,1),
+  'sla': timedelta(minutes=90)
+}
+    
+dag = DAG(dag_id='etl_update', default_args=default_args)
+
+sensor = FileSensor(task_id='sense_file', 
+                    filepath='/home/repl/workspace/startprocess.txt',
+                    poke_interval=45,
+                    dag=dag)
+
+bash_task = BashOperator(task_id='cleanup_tempfiles', 
+                         bash_command='rm -f /home/repl/*.tmp',
+                         dag=dag)
+
+python_task = PythonOperator(task_id='run_processing', 
+                             python_callable=process_data,
+                             provide_context=True,
+                             dag=dag)
+
+email_subject="""
+  Email report for {{ params.department }} on {{ ds_nodash }}
+"""
+
+email_report_task = EmailOperator(task_id='email_report_task',
+                                  to='sales@mycompany.com',
+                                  subject=email_subject,
+                                  html_content='',
+                                  params={'department': 'Data subscription services'},
+                                  dag=dag)
+
+no_email_task = EmptyOperator(task_id='no_email_task', dag=dag)
+
+def check_weekend(**kwargs):
+    dt = datetime.strptime(kwargs['execution_date'],"%Y-%m-%d")
+    # If dt.weekday() is 0-4, it's Monday - Friday. If 5 or 6, it's Sat / Sun.
+    if (dt.weekday() < 5):
+        return 'email_report_task'
+    else:
+        return 'no_email_task'
+    
+branch_task = BranchPythonOperator(task_id='check_if_weekend',
+                                   python_callable=check_weekend,
+                                   provide_context=True,                                
+                                   dag=dag)
+
+sensor >> bash_task >> python_task
+
+python_task >> branch_task >> [email_report_task, no_email_task]
+---------------------------------------------------------------------------
+Pelajari yg lain:
+- XCom
+- Connections
+- Refer to the Airflow documentation

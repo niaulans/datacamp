@@ -1,0 +1,37 @@
+1. pip install virtualenv
+2. Arahkan ke directori yang dimau
+3. virtualenv --python C:\Users\Windows10\AppData\Local\Programs\Python\Python39\python.exe NamaProject
+4. .\NamaProject\Scripts\activate
+5. Buat requirement pip freeze > requirements.txt
+-------------------------------------------------------------
+
+
+python -m ensurepip --default-pip
+
+
+Arahkan ke directori yang dimau
+python -m venv FinalProject
+.\FinalProject\Scripts\activate
+pip list
+pip install -U pip
+
+% rm -r venv/                           # Nukes the old environment
+% python3 -m venv venv/                 # Makes a blank new one
+% pip install -r requirements.txt       # Re-installs dependencies
+
+c:\program files\python39\python.exe -m pip install --upgrade pip
+
+
+python -m venv coba
+.\coba\Scripts\activate
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+C:\Users\Windows10\AppData\Local\Programs\Python\Python39\Lib\site-packages
+
+py -3 -m venv .venv
+.venv\scripts\activate
+
+python -m venv namafolder
+
+
+C:\Users\Windows10\AppData\Local\Programs\Python\Python39>
