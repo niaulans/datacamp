@@ -1,6 +1,7 @@
 ## 📌 Table of Contents  
 - [Understanding Data Engineering](#understanding-data-engineering)  
 - [Introduction to SQL](#introduction-to-sql)
+- [Intermediate SQL](#intermediate-sql)
 
 
 ## Understanding Data Engineering  
@@ -264,11 +265,12 @@ WHERE role LIKE '%Data%';
 
 **Cloud computing for data storage:**
 - Database reliability : data replication
-- Risk with sensitive data
+- Risk with sensitive data  
+<br>
 
-AWS -> AWS S3 -> AWS EC2 -> AWS RDS  
-Microsoft Azure -> Azure Blob Storage -> Azure Virtual Machines -> Azure SQL Database  
-Google Cloud -> Google Cloud Storage -> Google Compute Engine -> Google Cloud SQL
+- AWS -> AWS S3 -> AWS EC2 -> AWS RDS  
+- Microsoft Azure -> Azure Blob Storage -> Azure Virtual Machines -> Azure SQL Database  
+- Google Cloud -> Google Cloud Storage -> Google Compute Engine -> Google Cloud SQL
 
 **Spotflix use AWS:**
 - S3 to store cover albums
@@ -285,9 +287,9 @@ Google Cloud -> Google Cloud Storage -> Google Compute Engine -> Google Cloud SQ
 	- Cloud providers try to lock in consumers
 	- Incompatibility
 	- Security and governance  
----
+<br>
 
-## INTODUCTION TO SQL
+## Introduction to SQL
 
 **Database advantages:**
 - More storage than spreadsheet applications
@@ -338,519 +340,516 @@ Google Cloud -> Google Cloud Storage -> Google Compute Engine -> Google Cloud SQ
 **Database storage:**
 - Servers are centralized computers that perform services via requests made over a network
 
-> Use SQL queries to uncover trends in website traffic, customer reviews, and produc sales
+> Use SQL queries to uncover trends in website traffic, customer reviews, and product sales
 
 **Keywords:**
 - Keywords are reserved words for operations
 - Common keywords: SELECT, FROM
 
 ```sql
-# Select all names from the patrons table    
+# Select all names from the patrons table  
+
 SELECT name                                 
 FROM patrons;
 ```
-> Query results often called result set
+> Query results often called result **set**
 
 ```sql
-# Select card_num and name from the patrons table  
-#multiple select                                  
+-- Select card_num and name from the patrons table  
+-- Multiple select   
 SELECT card_num, name                             
 FROM  patrons;
 ```
 
 ```sql
-# Select all                                 
+-- Select all    
 SELECT *                                    
 FROM patrons;
 ```
 
-> Aliasing -> use aliasing to rename columns
---------------------------------------------------------------------
-#select name as first_name and year_hired from the employees table  |
-SELECT name AS first_name, year_hired                               |
-FROM employees;                                                     |
---------------------------------------------------------------------
+> **Aliasing** -> use aliasing to rename columns
 
-Selecting distinct records:
------------------------------------------------------
-#select distinct year_hired from the employees table |
-SELECT DISTINCT year_hired                           |
-FROM employees;                                      |
------------------------------------------------------
+```sql
+-- Select name as first_name and year_hired from the employees table  
+SELECT name AS first_name, year_hired                               
+FROM employees;
+```
 
-VIEWS:
+```sql
+-- Select distinct year_hired from the employees table 
+SELECT DISTINCT year_hired                           
+FROM employees;                                      
+```
+<br>
+
+**VIEWS:**
 - a view is a virtual table that is the result of a saved SQL SELECT statement
 - When accesed, views automatically update in response to updates in the underlying data
 
-----------------------------------------------------------------------------
-#buat view dengan nama employee_hire_years yang isinya id, name, year_hired |
-CREATE VIEW employee_hire_years AS                                          |
-SELECT id, name, year_hired                                                 |
-FROM employees;                                                             |
-----------------------------------------------------------------------------
+```sql
+-- Buat view dengan nama employee_hire_years yang isinya id, name, year_hired 
+CREATE VIEW employee_hire_years AS                                          
+SELECT id, name, year_hired                                                 
+FROM employees;                                                             
+```
 
-----------------------------------------
-CREATE VIEW library_authors AS          |
-SELECT DISTINCT author AS unique_author |
-FROM books;                             |
-----------------------------------------
+```sql
+CREATE VIEW library_authors AS          
+SELECT DISTINCT author AS unique_author 
+FROM books; 
+```
+<br>
 
-SQL flavors:
+**SQL flavors:**
 - Both free and paid
 - All used with relational databases
 - Vast majority of keywords are the same
 - All must follow universal standards
 - Only the additions on top of there standards make flavors different
 
-PostgreSQL:
-- Free and open-source relational database system
-- Created at university of california, berkeley
-- Research and fund by DARPA 
-- "PostgreSQL" referens to both the postgresql databse system and its associated SQL flavor
+    **PostgreSQL:**
+    - Free and open-source relational database system
+    - Created at university of california, berkeley
+    - Research and fund by DARPA 
+    - "PostgreSQL" referens to both the postgresql databse system and its associated SQL flavor
 
-SQL server:
-- Has free and paid versions
-- Created by microsoft
-- T-SQL is microsoft SQL flavor, used with SQL Server databases
+    **SQL server:**
+    - Has free and paid versions
+    - Created by microsoft
+    - T-SQL is microsoft SQL flavor, used with SQL Server databases
 
-PostgreSQL vs. SQL Server
-PostgreSQL:
------------------
-SELECT id, name  |
-FROM employees   |
-LIMIT 2;         |
------------------
+**PostgreSQL vs. SQL Server**  
+    **PostgreSQL:**
+```sql
+SELECT id, name  
+FROM employees   
+LIMIT 2; 
+```
 
-SQL Server:
------------------------
-SELECT TOP(2) id, name |
-FROM employees;        |
------------------------
+    **SQL Server:**
+```sql
+SELECT TOP(2) id, name 
+FROM employees;       
+```
 
--------------------------------------------------------------
-INTERMEDIATE SQL                                            |
--------------------------------------------------------------
+## Intermediate SQL
 
-COUNT()
+**COUNT()**
 - Counts the number of records with a value in a field
 - Use an alias for clarity
-------------------------------------------------
-SELECT COUNT(birthdate) AS count_birthdates    |
-FROM people;                                   |
-------------------------------------------------
 
-------------------------------------------------------------------------
-SELECT COUNT(name) AS count_names, COUNT(birthdate) AS count_birthdates |
-FROM people;                                                            |
-------------------------------------------------------------------------
+```sql
+SELECT COUNT(birthdate) AS count_birthdates    
+FROM people;                                   
+```
 
-COUNT(field_name) counts values in a field.
-COUNT(*) counts records in a table.
+```sql
+SELECT COUNT(name) AS count_names, COUNT(birthdate) AS count_birthdates 
+FROM people;   
+```
 
-----------------------------------
-SELECT COUNT(*) AS total_records  |
-FROM people;                      |
-----------------------------------
+**COUNT(field_name)** counts values in a field.  
+**COUNT(*)** counts records in a table.
 
--------------------------------------------------------
-SELECT COUNT(DISTINCT birthdate) AS unique_birthdates  |
-FROM people;                                           |
--------------------------------------------------------
+```sql
+SELECT COUNT(*) AS total_records  
+FROM people;
+```
 
-Query execution:
-Order of execution:
+```sql
+SELECT COUNT(DISTINCT birthdate) AS unique_birthdates  
+FROM people;   
+```
+
+**Order of execution:**
 - SQL is not processed in its written order
 
---Order of execution
+> -- Order of execution  
+    SELECT name (2)  
+    FROM people (1)  
+    LIMIT 10; (3)
 
-SELECT name (2)
-FROM people (1)
-LIMIT 10; (3)
-
-Most common errors:
+**Most common errors:**
 - Misspelling
 - Incorrect capitalization
 - Incorrect or missing punctuation, especially commas
 
-SQL formatting
+**SQL formatting**
 - Formatting is not required but lack of formatting can cause issues
 
-Best practice:
+**Best practice:**
 - Capitalize keywords
 - Add new lines
 
-Dealing with non-standars field names:
+**Dealing with non-standars field names:**
 - release year instead of release_year
 - Put non-standard field names in double-quotes -> "release year"
 
-Why do we format?
+**Why do we format?**
 - Easier collaboration
 - Clean and readable
 - Looks professional
 - Easier to understand
 - Easier to debug
 
-Filtering numbers:
-WHERE clause:
-- Filters records based on a condition and comparison operators
+**Filtering numbers:**  
+    **WHERE clause:**  
+    - Filters records based on a condition and comparison operators
 
-----------------------------
-SELECT title                |
-FROM films                  |
-WHERE release_year > 2000;  |
-----------------------------
+```sql
+SELECT title                
+FROM films                  
+WHERE release_year > 2000; 
+```
 
-----------------------------
-SELECT title                |
-FROM films                  |
-WHERE country = 'Japan';    |
-----------------------------
+```sql
+SELECT title                
+FROM films                  
+WHERE country = 'Japan';  
+```
 
--- Order of execution
-SELECT item (3)
-FROM coats (1)
-WHERE color = 'green' (2)
-LIMIT 5; (4)
+> -- Order of execution  
+SELECT item (3)  
+FROM coats (1)   
+WHERE color = 'green' (2)  
+LIMIT 5; (4)  
 
----------------------------------------------------
--- Count the records with at least 100,000 votes   |
-SELECT COUNT(num_votes) AS films_over_100K_votes   |
-FROM reviews                                       |
-WHERE num_votes >= 100000;                         |
----------------------------------------------------
+```sql
+-- Count the records with at least 100,000 votes   
+SELECT COUNT(num_votes) AS films_over_100K_votes   
+FROM reviews                                       
+WHERE num_votes >= 100000; 
+```  
 
-Multiple criteria:
+**Multiple criteria:**
 - OR, AND, BETWEEN (inclusive, nilai awal dan akhir masuk)
------------------------------------------------
-SELECT *                                       |
-FROM coats                                     |
-WHERE color = 'yellow' OR length = 'short';    |
------------------------------------------------
 
-------------------------------------------------
-SELECT *                                       |
-FROM coats                                     |
-WHERE color = 'yellow' AND length = 'short';   |
-------------------------------------------------
+```sql
+SELECT *                                       
+FROM coats                                     
+WHERE color = 'yellow' OR length = 'short';
+```
 
------------------------------------
-SELECT *                           |
-FROM coats                         |
-WHERE buttons BETWEEN 1 AND 5;     |
------------------------------------
---------------------------------------------------------
-SELECT title                                            |
-FROM films                                              |
-WHERE (release_year = 1994 OR release_year = 1995)      |
-     AND (certification = 'PG' OR certification = 'R'); |
---------------------------------------------------------
+```sql
+SELECT *                           
+FROM coats                         
+WHERE buttons BETWEEN 1 AND 5;  
+```
 
----------------------------------------------------------
-SELECT title, release_year                               |
-FROM films                                               |
-WHERE (release_year = 1990 OR release_year = 1999)       |
-	AND (language = 'English' OR language = 'Spanish')   |
--- Filter films with more than $2,000,000 gross          |
-	AND gross > 2000000;                                 |
----------------------------------------------------------
+```sql
+SELECT title                                            
+FROM films                                              
+WHERE (release_year = 1994 OR release_year = 1995)      
+     AND (certification = 'PG' OR certification = 'R'); 
+```
 
-------------------------------------------------------------------
-SELECT title, release_year                                        |
-FROM films                                                        |
-WHERE release_year BETWEEN 1990 AND 2000                          |
-	AND budget > 100000000                                        |
--- Amend the query to include Spanish or French-language films    |
-	AND (language = 'Spanish' OR language = 'French');            |
-------------------------------------------------------------------
+```sql
+SELECT title, release_year                               
+FROM films                                               
+WHERE (release_year = 1990 OR release_year = 1999)      
+	AND (language = 'English' OR language = 'Spanish')   
+-- Filter films with more than $2,000,000 gross          
+	AND gross > 2000000;                                 
+```
 
-Filtering text:
+```sql
+SELECT title, release_year                                        
+FROM films                                                        
+WHERE release_year BETWEEN 1990 AND 2000                          
+	AND budget > 100000000                                        
+    -- Amend the query to include Spanish or French-language films    
+	AND (language = 'Spanish' OR language = 'French');            
+```  
+
+**Filtering text:**
 - Filter a pattern rather than specific text
 - LIKE, NOT LIKE, IN
 
-LIKE:
+**LIKE:**
 - Used to search for a pattern in a field
 - % match zero, one, or many characters
 - _ match a single character
 
--------------------------------------------
--- Find all name that start with 'Ade'    |
-SELECT name                               |
-FROM people                               |
-WHERE name LIKE 'Ade%'; -> Adelia         |
--------------------------------------------
+```sql
+-- Find all name that start with 'Ade'    
+SELECT name                               
+FROM people                               
+WHERE name LIKE 'Ade%'; -> Adelia; 
+```
 
-------------------------------------------
--- Find all name that start with 'Ev'     |
-SELECT name                               |
-FROM people                               |
-WHERE name LIKE 'Ev_'; -> Eve             |
-------------------------------------------
+```sql
+-- Find all name that start with 'Ev'     
+SELECT name                               
+FROM people                               
+WHERE name LIKE 'Ev_'; -> Eve;
+```
 
-NOT LIKE:
----------------------------------------
-SELECT name                            |
-FROM people                            |
-WHERE name NOT LIKE 'A.%'; -> Aaliyah  |
----------------------------------------
+```sql
+SELECT name                      
+FROM people                      
+WHERE name LIKE '%r'; -> Aaron;
+```
 
----------------------------------
-SELECT name                      |
-FROM people                      |
-WHERE name LIKE '%r'; -> Aaron   |
----------------------------------
+```sql
+SELECT name                          
+FROM people                          
+WHERE name LIKE '__t%'; -> Anthony   
+```
 
--------------------------------------
-SELECT name                          |
-FROM people                          |
-WHERE name LIKE '__t%'; -> Anthony   |
--------------------------------------
+**NOT LIKE:**
+```sql
+SELECT name                            
+FROM people                            
+WHERE name NOT LIKE 'A.%'; -> Aaliyah  
+```
 
-------------------------------------------
-SELECT title                              |
-FROM films                                |
-WHERE release_year IN (1920, 1930, 1940); |
-------------------------------------------
+**IN:**
+```sql
+SELECT title                              
+FROM films                                
+WHERE release_year IN (1920, 1930, 1940); 
+```
 
----------------------------------------------------------------------------------------------------------------------
--- Find the title, certification, and language all films certified NC-17 or R that are in English, Italian, or Greek |
-SELECT title, certification, language                                                                                |
-FROM films                                                                                                           |
-WHERE certification IN ('NC-17', 'R') AND language IN ('English', 'Italian', 'Greek')                                |
----------------------------------------------------------------------------------------------------------------------
+```sql
+-- Find the title, certification, and language all films certified NC-17 or R that are in English, Italian, or Greek 
+SELECT title, certification, language                                                                
+FROM films
+WHERE certification IN ('NC-17', 'R') AND language IN ('English', 'Italian', 'Greek');
+```
 
--------------------------------------------------------------------
--- Count the unique titles                                         |
-SELECT COUNT(DISTINCT title) AS nineties_english_films_for_teens   |
-FROM films                                                         |
--- Filter to release_years to between 1990 and 1999                |
-WHERE release_year BETWEEN 1990 AND 1999                           |
--- Filter to English-language films                                |
-	AND language = 'English'                                       |
--- Narrow it down to G, PG, and PG-13 certifications               |
-	AND certification IN ('G', 'PG', 'PG-13');                     |
--------------------------------------------------------------------
+```sql
+-- Count the unique titles                                         
+SELECT COUNT(DISTINCT title) AS nineties_english_films_for_teens   
+FROM films                                                         
+-- Filter to release_years to between 1990 and 1999                
+WHERE release_year BETWEEN 1990 AND 1999                           
+-- Filter to English-language films                                
+	AND language = 'English'                                       
+-- Narrow it down to G, PG, and PG-13 certifications               
+	AND certification IN ('G', 'PG', 'PG-13');                     
+```
+<br>
 
-NULL values;
-- Missing values 
-COUNT (field_name) includes only non-missing values
-COUNT(*) includes missing values
+**NULL values**  
+**Missing values**  
+- COUNT (field_name) includes only non-missing values  
+- COUNT(*) includes missing values
 
-----------------------------------
-SELECT COUNT(*) AS count_records |
-FROM people; -> 8397             |
-----------------------------------
+```sql
+SELECT COUNT(*) AS count_records 
+FROM people; -> 8397             
+```
 
---------------------------------------------
--- Count the records with null birthdates   |
-SELECT name                                 |
-FROM people                                 |
-WHERE birthdate IS NULL;                    |
---------------------------------------------
+```sql
+-- Count the records with null birthdates   
+SELECT name                                 
+FROM people                                 
+WHERE birthdate IS NULL;                    
+```
 
--------------------------------------
-SELECT COUNT(*) AS no_birthdates    |
-FROM people                         |
-WHERE birthdate IS NULL; - 2245     |
--------------------------------------
+```sql
+SELECT COUNT(*) AS no_birthdates    
+FROM people                         
+WHERE birthdate IS NULL; - 2245     
+```
 
-----------------------------------------
-SELECT COUNT(name) AS count_birthdates  |
-FROM people                             |
-WHERE birthdate IS NOT NULL;            |
-----------------------------------------
+```sql
+SELECT COUNT(name) AS count_birthdates  
+FROM people                             
+WHERE birthdate IS NOT NULL;            
+```
+<br>
 
-Summarizing Data:
+**Summarizing Data:**
 - aggregate functions return a single value
 - AVG(), SUM(), MIN(), MAX(), COUNT()
 
----------------------
-SELECT AVG(budget)   |
-FROM films;          |
----------------------
+```sql
+SELECT AVG(budget)   
+FROM films;          
+```
 
----------------------
-SELECT SUM(budget)  |
-FROM films;         |
----------------------
+```sql
+SELECT SUM(budget)  
+FROM films;         
+```
 
-Summarizing subsets:
-----------------------------------
-SELECT AVG(budget) AS avg_budget  |
-FROM films                        |
-WHERE release_year >= 2010;       |
-----------------------------------
+**Summarizing subsets**  
+```sql
+SELECT AVG(budget) AS avg_budget  
+FROM films                        
+WHERE release_year >= 2010;       
+```
 
-ROUND() -> round the result to specific decimal places
-ROUND(number_to_round, decimal_places)
+**ROUND()** -> round the result to specific decimal places
+**ROUND(number_to_round, decimal_places)**
 
-Aggregate functions vs. arithmetic:
-Aggregate = vertikal
-arithmatic = horizontal
+**Aggregate functions vs. arithmetic:**  
+    - Aggregate = vertikal
+    - Arithmatic = horizontal
 
-Order of execution:
-- FROM
-- WHERE
-- SELECT (aliases are defined here)
-- LIMIT
+> **Order of execution:**  
+    - FROM  
+    - WHERE  
+    - SELECT (aliases are defined here)  
+    - LIMIT
 
-- Aliases defined in the SELECT clause cannot be used in the WHERE clause due to order of execution
+- Aliases defined in the **SELECT** clause cannot be used in the WHERE clause due to order of execution
 
+```sql
 -- Calculate the percentage of people who are no longer alive
----------------------------------------------------------------
-SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percentage_dead |
-FROM people;                                                  |
----------------------------------------------------------------
+SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percentage_dead 
+FROM people;                                                  
+```
 
+```sql
 -- Find the number of decades in the films table
------------------------------------------------------------------------------
 SELECT (MAX(release_year) - MIN(release_year)) / 10.0 AS number_of_decades   |
-FROM films;                                                                  |
------------------------------------------------------------------------------
+FROM films;                                                                  
+```
 
-Sorting results:
---------------------------------------------
-SELECT title, budget                       |
-FROM films                                 |
-ORDER BY bugdet DESC; (besar ke kecil)     |
---------------------------------------------
+```sql
+-- Sorting results
+SELECT title, budget                       
+FROM films                                 
+ORDER BY bugdet DESC; (besar ke kecil)     
+```
 
-Order of execution:
-- FROM
-- WHERE
-- SELECT
-- ORDER BY
-- LIMIT
+> **Order of execution**:  
+    - FROM  
+    - WHERE  
+    - SELECT  
+    - ORDER BY  
+    - LIMIT
 
-Grouping data:
---------------------------------------------------
-SELECT certification, COUNT(title) AS title_count |
-FROM films                                        |
-GROUP BY certification                            |
-ORDER BY title_count DESC;                        |
-LIMIT 3;                                          |
---------------------------------------------------
+```sql 
+-- Grouping data
+SELECT certification, COUNT(title) AS title_count 
+FROM films                                        
+GROUP BY certification                            
+ORDER BY title_count DESC;                        
+LIMIT 3;                                          
+```
 
-Order of execution:
-- FROM
-- GROUP BY
-- SELECT
-- ORDER BY
-- LIMIT
+> **Order of execution:**  `
+    - FROM  
+    - GROUP BY  
+    - SELECT  
+    - ORDER BY  
+    - LIMIT
 
-Filtering grouped data:
-HAVING clause:
---------------------------------------------------
-SELECT release_year, COUNT(title) AS title_count  |
-FROM films                                        |
-GROUP BY release_year                             |
-HAVING COUNT(title) > 10;                         |
---------------------------------------------------
+**Filtering grouped data:**
+```sql
+-- HAVING clause:
+SELECT release_year, COUNT(title) AS title_count  
+FROM films                                        
+GROUP BY release_year                             
+HAVING COUNT(title) > 10;                         
+```
 
-- Written code:
-----------------------------------------------------
-SELECT certification, COUNT(title) AS title_count  |
-FROM films                                         |
-WHERE certification IN ('G', 'PG', 'PG-13')        |
-GROUP BY certification                             |
-HAVING COUNT(title) > 10                           |
-ORDER BY title_count DESC;                         |
-LIMIT 3;                                           |
-----------------------------------------------------
+```sql
+SELECT certification, COUNT(title) AS title_count  
+FROM films                                        
+WHERE certification IN ('G', 'PG', 'PG-13')        
+GROUP BY certification                             
+HAVING COUNT(title) > 10                           
+ORDER BY title_count DESC;                         
+LIMIT 3;                                           
+```
 
------------------------------
-Final Order of execution:    |
-- FROM                       |
-- WHERE                      |
-- GROUP BY                   |
-- HAVING                     |
-- SELECT                     |
-- ORDER BY                   |
-- LIMIT                      |
------------------------------
+> **Final Order of execution:**  
+    - FROM                       
+    - WHERE                      
+    - GROUP BY                   
+    - HAVING                     
+    - SELECT                     
+    - ORDER BY                   
+    - LIMIT
 
-HAVING vs. WHERE:
+**HAVING vs. WHERE:**
 - WHERE filters individual records, HAVING filters groups
-------------------------------------------------------------------------------
--- Select the country and average_budget from films                          |
-SELECT country, AVG(budget) AS average_budget                                |
-FROM films                                                                   |
--- Group by country                                                          |
-GROUP BY country                                                             |
--- Filter to countries with an average_budget of more than one billion       |
-HAVING AVG(budget) > 1000000000                                              |
--- Order by descending order of the aggregated budget                        |
-ORDER BY average_budget DESC;                                                |
-------------------------------------------------------------------------------
 
--------------------------------------------------------------
-JOINING DATA IN SQL                                         |
--------------------------------------------------------------
+```sql
+-- Select the country and average_budget from films                          
+SELECT country, AVG(budget) AS average_budget                                
+FROM films                                                                   
+-- Group by country                                                          
+GROUP BY country                                                             
+-- Filter to countries with an average_budget of more than one billion       
+HAVING AVG(budget) > 1000000000                                              
+-- Order by descending order of the aggregated budget                        
+ORDER BY average_budget DESC; 
+```
 
-INNER JOIN 
+## Joining Data in SQL
+
+**INNER JOIN** 
 - key field that uniquely identifies each record
 - INNER JOIN looks for records in both tables which match on a given field
 
--------------------------------------------------------------------------------------
+```sql
 --Inner join of presidents and prime_minister, joining on country                    |
-SELECT prime_minister.country, prime_minister.continent, prime_minister, president   |
-FROM presidents                                                                      |
-INNER JOIN prime_minister                                                            |
-ON presidents.country = prime_minister.country;                                      |
--------------------------------------------------------------------------------------
+SELECT prime_minister.country, prime_minister.continent, prime_minister, president   
+FROM presidents                                                             
+INNER JOIN prime_minister                                                           
+ON presidents.country = prime_minister.country;    
+```
 
-Note. The table.column_name format must be used when selecting columns that exist in both tables to avoid a SQL error.
+> The table.column_name format must be used when selecting columns that exist in both tables to avoid a SQL error.
 
-Aliasing tables:
-----------------------------------------------------------------------
---Inner join of presidents and prime_ministers, joining on country    |
-SELECT p2.country, p2.continent, prime_minister, president            |
-FROM presidents AS p1                                                 |
-INNER JOIN prime_ministers AS p2                                      |
-ON p1.country = p2.country;                                           |
-----------------------------------------------------------------------
+**Aliasing tables:**
+```sql
+--Inner join of presidents and prime_ministers, joining on country    
+SELECT p2.country, p2.continent, prime_minister, president            
+FROM presidents AS p1                                                 
+INNER JOIN prime_ministers AS p2                                      
+ON p1.country = p2.country;                                           
+```
 
-Using USING:
---------------------------------------------------------------------
---Inner join of presidents and prime_ministers, joining on country |
-SELECT p2.country, p2.continent, prime_minister, president         |
-FROM presidents AS p1                                              |
-INNER JOIN prime_ministers AS p2                                   |
-USING(country);                                                    |
---------------------------------------------------------------------
+**USING**
+```sql
+-- Using USING:
+--Inner join of presidents and prime_ministers, joining on country 
+SELECT p2.country, p2.continent, prime_minister, president         
+FROM presidents AS p1                                              
+INNER JOIN prime_ministers AS p2                                   
+USING(country);                                                    
+```
 
------------------------------------------------------------
--- Select fields with aliases                              |
-SELECT c.code AS country_code, name, year, inflation_rate  |
-FROM countries AS c                                        |
--- Join to economies (alias e)                             |
-INNER JOIN economies AS e                                  |
--- Match on code field using table aliases                 |
-ON c.code = e.code                                         |
------------------------------------------------------------
+```sql
+-- Select fields with aliases                              
+SELECT c.code AS country_code, name, year, inflation_rate  
+FROM countries AS c                                        
+-- Join to economies (alias e)                             
+INNER JOIN economies AS e                                  
+-- Match on code field using table aliases                 
+ON c.code = e.code                                         
+``````
 
-Defining relationships:
-- One-to-many relationships:
+**Defining relationships:**  
+- **One-to-many relationships:**  
 example: Jane Austen -> Persuasion, Pride and Prejudice, Emma
 1 author can write many books
 
-- One-to-one relationships:
+- **One-to-one relationships:**  
 example: Finger -> fingerprint
 1 finger can have 1 fingerprint
 
-- Many-to-many relationships:
+- **Many-to-many relationships:**  
 examples: German -> Germany, Belgium, French -> Belgium 
 many languages can be spoken in many countries
 
-----------------------------------------------------------
--- Select country and language names (aliased)           |
-SELECT c.name AS country, l.name AS language             |
--- From countries (aliased)                              |
-FROM countries AS c                                      |
--- Join to languages (aliased)                           |
-INNER JOIN languages AS l                                |
--- Use code as the joining field with the USING keyword  |
-USING(code);                                             |
-----------------------------------------------------------
+
+```sql
+-- Select country and language names (aliased)          
+SELECT c.name AS country, l.name AS language             
+-- From countries (aliased)                              
+FROM countries AS c                                      
+-- Join to languages (aliased)                           
+INNER JOIN languages AS l                                
+-- Use code as the joining field with the USING keyword  
+USING(code);                                             
+```
 
 Multiple joins:
 - Joins on joins
