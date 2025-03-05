@@ -1,4 +1,4 @@
-#### UNDERSTANDING DATA ENGINEERING
+### UNDERSTANDING DATA ENGINEERING
 
 **Data workflow:**
 1. Data collection and storage (from web traffic, surveys, media consumption)
