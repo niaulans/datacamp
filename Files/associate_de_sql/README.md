@@ -1,9 +1,29 @@
 ## 📌 Table of Contents  
-- [Understanding Data Engineering](#understanding-data-engineering)  
+- [📌 Table of Contents](#-table-of-contents)
+- [Understanding Data Engineering](#understanding-data-engineering)
 - [Introduction to SQL](#introduction-to-sql)
 - [Intermediate SQL](#intermediate-sql)
 - [Joining Data in SQL](#joining-data-in-sql)
+- [Introduction to Relational Databases in SQL](#introduction-to-relational-databases-in-sql)
 - [Database Design](#database-design)
+- [Data Warehousing Concept](#data-warehousing-concept)
+- [Introduction to Snowflake](#introduction-to-snowflake)
+- [Snowflake Architecture](#snowflake-architecture)
+- [Snowflake SQL and key concepts](#snowflake-sql-and-key-concepts)
+- [Functions, sorting, and grouping](#functions-sorting-and-grouping)
+- [Advance Snowflake SQL Concepts](#advance-snowflake-sql-concepts)
+- [Subquerying and common table expressions](#subquerying-and-common-table-expressions)
+- [Handling semi-structured data (JSON)](#handling-semi-structured-data-json)
+- [Understanding Data Visualization               |](#understanding-data-visualization---------------)
+- [Visualizing two variables](#visualizing-two-variables)
+- [The color and the shape](#the-color-and-the-shape)
+- [Data Manipulation in SQL](#data-manipulation-in-sql)
+- [Short and Simple Subqueries](#short-and-simple-subqueries)
+- [Correlated Queries, Nested Queries, and Common Table Expressions](#correlated-queries-nested-queries-and-common-table-expressions)
+- [Common Table Expressions (CTEs)](#common-table-expressions-ctes)
+- [Window Functions](#window-functions)
+- [Leetcode](#leetcode)
+- [Addition](#addition)
 
 
 ## Understanding Data Engineering  
@@ -43,6 +63,7 @@ The five Vs:
 | setup databases | access databases |
 | build data pipelines | use pipeline outputs |
 | strong software skills | strong analytical skills |
+
 
 **Data engineering:**
 - ingest
@@ -2836,20 +2857,20 @@ Data source -> Data source 1 & 2 -> Data staging (ETL) -> Data storage (data war
 **Data storage layer**
 - Data is stored in warehouse and data marts
 
-Data presentation layer:
+**Data presentation layer:**
 - Users interact with stored data
 - Users:
     - Use BI (Business Intelligence) tools
     - Use data mining tools
     - Create direct queries
 
-The presentation layer:
+**The presentation layer:**
 - Users interact with the presentation layer
   - Area of constant development
 
-Presentation layer groups:
-- Automated reporting/dashboarding tools
-    - Goals: 
+**Presentation layer groups:**
+- **Automated reporting/dashboarding tools**
+    - Goals:
         - Create reports needed for decision-making
         - Create dashboards using historical data
         - Ex: tableau, looker, SAP
@@ -2858,7 +2879,7 @@ Presentation layer groups:
         - analysts
         - Citizen data scientists
 
-- BI/data analytics
+- **BI/data analytics**
     - Goals:
         - Tools for Exploration
         - Looking for patterns
@@ -2868,7 +2889,7 @@ Presentation layer groups:
         - analysts
         - Data scientist
 
-- direct queries
+- **direct queries**
     - Goals:
         - Sophisticated tools for Exploration
         - Ex: R, Azure, Python
@@ -2878,94 +2899,99 @@ Presentation layer groups:
         - Analysts
         - Data engineers
 
-Data warehouse architecture:
-Bill Inmon - top-down approach
+**Data warehouse architecture:**  
+
+**Bill Inmon** - top-down approach
+
 Must decide:
 - On all data definitions, cleaning, and business rules
-- Before any data enters warehouse
+- Before any data enters warehouse  
+
 Data source -> ETL -> Data warehouse -> Data mart -> BI tools
 
-Pros and cons:
-- Pros:
+**Pros and cons:**
+- **Pros:**
     - Single source of truth for organization
     - Normalization = less storage
     - Easy to change data marts to support reporting changes
 
-- Cons:
+- **Cons:**
     - More joins = slower response time
     - Lengthy upfront work
 
-Kimball - bottom-up approach
+**Kimball** - bottom-up approach  
 Data source -> ETL -> Data mart -> Data warehouse -> BI tools
 
 - Denormalize data 
 - Focus on departmental data mart
 - Data moves directly from ETL to data marts
 
-Pros and cons:
-- Pros:
+**Pros and cons:**
+- **Pros:**
     - Upfront development speed 
     - Lower startup cost
     - Denormalized = user friendly
 
-- Cons:
+- **Cons:**
     - Increase ETL processing time
     - Greater possibility of duplicate data
     - Ongoing development needed
 
-OLAP and OLTP Systems
--------------------------------
-OLAP (Online analytical processing)
+**OLAP and OLTP Systems**
+
+**OLAP (Online analytical processing)**
 - Designed to support analysis of large amounts of data
 - Example dimensional organization:
     - country, state, city
     - years, months, days
 - OLAP reorganizes data into multidimensional format
 
-OLAP cube:
+**OLAP cube:**
 - OLAP cube key to OLAP system
 - Faster processing vs. traditional relational databases
 - Hypercubes have more than three dimensions
 
-OLTP (Online transaction processing)
+**OLTP (Online transaction processing)**
 - Designed for processing simple database queries
 - Used in source systems to data warehouse
 
-Example for a credit card company:
-OLTP: 
-- System tracks customer's purchase
-- Processes large amounts of simple database updates to account balances
-- Rows and columns
+**Example for a credit card company:**  
+   - **OLTP:**  
+    - System tracks customer's purchase  
+    - Processes large amounts of simple database updates to account balances  
+    - Rows and columns
 
-OLAP:
-- Designed for analyzing purchase data 
-- Data organized by multiple dimensions
+   - **OLAP:**  
+    - Designed for analyzing purchase data   
+    - Data organized by multiple dimensions
 
-Data warehouse data modeling
----------------------------------------
-Data models
+**Data warehouse data modeling**
+
+**Data models**
+```
 - Bottom-up, kimbal model = star & snowflake schemas
 - Denormalized data models
+```
 
-Example:
+**Example:**
 - Hypothetical publicly traded company
     - Sells home office furniture
-    - Fact table =  sales_order_fact -> custid, dateid, productid, unitsold, salesamount, tax
+    - **Fact table** =  sales_order_fact -> custid, dateid, productid, unitsold, salesamount, tax
         Fact table (measurements, metrics, or fact about an organization)
         - Links to dimension tables for more detail
-    - Dimension table = cust_dim -> custid, custname, custaddress, custcity, custstate, custzip
+    - **Dimension table** = cust_dim -> custid, custname, custaddress, custcity, custstate, custzip
         - Dimensionns/attribute about a process
         - Holds reference data
         - Dimension tables add more detail to fact table
 
-Star schema:
+**Star schema:**
 - A central fact table, with one or more dimensional tables
 - Easy for business users
 
-Snowflake schema:
+**Snowflake schema:**
 - Dimensional table connected through another dimensional table
 
-Kimball's four step process:
+**Kimball's four step process:**
 1. Step 1- Select the organizational process
    - Ask questions about a process
    - Kimball bottom-ip approach starts with a business process
@@ -2998,23 +3024,26 @@ Kimball's four step process:
       - Music service: total number of plays, sales revenue a song
       - Ride-sharing: travel distance, time needed
 
-Slowly changing dimensions:
-
-The challenge
-Original data:
-productid = 12345
-description = Tesla-ModelY
-category = electric-veh
-
-update category:
-currect: electric-veh
-new: electric-crossover
-
-Type I: 
+**Slowly changing dimensions:**
+```
+The challenge  
+Original data:  
+productid = 12345  
+description = Tesla-ModelY  
+category = electric-veh  
+```
+```
+update category:  
+currect: electric-veh  
+new: electric-crossover  
+```
+```
+Type I:  
 - Update value in table 
 Category = electric-crossover
 - Will lose historical data
-
+```
+```
 Type II:
 - Add a row with the updated value
 New:
@@ -3024,7 +3053,8 @@ category = electric-crossover
 startdate = 2020-01-01
 enddate = 9999-12-31
 - The history is retained
-
+```
+```
 Type III:
 - Add column to dimension table to track changes
 New: 
@@ -3034,75 +3064,75 @@ category = electric-crossover
 pastcategory = electric-veh
 - Can view past and current data together
 - Can require reporting changes and limited tracking
+```
 
-Row vs. column store data store
--------------------------------------
+**Row vs. column store data store**  
 Why is it important?
 - Optimizing queries for speed
 - Column store format for data warehouse tables is best for analytic workloads
 
-Basics of computer storage:
+**Basics of computer storage:**
 - Computer store data in blocks
 - Reads the required blosks when retrieving data
 - Reading fewer blocks increases the overall speed of the process
 
-Row store:
+**Row store:**
 - Stores data in rows
 - Reads all columns for a row
 - Good for OLTP systems
 
-Column store:
+**Column store:**
 - Stores data in columns
 - Reads only the columns needed for a query
 - Good for OLAP systems
 - Better data compression
 
-Implementation and Data Prep
--------------------------------------
-ETL                 |       ELT
-1. Extract         |       1. Extract
-2. Transform       |       2. Load
-3. Load            |       3. Transform
+Implementation and Data Prep  
+|ETL                 |       ELT    |
+|---------------------|---------------|
+|1. Extract         |       1. Extract |
+|2. Transform       |       2. Load   |
+|3. Load            |       3. Transform |
 
-ETL:
+**ETL:**
 - Data transformed during the moves
-- Uses separate system to process data
+- Uses separate system to process data  
+  
+    **Pros:**
+    - Lower data storage costs
+    - Personally identifiable information (PII) security compliance
 
-Pros:
-- Lower data storage costs
-- Personally identifiable information (PII) security compliance
+    **Cons:**
+    - Transformation errors/changes require new data pulls
+    - Costs of separate system for process data
 
-Cons:
-- Transformation errors/changes require new data pulls
-- Costs of separate system for process data
-
-ELT:
+**ELT:**
 - Data is loaded, then transformed
 - Uses the warehouse to transform the data
 
-Pros:
-- No need system to process data
-- Transformations can be rerun without impacting source systems
-- Works well for near real-time requirements
+    **Pros:**
+    - No need system to process data
+    - Transformations can be rerun without impacting source systems
+    - Works well for near real-time requirements
 
-Cons:
-- Increases storage needs from raw data
-- Compliance with PII secutiry standards
+    **Cons:**
+    - Increases storage needs from raw data
+    - Compliance with PII secutiry standards
 
-Data cleaning
-----------------------------
-Data format cleaning:
+**Data cleaning**
+
+**Data format cleaning:**
 - Update values to an expected format
     - date
     - names
     - capitalization
 - Ensures output is in a consistent format
 
-Address parsing:
+**Address parsing:**
 - dividing a street address into its components
 - can use tools to validate addresses
 
-Data validation:
+**Data validation:**
 - Range check 
     - Is the value within expected range? - a person age
 - Type check 
@@ -3111,65 +3141,65 @@ Data validation:
 Duplicate row elimination
 - This process gets rid of duplicate entries
 
-On premise and cloud data warehouse:
--------------------------------------
-On premise:
+**On premise and cloud data warehouse:**
+
+**On premise:**
 - purchase and install software and hardware
 - on the grounds of the organization
 
-pros:
-- complete control
-- implement custom data governance
-- local network speed
-- can optimize for workloads
+    **pros:**
+    - complete control
+    - implement custom data governance
+    - local network speed
+    - can optimize for workloads
 
-cons:
-- upfront hardware and software costs
-- Personnel/staff must maintain system
-- Must keep up with patches and security
+    **cons:**
+    - upfront hardware and software costs
+    - Personnel/staff must maintain system
+    - Must keep up with patches and security
 
-In the cloud:
+**In the cloud:**
 - Rapid growth
 - Forecasted continued growth
 
-Pros:
-- No maintaining equipment and infrastructure
-- Frees up IT staff
-- Can scale storage and computer resources
-- No upfront costs
+    **Pros:**
+    - No maintaining equipment and infrastructure
+    - Frees up IT staff
+    - Can scale storage and computer resources
+    - No upfront costs
 
-Cons:
-- less control
-- cannot optimize warehouse workloads
-- possible unanticipated costs
+    **Cons:**
+    - less control
+    - cannot optimize warehouse workloads
+    - possible unanticipated costs
 
-Data warehouse design example:
+**Data warehouse design example:**
 - New startup company
 - Photo sharing app
 
-Top-down, or bottom-up approach?
-- Consideration:
-    - Vital to show business impact quickly
-    - Top-down approach has a longer startup process
-- Decision:
-    - Bottom-up approach
-    - Sales data mart must be the priority
+**Top-down, or bottom-up approach?**  
+- **Consideration:**  
+    - Vital to show business impact quickly  
+    - Top-down approach has a longer startup process  
+- **Decision:**  
+    - Bottom-up approach  
+    - Sales data mart must be the priority  
 
-Kimball 
-Step 1 - Select the organizational process 
+**Kimball**  
+**Step 1** - Select the organizational process 
 Considerations:
 - What type of customers purchase large volume of photos?
 Decision:
 - Develop customer purchase
 
-Step 2 - Declare the grain
+**Step 2** - Declare the grain
 Considerations:
 - Data should be flexible to answer many questions
 - Selecting the lowest grain possible
 Decision:
 - Tracking customer/photo purchase
 
-Step 3 - Identify the dimensions
+**Step 3** - Identify the dimensions
 Considerations:
 - How do users describe the data that results from the business process?
 - Customer prioritization
@@ -3178,7 +3208,7 @@ Decision:
 - Date customer joined
 - Default payment method
 
-Step 4 - Identify the fact
+**Step 4** - Identify the fact
 Considerations:
 - What are answering?
 Decision:
@@ -3194,27 +3224,27 @@ cust_dim -> custid, custname, custaddress, custcity, custstate, custzip
 photo_dim -> photoid, photodesc, phototype, photoprice
 date_dim -> dateid, day, month, year
 
-On premise vs. cloud data warehouse:
-Considerations:
-- we dont want upfront costs
+**On premise vs. cloud data warehouse:**  
+**Considerations:**
+- we dont want upfront costs    
 - small team
-decision:
+**decision:**
 - cloud data warehouse
 
-ETL vs. ELT:
-Considerations:
+**ETL vs. ELT:**
+**Considerations:**
 - Keep all data
 - Cloud implementation allows us to scale compute as needed
 
-Decision:
+**Decision:**
 - ELT
 
--------------------------------------
-Introduction to Snowflake           |
--------------------------------------
+<br>
 
-Introduction to Snowflake: Architecture, Competitors, and SnowflakeSQL
------------------------------------------------------------------------
+## Introduction to Snowflake
+
+**Introduction to Snowflake: Architecture, Competitors, and SnowflakeSQL**
+
 What is Snowflake?
 - Cloud data warehouse solution 
 - Columnar data storage
