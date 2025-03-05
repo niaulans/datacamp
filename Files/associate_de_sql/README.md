@@ -6,26 +6,27 @@
 3. Exploration and visualization
 4. Experimentation and prediction (prediksi harga saham)
 
-Data engineer bertanggung jawab atas proses pertama.
-Data engineer deliver:
+- Data engineer bertanggung jawab atas proses pertama.
+  
+**Data engineer deliver:**
 - the correct data
 - in the right format
 - to the right people
 
-Data engineer's responsibilities:
+**Data engineer's responsibilities:**
 - ingest data from different sources
 - optimize databases for analysis
 - remove corrupted data
 - develop, construct, test, and maintain architectures
 
-----------------------------------
-The five Vs:                      |
-- Volume (how much?)              |
-- Variety (what kind?)            |
-- Velocitty (how frequent?)       |
-- Veracity (how accurate?)        |
-- Value (how useful?)             |
-----------------------------------
+```
+The five Vs:                      
+- Volume (how much?)              
+- Variety (what kind?)            
+- Velocitty (how frequent?)       
+- Veracity (how accurate?)        
+- Value (how useful?)             
+```
 
 Data Engineer VS Data Scientist:
 - ingest and store data | exploit data
