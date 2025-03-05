@@ -2,6 +2,8 @@
 - [Understanding Data Engineering](#understanding-data-engineering)  
 - [Introduction to SQL](#introduction-to-sql)
 - [Intermediate SQL](#intermediate-sql)
+- [Joining Data in SQL](#joining-data-in-sql)
+- [Database Design](#database-design)
 
 
 ## Understanding Data Engineering  
@@ -12,8 +14,8 @@
 3. Exploration and visualization
 4. Experimentation and prediction (prediksi harga saham)
 
-> Data engineer bertanggung jawab atas proses pertama.
-  
+> Data engineer bertanggung jawab atas proses pertama.  
+
 **Data engineer deliver:**
 - the correct data  
 - in the right format
@@ -29,7 +31,7 @@
 The five Vs:                      
 - Volume (how much?)              
 - Variety (what kind?)            
-- Velocitty (how frequent?)       
+- Velocity (how frequent?)       
 - Veracity (how accurate?)        
 - Value (how useful?)             
 ```
@@ -349,7 +351,7 @@ WHERE role LIKE '%Data%';
 ```sql
 # Select all names from the patrons table  
 
-SELECT name                                 
+SELECT name       
 FROM patrons;
 ```
 > Query results often called result **set**
@@ -357,13 +359,13 @@ FROM patrons;
 ```sql
 -- Select card_num and name from the patrons table  
 -- Multiple select   
-SELECT card_num, name                             
+SELECT card_num, name   
 FROM  patrons;
 ```
 
 ```sql
 -- Select all    
-SELECT *                                    
+SELECT *          
 FROM patrons;
 ```
 
@@ -371,14 +373,14 @@ FROM patrons;
 
 ```sql
 -- Select name as first_name and year_hired from the employees table  
-SELECT name AS first_name, year_hired                               
+SELECT name AS first_name, year_hired     
 FROM employees;
 ```
 
 ```sql
 -- Select distinct year_hired from the employees table 
-SELECT DISTINCT year_hired                           
-FROM employees;                                      
+SELECT DISTINCT year_hired 
+FROM employees;            
 ```
 <br>
 
@@ -388,9 +390,9 @@ FROM employees;
 
 ```sql
 -- Buat view dengan nama employee_hire_years yang isinya id, name, year_hired 
-CREATE VIEW employee_hire_years AS                                          
-SELECT id, name, year_hired                                                 
-FROM employees;                                                             
+CREATE VIEW employee_hire_years AS                
+SELECT id, name, year_hired                       
+FROM employees;         
 ```
 
 ```sql
@@ -416,7 +418,7 @@ FROM books;
     **SQL server:**
     - Has free and paid versions
     - Created by microsoft
-    - T-SQL is microsoft SQL flavor, used with SQL Server databases
+    - T-SQL is microsoft SQL flavor, used with SQL Server databases 
 
 **PostgreSQL vs. SQL Server**  
     **PostgreSQL:**
@@ -440,7 +442,7 @@ FROM employees;
 
 ```sql
 SELECT COUNT(birthdate) AS count_birthdates    
-FROM people;                                   
+FROM people;         
 ```
 
 ```sql
@@ -517,7 +519,7 @@ LIMIT 5; (4)
 ```sql
 -- Count the records with at least 100,000 votes   
 SELECT COUNT(num_votes) AS films_over_100K_votes   
-FROM reviews                                       
+FROM reviews             
 WHERE num_votes >= 100000; 
 ```  
 
@@ -525,38 +527,38 @@ WHERE num_votes >= 100000;
 - OR, AND, BETWEEN (inclusive, nilai awal dan akhir masuk)
 
 ```sql
-SELECT *                                       
-FROM coats                                     
+SELECT *             
+FROM coats           
 WHERE color = 'yellow' OR length = 'short';
 ```
 
 ```sql
-SELECT *                           
+SELECT * 
 FROM coats                         
 WHERE buttons BETWEEN 1 AND 5;  
 ```
 
 ```sql
-SELECT title                                            
-FROM films                                              
+SELECT title                  
+FROM films                    
 WHERE (release_year = 1994 OR release_year = 1995)      
      AND (certification = 'PG' OR certification = 'R'); 
 ```
 
 ```sql
-SELECT title, release_year                               
-FROM films                                               
+SELECT title, release_year     
+FROM films                     
 WHERE (release_year = 1990 OR release_year = 1999)      
 	AND (language = 'English' OR language = 'Spanish')   
 -- Filter films with more than $2,000,000 gross          
-	AND gross > 2000000;                                 
+	AND gross > 2000000;       
 ```
 
 ```sql
-SELECT title, release_year                                        
-FROM films                                                        
-WHERE release_year BETWEEN 1990 AND 2000                          
-	AND budget > 100000000                                        
+SELECT title, release_year              
+FROM films    
+WHERE release_year BETWEEN 1990 AND 2000
+	AND budget > 100000000              
     -- Amend the query to include Spanish or French-language films    
 	AND (language = 'Spanish' OR language = 'French');            
 ```  
@@ -572,15 +574,15 @@ WHERE release_year BETWEEN 1990 AND 2000
 
 ```sql
 -- Find all name that start with 'Ade'    
-SELECT name                               
-FROM people                               
+SELECT name     
+FROM people     
 WHERE name LIKE 'Ade%'; -> Adelia; 
 ```
 
 ```sql
 -- Find all name that start with 'Ev'     
-SELECT name                               
-FROM people                               
+SELECT name     
+FROM people     
 WHERE name LIKE 'Ev_'; -> Eve;
 ```
 
@@ -591,40 +593,40 @@ WHERE name LIKE '%r'; -> Aaron;
 ```
 
 ```sql
-SELECT name                          
-FROM people                          
+SELECT name
+FROM people
 WHERE name LIKE '__t%'; -> Anthony   
 ```
 
 **NOT LIKE:**
 ```sql
-SELECT name                            
-FROM people                            
+SELECT name  
+FROM people  
 WHERE name NOT LIKE 'A.%'; -> Aaliyah  
 ```
 
 **IN:**
 ```sql
-SELECT title                              
-FROM films                                
+SELECT title    
+FROM films      
 WHERE release_year IN (1920, 1930, 1940); 
 ```
 
 ```sql
 -- Find the title, certification, and language all films certified NC-17 or R that are in English, Italian, or Greek 
-SELECT title, certification, language                                                                
+SELECT title, certification, language            
 FROM films
 WHERE certification IN ('NC-17', 'R') AND language IN ('English', 'Italian', 'Greek');
 ```
 
 ```sql
--- Count the unique titles                                         
+-- Count the unique titles               
 SELECT COUNT(DISTINCT title) AS nineties_english_films_for_teens   
-FROM films                                                         
+FROM films     
 -- Filter to release_years to between 1990 and 1999                
-WHERE release_year BETWEEN 1990 AND 1999                           
--- Filter to English-language films                                
-	AND language = 'English'                                       
+WHERE release_year BETWEEN 1990 AND 1999 
+-- Filter to English-language films      
+	AND language = 'English'             
 -- Narrow it down to G, PG, and PG-13 certifications               
 	AND certification IN ('G', 'PG', 'PG-13');                     
 ```
@@ -642,8 +644,8 @@ FROM people; -> 8397
 
 ```sql
 -- Count the records with null birthdates   
-SELECT name                                 
-FROM people                                 
+SELECT name       
+FROM people       
 WHERE birthdate IS NULL;                    
 ```
 
@@ -655,10 +657,9 @@ WHERE birthdate IS NULL; - 2245
 
 ```sql
 SELECT COUNT(name) AS count_birthdates  
-FROM people                             
+FROM people   
 WHERE birthdate IS NOT NULL;            
 ```
-<br>
 
 **Summarizing Data:**
 - aggregate functions return a single value
@@ -685,7 +686,7 @@ WHERE release_year >= 2010;
 **ROUND(number_to_round, decimal_places)**
 
 **Aggregate functions vs. arithmetic:**  
-    - Aggregate = vertikal
+    - Aggregate = vertikal  
     - Arithmatic = horizontal
 
 > **Order of execution:**  
@@ -699,19 +700,19 @@ WHERE release_year >= 2010;
 ```sql
 -- Calculate the percentage of people who are no longer alive
 SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percentage_dead 
-FROM people;                                                  
+FROM people;                        
 ```
 
 ```sql
 -- Find the number of decades in the films table
 SELECT (MAX(release_year) - MIN(release_year)) / 10.0 AS number_of_decades   |
-FROM films;                                                                  
+FROM films;              
 ```
 
 ```sql
 -- Sorting results
 SELECT title, budget                       
-FROM films                                 
+FROM films       
 ORDER BY bugdet DESC; (besar ke kecil)     
 ```
 
@@ -725,10 +726,10 @@ ORDER BY bugdet DESC; (besar ke kecil)
 ```sql 
 -- Grouping data
 SELECT certification, COUNT(title) AS title_count 
-FROM films                                        
-GROUP BY certification                            
+FROM films              
+GROUP BY certification  
 ORDER BY title_count DESC;                        
-LIMIT 3;                                          
+LIMIT 3;                
 ```
 
 > **Order of execution:**  `
@@ -742,19 +743,19 @@ LIMIT 3;
 ```sql
 -- HAVING clause:
 SELECT release_year, COUNT(title) AS title_count  
-FROM films                                        
-GROUP BY release_year                             
+FROM films              
+GROUP BY release_year   
 HAVING COUNT(title) > 10;                         
 ```
 
 ```sql
 SELECT certification, COUNT(title) AS title_count  
-FROM films                                        
+FROM films              
 WHERE certification IN ('G', 'PG', 'PG-13')        
-GROUP BY certification                             
-HAVING COUNT(title) > 10                           
+GROUP BY certification   
+HAVING COUNT(title) > 10 
 ORDER BY title_count DESC;                         
-LIMIT 3;                                           
+LIMIT 3;                 
 ```
 
 > **Final Order of execution:**  
@@ -770,13 +771,13 @@ LIMIT 3;
 - WHERE filters individual records, HAVING filters groups
 
 ```sql
--- Select the country and average_budget from films                          
-SELECT country, AVG(budget) AS average_budget                                
-FROM films                                                                   
--- Group by country                                                          
-GROUP BY country                                                             
+-- Select the country and average_budget from films
+SELECT country, AVG(budget) AS average_budget      
+FROM films               
+-- Group by country      
+GROUP BY country         
 -- Filter to countries with an average_budget of more than one billion       
-HAVING AVG(budget) > 1000000000                                              
+HAVING AVG(budget) > 1000000000                    
 -- Order by descending order of the aggregated budget                        
 ORDER BY average_budget DESC; 
 ```
@@ -790,8 +791,8 @@ ORDER BY average_budget DESC;
 ```sql
 --Inner join of presidents and prime_minister, joining on country                    |
 SELECT prime_minister.country, prime_minister.continent, prime_minister, president   
-FROM presidents                                                             
-INNER JOIN prime_minister                                                           
+FROM presidents         
+INNER JOIN prime_minister       
 ON presidents.country = prime_minister.country;    
 ```
 
@@ -801,9 +802,9 @@ ON presidents.country = prime_minister.country;
 ```sql
 --Inner join of presidents and prime_ministers, joining on country    
 SELECT p2.country, p2.continent, prime_minister, president            
-FROM presidents AS p1                                                 
-INNER JOIN prime_ministers AS p2                                      
-ON p1.country = p2.country;                                           
+FROM presidents AS p1                       
+INNER JOIN prime_ministers AS p2            
+ON p1.country = p2.country;                 
 ```
 
 **USING**
@@ -811,20 +812,20 @@ ON p1.country = p2.country;
 -- Using USING:
 --Inner join of presidents and prime_ministers, joining on country 
 SELECT p2.country, p2.continent, prime_minister, president         
-FROM presidents AS p1                                              
-INNER JOIN prime_ministers AS p2                                   
-USING(country);                                                    
+FROM presidents AS p1                    
+INNER JOIN prime_ministers AS p2         
+USING(country);
 ```
 
 ```sql
--- Select fields with aliases                              
+-- Select fields with aliases    
 SELECT c.code AS country_code, name, year, inflation_rate  
-FROM countries AS c                                        
--- Join to economies (alias e)                             
-INNER JOIN economies AS e                                  
+FROM countries AS c              
+-- Join to economies (alias e)   
+INNER JOIN economies AS e        
 -- Match on code field using table aliases                 
-ON c.code = e.code                                         
-``````
+ON c.code = e.code               
+```
 
 **Defining relationships:**  
 - **One-to-many relationships:**  
@@ -843,233 +844,240 @@ many languages can be spoken in many countries
 ```sql
 -- Select country and language names (aliased)          
 SELECT c.name AS country, l.name AS language             
--- From countries (aliased)                              
-FROM countries AS c                                      
--- Join to languages (aliased)                           
-INNER JOIN languages AS l                                
+-- From countries (aliased)    
+FROM countries AS c            
+-- Join to languages (aliased) 
+INNER JOIN languages AS l      
 -- Use code as the joining field with the USING keyword  
-USING(code);                                             
+USING(code);                   
 ```
 
-Multiple joins:
-- Joins on joins
-------------------------------------------
-SELECT *                                 |
-FROM left_table                          |
-INNER JOIN right_table                   |
-ON left_table.id = right_table.id        |
-INNER JOIN another_table                 |
-ON left_table.id = another_table.id;     |
-------------------------------------------
+**Multiple joins:**
 
-------------------------------------------
-- Joining on multiple key                 |
-SELECT *                                  |
-FROM left_table                           |
-INNER JOIN right_table                    |
-ON left_table.id = right_table.id         |
-AND left_table.name = right_table.name;   |
-------------------------------------------
+**Joins on joins**
+```sql
+SELECT *       
+FROM left_table
+INNER JOIN right_table                   
+ON left_table.id = right_table.id        
+INNER JOIN another_table                 
+ON left_table.id = another_table.id;     
+```
 
------------------------------------------------------------
--- Select fields                                           |
-SELECT name, e.year, fertility_rate, unemployment_rate     |
-FROM countries AS c                                        |
-INNER JOIN populations AS p                                |
-ON c.code = p.country_code                                 |
--- Join to economies (as e)                                |
-INNER JOIN economies AS e                                  |
--- Match on country code                                   |
-ON p.country_code = e.code;                                |
------------------------------------------------------------
+**Joining on multiple keys**
+```sql         
+SELECT *        
+FROM left_table 
+INNER JOIN right_table                    
+ON left_table.id = right_table.id         
+AND left_table.name = right_table.name;   
+```
 
-----------------------------------------------------------------------------------
-SELECT name, e.year, fertility_rate, unemployment_rate                           |
-FROM countries AS c                                                              |
-INNER JOIN populations AS p                                                      |
-ON c.code = p.country_code                                                       |
-INNER JOIN economies AS e                                                        |
-ON c.code = e.code                                                               |
--- Add an additional joining condition such that you are also joining on year    |
-	AND p.year = e.year;                                                         |
-----------------------------------------------------------------------------------
+```sql
+-- Select fields                 
+SELECT name, e.year, fertility_rate, unemployment_rate     
+FROM countries AS c              
+INNER JOIN populations AS p      
+ON c.code = p.country_code       
+-- Join to economies (as e)      
+INNER JOIN economies AS e        
+-- Match on country code         
+ON p.country_code = e.code;      
+```
 
-Outer Joins, Cross Joins and Self Joins
-- Left and Right joins
-Left join:
-- return all records in the left table, and those records in the right table that match on the joining fields provided
+```sql
+SELECT name, e.year, fertility_rate,unemployment_rate 
+FROM countries AS c                
+INNER JOIN populations AS p           
+ON c.code = p.country_code                      
+INNER JOIN economies AS e      
+ON c.code = e.code    
+    -- Add an additional joining condition such that you are also joining on year 
+	AND p.year = e.year; 
+```
 
----------------------------------------
-SELECT p1.country, prime_minister     |
-FROM presidents AS p1                 |
-LEFT JOIN prime_ministers AS p2       |
-USING(country);                       |
----------------------------------------
-Note. LEFT JOIN can also be written as LEFT OUTER JOIN.
+**Outer Joins, Cross Joins and Self Joins**  
+- **Left and Right joins**  
 
-Right join:
-- return all records in the right table, and those records in the left table that match on the joining fields provided
+**Left join:**  
+    - return all records in the left table, and those records in the right table that match on the joining fields provided
 
----------------------------------------
-SELECT *                              |
-FROM left_table                       |
-RIGHT JOIN right_table                |
-ON left_table.id = right_table.id;    |
----------------------------------------
-Note. RIGHT JOIN can also be written as RIGHT OUTER JOIN.
+```sql
+SELECT p1.country, prime_minister     
+FROM presidents AS p1                 
+LEFT JOIN prime_ministers AS p2       
+USING(country);                       
+```
 
----------------------------------------
-SELECT p1.country, prime_minister     |
-FROM presidents AS p1                 |
-RIGHT JOIN prime_ministers AS p2       |
-USING(country);                       |
----------------------------------------
+> LEFT JOIN can also be written as LEFT OUTER JOIN.
 
-----------------------------------------------------------------------
--- Modify this query to use RIGHT JOIN instead of LEFT JOIN           |
-SELECT countries.name AS country, languages.name AS language, percent |
-FROM languages                                                        |
-RIGHT JOIN countries                                                  |
-USING(code)                                                           |
-ORDER BY language;                                                    |
-----------------------------------------------------------------------
+**Right join:**  
+    - return all records in the right table, and those records in the left table that match on the joining fields provided
 
-Full join:
+```sql
+SELECT *    
+FROM left_table                       
+RIGHT JOIN right_table                
+ON left_table.id = right_table.id;    
+```
+
+> RIGHT JOIN can also be written as RIGHT OUTER JOIN.
+
+```sql
+SELECT p1.country, prime_minister     
+FROM presidents AS p1                 
+RIGHT JOIN prime_ministers AS p2       
+USING(country);                       
+```
+
+```sql
+-- Modify this query to use RIGHT JOIN instead of LEFT JOIN           
+SELECT countries.name AS country, languages.name AS language, percent 
+FROM languages    
+RIGHT JOIN countries                        
+USING(code)       
+ORDER BY language;
+```
+
+**Full join:**
 - A full join combines a left join and a right join
 - It returns all records when there is a match in either left (table1) or right (table2) table records
 
-------------------------------------------------------
-SELECT left_table.id AS L_id, right_table.id AS R_id  |
-FROM left_table                                       |
-FULL JOIN right_table                                 |
-ON L_id = R_id;                                       |
-------------------------------------------------------
-Note. FULL JOIN can also be written as FULL OUTER JOIN.
+```sql
+SELECT left_table.id AS L_id, right_table.id AS R_id  
+FROM left_table             
+FULL JOIN right_table       
+ON L_id = R_id;             
+```
 
------------------------------------------------
-SELECT p1.country, prime_minister, president   |
-FROM presidents AS p1                          |
-FULL JOIN prime_ministers AS p2                |
-USING(country);                                |
-LIMIT 10;                                      |
------------------------------------------------
+> FULL JOIN can also be written as FULL OUTER JOIN.
 
----------------------------------------------------
-SELECT name AS country, code, region, basic_unit  |
-FROM countries                                    |
--- Join to currencies                             |
-FULL JOIN currencies                              |
-USING (code)                                      |
--- Where region is North America or name is null  |
-WHERE region = 'North America' OR name IS NULL    |
-ORDER BY region;                                  |
----------------------------------------------------
+```sql
+SELECT p1.country, prime_minister, president   
+FROM presidents AS p1
+FULL JOIN prime_ministers AS p2                
+USING(country);      
+LIMIT 10;            
+```
 
----------------------------------------------------
-SELECT                                             |
-	c1.name AS country,                            |
-    region,                                        |
-    l.name AS language,                            |
-	basic_unit,                                    |
-    frac_unit                                      |
-FROM countries as c1                               |
--- Full join with languages (alias as l)           |
-FULL JOIN languages AS l                           |
-USING(code)                                        |
--- Full join with currencies (alias as c2)         |
-FULL JOIN currencies as c2                         |
-USING(code)                                        |
-WHERE region LIKE 'M%esia';                        |
----------------------------------------------------
+```sql
+SELECT name AS country, code, region, basic_unit  
+FROM countries        
+-- Join to currencies   
+FULL JOIN currencies    
+USING (code)            
+-- Where region is North America or name is null  
+WHERE region = 'North America' OR name IS NULL    
+ORDER BY region;        
+```
 
-Cross join:
+```sql
+SELECT                   
+	c1.name AS country,  
+    region,              
+    l.name AS language,  
+	basic_unit,          
+    frac_unit            
+FROM countries as c1     
+-- Full join with languages (alias as l)           
+FULL JOIN languages AS l 
+USING(code)              
+-- Full join with currencies (alias as c2)         
+FULL JOIN currencies as c2                         
+USING(code)              
+WHERE region LIKE 'M%esia';                        
+```
+
+**Cross join:**
 - CROSS JOIN creates all possible combinations of two tables
 
---------------------
-SELECT id1, id2    |
-FROM table1        |
-CROSS JOIN table2; |
---------------------
+```sql
+SELECT id1, id2    
+FROM table1        
+CROSS JOIN table2; 
+```
 
-----------------------------------------
-SELECT prime_minister, president       |
-FROM prime_ministers AS p1             |
-CROSS JOIN presidents AS p2;           |
-WHERE p1.continent IN ('Asia)          |
-AND p2.continent IN ('North America'); |
-----------------------------------------
+```sql 
+SELECT prime_minister, president       
+FROM prime_ministers AS p1             
+CROSS JOIN presidents AS p2;           
+WHERE p1.continent IN ('Asia') AND p2.continent IN ('North America'); 
+```
 
-Self join:
+**Self join:**
 - Self joins are tables joined with themselves
 - They can be used to compare parts of the same table
 
--------------------------------------------------------
-SELECT p1.country AS country1, p2.country AS country2  |
-FROM prime_ministers AS p1                             |
-INNER JOIN prime_ministers AS p2                       | 
-ON p1.continent = p2.continent                         |
-AND p1.country <> p2.country                           |
-LIMIT 10;                                              |
--------------------------------------------------------
+```sql
+SELECT p1.country AS country1, p2.country AS country2  
+FROM prime_ministers AS p1   
+INNER JOIN prime_ministers AS p2                        
+ON p1.continent = p2.continent                         
+AND p1.country <> p2.country 
+LIMIT 10;                    
+```
 
-----------------------------------------------------------------------
--- Select aliased fields from populations as p1                       |
-SELECT p1.country_code, p1.size AS size2010, p2.size AS size2015      |
-FROM populations AS p1                                                |
--- Join populations as p1 to itself, alias as p2, on country code     |
-INNER JOIN populations AS p2                                          |
-ON p1.country_code = p2.country_code;                                 |
-----------------------------------------------------------------------
+```sql
+-- Select aliased fields from populations as p1                       
+SELECT p1.country_code, p1.size AS size2010, p2.size AS size2015      
+FROM populations AS p1                      
+-- Join populations as p1 to itself, alias as p2, on country code     
+INNER JOIN populations AS p2                
+ON p1.country_code = p2.country_code;       
+```
 
-----------------------------------------------------------------
-SELECT                                                          |
-    p1.country_code,                                            |
-    p1.size AS size2010,                                        |
-    p2.size AS size2015                                         |
-	p1.country_code,                                            |
-    p1.size AS size2010,                                        |
-    p2.size AS size2015                                         |
-FROM populations AS p1                                          |
-INNER JOIN populations AS p2                                    |
-ON p1.country_code = p2.country_code                            |
-WHERE p1.year = 2010                                            |
--- Filter such that p1.year is always five years before p2.year |
-    AND p1.year = p2.year -5;                                   |
-----------------------------------------------------------------
+```sql
+SELECT      
+    p1.country_code,                  
+    p1.size AS size2010,              
+    p2.size AS size2015,         
+	p1.country_code,                  
+    p1.size AS size2010,              
+    p2.size AS size2015               
+FROM populations AS p1                
+INNER JOIN populations AS p2          
+ON p1.country_code = p2.country_code  
+WHERE p1.year = 2010                  
+-- Filter such that p1.year is always five years before p2.year 
+    AND p1.year = p2.year -5;         
+```
 
-INNER JOIN:
+**INNER JOIN:**  
 You sell house and have two tables, listing prices and price_sold.
 You want a table with sale prices and listing prices, only if you know both.
 
-LEFT JOIN:
+**LEFT JOIN:**  
 You run a pizza delivery service with loyal clients. You want a table of clients and their weekly orders, with nulls if there are 
 no orders.
 
-FULL JOIN:
-You want a report of wheter your parents have reached out to you, or you have reached out to them. 
+**FULL JOIN:**  
+You want a report of wheter your parents have reached out to you, or you have reached out to them.   
 You are fine with nulls either condition.
 
-Set theory for SQL Joins: => both tables must have the same number of columns
-- UNION
-- UNION takes two tables as input, and returns all records from both tables
----------------------------
-SELECT *                   |
-FROM left_table            |
-UNION                      |
-SELECT *                   |
-FROM right_table;          |
----------------------------
+**Set theory for SQL Joins** => both tables must have the same number of columns
+- **UNION**
+    - UNION takes two tables as input, and returns all records from both tables
 
-- UNION ALL
-- UNION ALL returns all records from both tables, but does not remove duplicates
----------------------------
-SELECT *                   |
-FROM left_table            |
-UNION ALL                  |
-SELECT *                   |
-FROM right_table;          |
----------------------------
+```sql
+SELECT *                   
+FROM left_table            
+UNION                      
+SELECT *                   
+FROM right_table;          
+```
 
+- **UNION ALL**
+    - UNION ALL returns all records from both tables, but does not remove duplicates
+
+```sql
+SELECT *                   
+FROM left_table            
+UNION ALL                  
+SELECT *                   
+FROM right_table;          
+```
+
+```sql
 SELECT monarch AS leader, country
 FROM monarchs
 UNION
@@ -1077,7 +1085,9 @@ SELECT prime_minister, country
 FROM prime_ministers
 ORDER BY country, leader
 LIMIT 10;
+```
 
+```sql
 SELECT monarch AS leader, country
 FROM monarchs
 UNION ALL
@@ -1085,9 +1095,11 @@ SELECT prime_minister, country
 FROM prime_ministers
 ORDER BY country, leader
 LIMIT 10;
+```
 
-Note. Both queries on the left and right of the set operation must have the same data types. The names of the fields do not need to be the same, as the result will always contain field names from the left query.
+> Both queries on the left and right of the set operation must have the same data types. The names of the fields do not need to be the same, as the result will always contain field names from the left query.
 
+```sql
 -- Query that determines all pairs of code and year from economies and populations, without duplicates
 SELECT code, year
 FROM economies
@@ -1095,39 +1107,49 @@ UNION
 SELECT country_code, year
 FROM populations
 ORDER BY code, year;
+```
 
-INTERSECT:
+**INTERSECT:**
 - INTERSECT returns all records that are in both tables
 
+```sql
 SELECT id, val
 FROM left_table
 INTERSECT
 SELECT id, val
 FROM right_table;
+```
 
--Countries with prime ministers and president
+```sql
+-- Countries with prime ministers and president
 SELECT country AS intersect_country
 FROM prime_ministers
 INTERSECT
 SELECT country
 FROM presidents;
+```
 
+```sql
 -- Return all cities with the same name as a country
 SELECT name
 FROM cities
 INTERSECT 
 SELECT name
 FROM countries;
+```
 
-EXCEPT:
+**EXCEPT:**
 - EXCEPT returns all records from the first table that are not in the second table
 
+```sql
 SELECT id, val
 FROM left_table
 EXCEPT
 SELECT id, val
 FROM right_table;
+```
 
+```sql
 -- Return all cities that do not have the same name as a country
 SELECT name
 FROM cities
@@ -1135,25 +1157,29 @@ EXCEPT
 SELECT name
 FROM countries
 ORDER BY name;
+```
 
-Subqueries:
+**Subqueries:**
 - Subqueries are queries nested within other queries
 
-Subquerying with semi joins and anti joins:
-Semi join:
+**Subquerying with semi joins and anti joins:**  
+**Semi join:**
 - Semi join returns all records from the left table where a condition is met in the right table
 - Return all values from left_table where values of col1 are in right_table
 
+```sql
 SELECT president, country, continent
 FROM presidents
 WHERE country IN
     (SELECT country
      FROM states
      WHERE indep_year < 1800;)
+```
 
-Anti join:
+**Anti join:**
 - Anti join returns all records from the left table where a condition is not met in the right table
 
+```sql
 -- Return all countries that are in America and indep_year is after 1800
 SELECT country, president
 FROM presidents
@@ -1162,7 +1188,9 @@ AND country NOT IN
     (SELECT country
      FROM states
      WHERE indep_year < 1800;)
+```
 
+```sql
 SELECT DISTINCT name
 FROM languages
 -- Add syntax to use bracketed subquery below as a filter
@@ -1171,26 +1199,34 @@ WHERE code IN
     FROM countries
     WHERE region = 'Middle East')
 ORDER BY name;
+```
 
-Subqueries inside WHERE and SELECT:
+**Subqueries inside WHERE and SELECT:**
 - All semi joins and anti joins can be written as subqueries inside WHERE
 - WHERE is the most common place to use subqueries
 
-Subqueries inside WHERE:
+**Subqueries inside WHERE:**  
+
+```sql
 SELECT * 
 FROM some_table
 WHERE some_field IN 
     (SELECT some_numeric_field
      FROM another_table
      WHERE another_field = 'condition');
+```
 
-Subqueries inside SELECT:
+**Subqueries inside SELECT:**
+
+```sql
 SELECT DISTINCT continet,
     (SELECT COUNT(*)
     FROM monarchs
     WHERE states.continent = monarchs.continent) AS monarchs_count
 FROM states;
+```
 
+```sql
 SELECT *
 FROM populations
 WHERE year = 2015
@@ -1199,7 +1235,9 @@ WHERE year = 2015
   (SELECT AVG(life_expectancy)
    FROM populations
    WHERE year = 2015);
+```
 
+```sql
 -- Select relevant fields from cities table
 SELECT name, country_code, urbanarea_pop
 FROM cities
@@ -1209,7 +1247,9 @@ WHERE name IN
      FROM countries
     )
 ORDER BY urbanarea_pop DESC;
+```
 
+```sql
 -- Find top nine countries with the most cities
 SELECT countries.name AS country, COUNT(cities.name) AS cities_num
 FROM countries 
@@ -1220,7 +1260,9 @@ GROUP BY countries.name
 ORDER BY cities_num DESC, country
 -- Limit the results
 LIMIT 9;
+```
 
+```sql
 SELECT countries.name AS country,
 -- Subquery that provides the count of cities   
   (SELECT COUNT(name)
@@ -1229,10 +1271,12 @@ SELECT countries.name AS country,
 FROM countries
 ORDER BY cities_num DESC, country
 LIMIT 9;
+```
 
-Subqueries inside FROM:
+**Subqueries inside FROM:**
 - Subqueries can be used inside FROM to create a temporary table
 
+```sql
 SELECT DICTINCT monarch.continent, sub.most_recent
 FROM monarchs,
     (SELECT continent, MAX(indep_year) AS most_recent
@@ -1240,7 +1284,9 @@ FROM monarchs,
      GROUP BY continent) AS sub
 WHERE monarch.continent = sub.continent
 oRDER BY continent;
+```
 
+```sql
 -- Select local_name and lang_num from appropriate tables
 SELECT countries.local_name, sub.lang_num
 FROM countries, 
@@ -1250,7 +1296,9 @@ FROM countries,
 -- Where codes match
 WHERE countries.code = sub.code
 ORDER BY lang_num DESC;
+```
 
+```sql
 -- Select relevant fields
 SELECT economies.code, economies.inflation_rate, economies.unemployment_rate
 FROM economies
@@ -1260,7 +1308,9 @@ WHERE year = 2015
 	(SELECT code 
   FROM countries WHERE gov_form LIKE '%Republic%' OR gov_form LIKE '%Monarchy%')
 ORDER BY inflation_rate;
+```
 
+```sql
 -- Select fields from cities
 SELECT name, country_code, city_proper_pop, metroarea_pop, (city_proper_pop / metroarea_pop * 100) AS city_perc
 FROM cities
@@ -1274,64 +1324,84 @@ AND metroarea_pop IS NOT NULL
 -- Sort and limit the result
 ORDER BY city_perc DESC
 LIMIT 10;
+```
 
--------------------------------------------------------------
-Introduction to Relational Databases in SQL                 |
--------------------------------------------------------------
+<br>
 
-A relational database:
+## Introduction to Relational Databases in SQL
+
+**A relational database:**
 - real-life entities become tables -> professors, universities, companies
 - reduced redundancy -> only one entry in companies for the bank "Credit Suisse"
 - data integrity by relationships -> a professor can work at multiple universities and companis a company can employ multiple professors
 
+```sql
 --Have a look at the PostgreSQL database
 SELECT table_schema, table_name
 FROM information_schema.tables;
+```
 
+```sql
 --Have a look at the columns of a certain table
 SELECT table_name, column_name, data_type
 FROM information_schema.columns
 WHERE table_name = 'pg_config';
+```
 
+```sql
 -- Query the right table in information_schema to get columns
 SELECT column_name, data_type 
 FROM information_schema.columns
 WHERE table_name = 'university_professors' AND table_schema = 'public';
+```
 
-ERD(Entitiy Relationship Diagram):
+**ERD(Entitiy Relationship Diagram):**
 - Square boxes represent tables
 - Circle represent relationships
 
+```sql
 --Create a new table
 CREATE TABLE table_name (
     column_a data_type,
     column_b data_type,
     column_c data_type
 );
+```
 
+```sql
 CREATE TABLE weather (
     clouds text,
     temperature numeric,
     weather_station char(5)
 );
+```
 
---Add columns to a table
+```sql
+-- Add columns to a table
 ALTER TABLE table_name
 ADD COLUMN column_name data_type;
+```
 
-Update database structure:
+**Update database structure:**
 - Only store DICTINCT data in the new tables
 
-INSERT DICTINCT records INTO the new tables:
+```sql
+INSERT DICTINCT records INTO the new tables;
+```
 
+```sql
 INSERT INTO organizations
 SELECT DISTINCT organization, organization_sector
 FROM university_professors;
+```
 
+```sql
 The INSERT INTO statement:
 INSERT INTO table_name(column_a, column_b)
 VALUES ("Value_a", "Value_b");
+```
 
+```sql
 CREATE TABLE affiliations (
     firstname text,
     lastname text,
@@ -1339,57 +1409,72 @@ CREATE TABLE affiliations (
     function text,
     organization text
 );
+```
 
+```sql
 ALTER TABLE table_name
 RENAME COLUMN old_name TO new_name;
+```
 
+```sql
 ALTER TABLE table_name
 DROP COLUMN column_name;
+```
 
+```sql
 --Delete a table
 DROP TABLE table_name;
+```
 
-Better data quality with constraints:
-Integrity constraints:
+**Better data quality with constraints:**  
+**Integrity constraints:**
 - Attribute constraints, e.g. data types on columns
 - Key constraints, e.g. primary keys
 - Referential integrity constraints, e.g. foreign keys
 
-Why constraints?
+**Why constraints?**
 - Constraints give the data structure
 - Constraints help with consistency thus data quality
 - Data quality is a business adavantage/ data science prerequisite
 - Enforcing is difficult, but PostgreSQL helps
 
-Dealing with data types (casting)
+**Dealing with data types (casting)**
+```sql
 CREATE TABLE weather(
     temperature integer,
     wind_speed text
 );
+```
 
+```sql
 SELECT temperature * wind_speed AS wind_chill
-FROM weather; -> error because wind_speed is text
+FROM weather; -- error because wind_speed is text
+```
 
+```sql
 --Cast the wind_speed column to integer
 SELECT temperature * CAST(wind_speed AS integer) AS wind_chill
 FROM weather;
+```
 
-Working with data types:
+**Working with data types:**
 - Enforced on columns (i.e. attributes)
 - Define the so-called "domain" of a column
 - Define what operations are allowed on the data
 - Enforce consistent storage of values
 
-The most common types:
-- text: character strings of any length
-- varchar (x): a maximum of x characters
-- char (x): a fixed-length string with a maximum of x characters
-- boolean: can only take three states, true, false, or null
-- date, time, timestamp: date, time, both date and time
-- numeric: arbitrary precision numbers
-- integer: whole numbers
+**The most common types:**
+- **text**: character strings of any length
+- **varchar (x)**: a maximum of x characters
+- **char (x)**: a fixed-length string with a maximum of x characters
+- **boolean**: can only take three states, true, false, or null
+- **date, time, timestamp**: date, time, both date and time
+- **numeric**: arbitrary precision numbers
+- **integer**: whole numbers
 
-Specifying types upon table creation:
+**Specifying types upon table creation:**
+
+```sql
 CREATE TABLE student (
     ssn integer,
     name varchar(64),
@@ -1397,426 +1482,479 @@ CREATE TABLE student (
     average_grade numeric(3,2) -- e.g. 5.54
     tuition_paid boolean
 );
+```
 
+```sql
 ALTER TABLE students
 ALTER COLUMN name TYPE varchar(128);
+```
 
+```sql
 ALTER TABLE students
 ALTER COLUMN average_grade TYPE integer 
 USING ROUND(average_grade); -> round the average_grade
+```
 
-If you don't want to reserve too much space for a certain varchar column, you can truncate the values before converting its type.
+> If you don't want to reserve too much space for a certain varchar column, you can truncate the values before converting its type.
 For this, you can use the following syntax:
 
+```sql
 ALTER TABLE table_name
 ALTER COLUMN column_name
 TYPE varchar(x)
 USING SUBSTRING(column_name FROM 1 FOR x)
+```
 
+```sql
 -- Convert the values in firstname to a max. of 16 characters
 ALTER TABLE professors 
 ALTER COLUMN firstname 
 TYPE varchar(16)
 USING SUBSTRING(firstname FROM 1 FOR 16)
+```
 
-The not-null and unique constraints:
-The not-null constraint:
-- Disallow NULL values in a certain column
-- Must hold true for the current state
-- Must hold true for any future state
+**The not-null and unique constraints:**  
+- **The not-null constraint:**
+    - Disallow NULL values in a certain column
+    - Must hold true for the current state
+    - Must hold true for any future state
 
-What does NULL mean?
-- unknown
-- does not exist
-- does not apply
-...
+    **What does NULL mean?**
+    - unknown
+    - does not exist
+    - does not apply
+    ... 
 
+```sql
 CREATE TABLE students (
     ssn integer NOT NULL,
     lastname VARCHAR(64) NOT NULL,
     home_phone integer,
     office_phone integer
 );
+```
 
+```sql
 ALTER TABLE students
 ALTER COLUMN home_phone
 SET NOT NULL;
+```
 
+```sql
 ALTER TABLE students
 ALTER COLUMN ssn
 DROP NOT NULL;
+```
 
-The unique constraint:
-- Disallow duplicate values in a certain column
-- Must hold true for the current state
-- Must hold true for any future state
+- **The unique constraint:**
+    - Disallow duplicate values in a certain column
+    - Must hold true for the current state
+    - Must hold true for any future state
 
+```sql
 CREATE TABLE table_name (
     column_name UNIQUE
 );
+```
 
+```sql
 ALTER TABLE table_name
 ADD CONSTRAINT some_name UNIQUE(column_name);
+```
 
-Keys and superkeys:
+**Keys and superkeys:**
 What is a key?
 - Attribute(s) that identify a record uniquely
 - As long as attributes can be removed: superkey
 - If no more attributes can be removed: minimal superkey or key
 
-SK1 = license_no, serial_no, make, model, year
-SK2 = license_no, serial_no, make, model
-SK3 = license_no, serial_no, year
+SK1 = license_no, serial_no, make, model, year  
+SK2 = license_no, serial_no, make, model  
+SK3 = license_no, serial_no, year  
 
-K1 = licensed_no
-K2 = serial_no
-K3 = model
-K4 = make, year
+K1 = licensed_no  
+K2 = serial_no  
+K3 = model  
+K4 = make, year  
 
-K1 to K3 only consist of one attribute
-Removing either "make" or "year" from K4 would result in duplicate
-Only one candidate key can be the chosen key
+K1 to K3 only consist of one attribute  
+Removing either "make" or "year" from K4 would result in duplicate  
+Only one candidate key can be the chosen key  
 
+```sql
 -- Try out different combinations
 SELECT COUNT(DISTINCT(firstname, lastname)) 
 FROM professors;
+```
 
-Primary Keys:
+**Primary Keys:**
 - One primary key per database table, chosen from candidate keys
 - Uniquely identifies records, e.g. for referencing in other tables
 - Unique and not-null constraints both apply
 - Primary keys are time-invariant: choose columns wisely!
 
+```sql
 CREATE TABLE products (
     product_no integer UNIQUE NOT NULL,
     name text,
     price numeric
 );
+```
 
+```sql
 CREATE TABLE products (
     product_no integer PRIMARY KEY,
     name text,
     price numeric
 );
+```
 
+```sql
 CREATE TABLE example (
     a integer,
     b integer,
     c integer,
     PRIMARY KEY (a, c)
 );
+```
 
+```sql
 ALTER TABLE table_name
 ADD CONSTRAINT some_name PRIMARY KEY (column_name);
+```
 
-Surrogate keys:
+**Surrogate keys:**
 - Surrogate keys are artificial primary keys
 - Primary keys should be built from as few columns as possible
 - Primary keys should never change over time
 
-Adding a surrogate key with serial data type:
+```sql
+-- Adding a surrogate key with serial data type:
 ALTER TABLE cars 
 ADD COLUMN id serial PRIMARY KEY;
+```
 
+```sql
 INSERT INTO cars
 VALUES ('Volkswagen', 'Blitz', 'black');
+```
 
-Another type of surrogate key:
+**Another type of surrogate key:**
+```sql
 ALTER TABLE table_name
 ADD COLUMN column_c VARCHAR(256);
+```
 
+```sql
 UPDATE table_name
 SET column_c = CONCAT(column_a, column_b);
+```
 
+```sql
 ALTER TABLE table_name
 ADD CONSTRAINT some_name PRIMARY KEY (column_c);
+```
 
+```sql
 -- Count the number of distinct rows with columns make, model
 SELECT COUNT(DISTINCT(make, model)) 
 FROM cars;
+```
 
+```sql
 -- Add the id column
 ALTER TABLE cars
 ADD COLUMN id varchar(128);
+```
 
+```sql
 -- Update id with make + model
 UPDATE cars
 SET id = CONCAT(make, model);
+```
 
+```sql
 -- Make id a primary key
 ALTER TABLE cars
 ADD CONSTRAINT id_pk PRIMARY KEY(id);
+```
 
+```sql
 -- Have a look at the table
 SELECT * FROM cars;
+```
 
+```sql
 -- Create the table
 CREATE TABLE students (
   last_name VARCHAR(128) NOT NULL,
   ssn INTEGER PRIMARY KEY,
   phone_no CHAR(12)
 );
+```
 
-Foreign keys:
+**Foreign keys:**
 - A foreign key (FK) points to the primary key (PK) of another table
 - DOmain of FK must be equal to domain of PK
 - Each value of FK must exist in PK of the other table (FK constraint or referential integrity constraint)
 - FK are not actual keys, but constraints
 
+```sql
 CREATE TABLE manufacturers (
     name VARCHAR(255) PRIMARY KEY
 );
+```
 
+```sql
 INSERT INTO manufacturers
 VALUES ('Volkswagen');
+```
 
+```sql
 CREATE TABLE cars (
     model VARCHAR(128) PRIMARY KEY,
     manufacturer_name VARCHAR(255) REFERENCES manufacturers(name)
 );
+```
 
+```sql
 ALTER TABLE a
 ADD CONSTRAINT a_key FOREIGN KEY (b_id) REFERENCES b(id);
+```
 
+```sql
 -- Rename the university_shortname column
 ALTER TABLE professors
 RENAME COLUMN university_shortname TO university_id;
+```
 
+```sql
 -- Add a foreign key on professors referencing universities
 ALTER TABLE professors
 ADD CONSTRAINT professors_fkey FOREIGN KEY (university_id) REFERENCES universities (id);
+```
 
+```sql
 -- Select all professors working for universities in the city of Zurich
 SELECT professors.lastname, universities.id, universities.university_city
 FROM professors
 INNER JOIN universities
 ON professors.university_id = universities.id
 WHERE universities.university_city = 'Zurich';
+```
 
---------------------------------------------------------------
+```sql
 -- Add a professor_id column
 ALTER TABLE affiliations
 ADD COLUMN professor_id integer REFERENCES professors (id);
+```
 
---------------------------------------------------------
--- Rename the organization column to organization_id    |
-ALTER TABLE affiliations                                |
-RENAME organization TO organization_id;                 |
---------------------------------------------------------
+```sql
+-- Rename the organization column to organization_id    
+ALTER TABLE affiliations      
+RENAME organization TO organization_id;                 
+```
 
-------------------------------------------------------------------------------------------------------------------
--- Add a foreign key on organization_id                                                                           |
-ALTER TABLE affiliations                                                                                          |
-ADD CONSTRAINT affiliations_organization_fkey FOREIGN KEY (organization_id) REFERENCES organizations (id);;       |
-------------------------------------------------------------------------------------------------------------------
+```sql
+-- Add a foreign key on organization_id      
+ALTER TABLE affiliations                    
+ADD CONSTRAINT affiliations_organization_fkey FOREIGN KEY (organization_id) REFERENCES organizations (id);;       
+```
 
-------------------------------------------------------------------------------------------------------------
--- Set professor_id to professors.id where firstname, lastname correspond to rows in professors             |
-UPDATE affiliations                                                                                         |
-SET professor_id = professors.id                                                                            |
-FROM professors                                                                                             |
-WHERE affiliations.firstname = professors.firstname AND affiliations.lastname = professors.lastname;        |
-------------------------------------------------------------------------------------------------------------
+```sql
+-- Set professor_id to professors.id where firstname, lastname correspond to rows in professors  
+UPDATE affiliations            
+SET professor_id = professors.id  
+FROM professors  
+WHERE affiliations.firstname = professors.firstname AND affiliations.lastname = professors.lastname;
+```
 
-Referential integrity:
+**Referential integrity:**
 - A records referencing another table must refer to an existing record in that table
 - Specified between two tables
 - Enforced through foreign keys
 
-Referential integrity violations:
+**Referential integrity violations:**
 Referential integrity from table A to table B is violated if:
 - if a record in table B that is referenced from a record in table A is deleted.
 - if a record in table A referencing a non-existing record from table B is inserted.
 - Foreign keys prevent such violations
 
----------------------------------------------------------------------------------------------------------------------------
-Dealing with violations:                                                                                                  |
-CREATE TABLE a (                                                                                                          |
-    id integer PRIMARY KEY,                                                                                               |
-    column_a VARCHAR(64),                                                                                                 |
-    ...,                                                                                                                  |
-    b_id integer REFERENCES b(id) ON DELETE NO ACTION -- records in A that reference a record in B cannot be deleted      |
-);                                                                                                                        |
----------------------------------------------------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------------------------------------------
-Dealing with violations:                                                                                            |
-CREATE TABLE a (                                                                                                    |
-    id integer PRIMARY KEY,                                                                                         |
-    column_a VARCHAR(64),                                                                                           |
-    ...,                                                                                                            |
-    b_id integer REFERENCES b(id) ON DELETE CASCADE -- delete all records in A that reference the record in B       |
-);                                                                                                                  |
---------------------------------------------------------------------------------------------------------------------
+**Dealing with violations:** 
 
----------------------------------------------------------------------
-ON DELETE                                                            |
-- NO ACTION: Throw an error                                          |
-- CASCADE: Delete all records in A that reference the record in B    |
-- RESTRICT: Throw an error                                           |
-- SET NULL: Set the foreign key to NULL                              |
-- SET DEFAULT: Set the foreign key to its default value              |
----------------------------------------------------------------------
+```sql
+CREATE TABLE a (                   
+    id integer PRIMARY,KEY,             
+    column_a VARCHAR,(64),            
+    ...,             
+    b_id integer REFERENCES b(id) ON DELETE NO ACTION -- records in A that reference a record in B cannot be deleted 
+); 
+```
 
--------------------------------------------------------
--- Identify the correct constraint name                |
-SELECT constraint_name, table_name, constraint_type    |
-FROM information_schema.table_constraints              |
-WHERE constraint_type = 'FOREIGN KEY';                 |
--------------------------------------------------------
+**Dealing with violations:**                 
+```sql  
+CREATE TABLE a (  
+    id integer PRIMARY ,KEY,             
+    column_a VARCHAR(64),            
+    ...,             
+    b_id integer REFERENCES b(id) ON DELETE CASCADE -- delete all records in A that reference the record in B       
+); 
+```
 
----------------------------------------------------------
--- Identify the correct constraint name                  |
-SELECT constraint_name, table_name, constraint_type      |
-FROM information_schema.table_constraints                |
-WHERE constraint_type = 'FOREIGN KEY';                   |
----------------------------------------------------------
+**ON DELETE**        
+- **NO ACTION**: Throw an error                
+- **CASCADE**: Delete all records in A that reference the record in B    
+- **RESTRICT**: Throw an error                 
+- **SET NULL**: Set the foreign key to NULL    
+- **SET DEFAULT**: Set the foreign key to its default value              
 
---------------------------------------------------------
--- Drop the right foreign key constraint               |
-ALTER TABLE affiliations                               |
-DROP CONSTRAINT affiliations_organization_id_fkey;     |
---------------------------------------------------------
+```sql
+-- Identify the correct constraint name                
+SELECT constraint_name, table_name, constraint_type    
+FROM information_schema.table_constraints              
+WHERE constraint_type = 'FOREIGN KEY';                 
+```
 
--------------------------------------------------------------------------------------------------------------------------------------
--- Add a new foreign key constraint from affiliations to organizations which cascades deletion                                       |
-ALTER TABLE affiliations                                                                                                             |
-ADD CONSTRAINT affiliations_organization_id_fkey FOREIGN KEY (organization_id) REFERENCES organizations (id) ON DELETE CASCADE;      |
--------------------------------------------------------------------------------------------------------------------------------------
+```sql
+-- Identify the correct constraint name                  
+SELECT constraint_name, table_name, constraint_type      
+FROM information_schema.table_constraints                
+WHERE constraint_type = 'FOREIGN KEY';                   
+```
 
-----------------------------
--- Delete an organization   |
-DELETE FROM organizations   |
-WHERE id = 'CUREM';         |
-----------------------------
+```sql
+-- Drop the right foreign key constraint               
+ALTER TABLE affiliations     
+DROP CONSTRAINT affiliations_organization_id_fkey;     
+```
 
--------------------------------------------------------------------
--- Check that no more affiliations with this organization exist    |
-SELECT * FROM affiliations                                         |
-WHERE organization_id = 'CUREM';                                   |
--------------------------------------------------------------------
+```sql
+-- Add a new foreign key constraint from affiliations to organizations which cascades deletion
+ALTER TABLE affiliations 
+ADD CONSTRAINT affiliations_organization_id_fkey FOREIGN KEY (organization_id) REFERENCES organizations (id) ON DELETE CASCADE;
+```
 
-------------------------------------------------------------
--- Count the total number of affiliations per university    |
-SELECT COUNT(*), professors.university_id                   |
-FROM affiliations                                           |
-JOIN professors                                             |
-ON affiliations.professor_id = professors.id                |
--- Group by the university ids of professors                |
-GROUP BY professors.university_id                           |
-ORDER BY COUNT DESC;                                        |
-------------------------------------------------------------
+```sql
+-- Delete an organization   
+DELETE FROM organizations   
+WHERE id = 'CUREM';         
+```
 
-In this last exercise, your task is to find the university city of the professor with the most affiliations in the sector "Media & communication".
-For this,
-you need to join all the tables,
-group by some column,
-and then use selection criteria to get only the rows in the correct sector.
------------------------------------------------------------------------------
--- Filter the table and sort it                                             |
-SELECT COUNT(*), organizations.organization_sector,                         |
-professors.id, universities.university_city                                 |
-FROM affiliations                                                           |
-JOIN professors                                                             |
-ON affiliations.professor_id = professors.id                                |
-JOIN organizations                                                          |
-ON affiliations.organization_id = organizations.id                          |
-JOIN universities                                                           |
-ON professors.university_id = universities.id                               |
-WHERE organizations.organization_sector = 'Media & communication'           |
-GROUP BY organizations.organization_sector,                                 |
-professors.id, universities.university_city                                 |
-ORDER BY COUNT DESC;                                                        |
------------------------------------------------------------------------------
+```sql
+-- Check that no more affiliations with this organization exist    
+SELECT * FROM affiliations               
+WHERE organization_id = 'CUREM';         
+```
 
+```sql
+-- Count the total number of affiliations per university    
+SELECT COUNT(*), professors.university_id                   
+FROM affiliations                 
+JOIN professors                   
+ON affiliations.professor_id = professors.id                
+-- Group by the university ids of professors                
+GROUP BY professors.university_id 
+ORDER BY COUNT DESC;              
+```
 
-------------------------------
-Database Design              |
-------------------------------
+```sql
+-- Filter the table and sort it
+SELECT COUNT(*), organizations.organization_sector,
+professors.id, universities.university_city 
+FROM affiliations 
+JOIN professors   
+ON affiliations.professor_id = professors.id
+JOIN organizations
+ON affiliations.organization_id = organizations.id 
+JOIN universities 
+ON professors.university_id = universities.id      
+WHERE organizations.organization_sector = 'Media & communication' 
+GROUP BY organizations.organization_sector, 
+professors.id, universities.university_city 
+ORDER BY COUNT DESC;                        
+```
+<br>
 
-How should we organize and manage data?
+## Database Design
+
+**How should we organize and manage data?**
 - Schemas: How should my data be logically organized?
 - Normalization: Should my data have minimal dependency and redundancy?
 - Views: What joins will be done most often?
 - Access control: Should all users of the data have the same level access
 - DBMS: How do i pick between al the SQL and noSQL options?
 
-Its depends on the intended use of the data.
+> Its depends on the intended use of the data.
 
-Approaches to processing data
+**Approaches to processing data**
 
-OLTP(Online Transaction Processing)
-- oriented around transactions
-- Task example:
-    - Find the price of a book
-    - Update latest customer transaction
-    - Keep track of employee hours
-- Supporting day-to-day operations/daily transactions
-- data: up-to-date
-- size: gigabytes, snapshots
-- queries: simple transactions & frequent updates
-- users: thousands
+- **OLTP(Online Transaction Processing)**
+    - oriented around transactions
+    - Task example:
+        - Find the price of a book
+        - Update latest customer transaction
+        - Keep track of employee hours
+    - Supporting day-to-day operations/daily transactions
+    - data: up-to-date
+    - size: gigabytes, snapshots
+    - queries: simple transactions & frequent updates
+    - users: thousands
 
-OLAP (Online Analytical Processing)
-- oriented around analytics
-- Task example:
-    - Calculate books with the best profit margin
-    - Find most loyal customers
-    - Decide employee of the month
-- Vaguer and focus on business decision making
-- Report and analyze data
-- data: consolidated, historical
-- size: archive, terabytes
-- queries: complex, aggregations, joins
-- users: hundreds
+- **OLAP (Online Analytical Processing)**
+    - oriented around analytics
+    - Task example:
+        - Calculate books with the best profit margin
+        - Find most loyal customers
+        - Decide employee of the month
+    - Vaguer and focus on business decision making
+    - Report and analyze data
+    - data: consolidated, historical
+    - size: archive, terabytes
+    - queries: complex, aggregations, joins
+    - users: hundreds
 
-Storing data beyond traditional databases
-- Traditional databases
+**Storing data beyond traditional databases**
+- **Traditional databases**
     - For storing real-time relational structured data? OLTP
-- Data warehouses
+- **Data warehouses**
     - For analyzing archived structured data? OLAP
-- Data lakes
+    - Optimized for analytics - OLAP
+    - Organized for reading/aggregating data
+    - usualy read-only
+    - Contains data from multiple sources
+    - Massively Parallel Processing (MPP)
+    - Typically uses a denormalized schema and dimensional modeling
+    - Amazon Redshift, Azure SQL Data Warehouse, Google Big Query
+- **Data marts**
+    - Subset of data warehouses
+    - Dedicated to a spesific topic
+- **Data lakes**
     - For storing data of all structures = flexibility and Scalability
     - For analyzing big data
-
-Data warehouses
-- Optimized for analytics - OLAP
-  - Organized for reading/aggregating data
-  - usualy read-only
-- Contains data from multiple sources
-- Massively Parallel Processing (MPP)
-- Typically uses a denormalized schema and dimensional modeling
-
-Amazon Redshift
-Azure SQL Data Warehouse
-Google Big Query
-
-Data marts
-- Subset of data warehouses
-- Dedicated to a spesific topic
-
-Data lakes
-- Store all types of data at a lower cost
+    - Store all types of data at a lower cost
     - raw, operational databases, IoT device logs, real-time, relational and non-relational
-- Retains all data and can take up petabytes
-- Schema-on-read as opposed to schema-on-write
-- Need to catalog data otherwise becomes a data swamp
-- Run big data analytics using services such as Apache Spark and Hadoop
- (useful for deep learning and data discovery because activities require so much data)
+    - Retains all data and can take up petabytes
+    - Schema-on-read as opposed to schema-on-write
+    - Need to catalog data otherwise becomes a data swamp
+    - Run big data analytics using services such as Apache Spark and Hadoop
+    (useful for deep learning and data discovery because activities require so much data)
 
-ETL
+**ETL**
 - Extract, Transform, Load
-- more traditional approach for warehousing and smaller-scale analytics
-Data sources (OLTP, APIs, Files, IoT Logs) - Staging - Data warehouse - Data marts, BI tools, Machine learning
-                                          Extract, Transform, Load
+- more traditional approach for warehousing and smaller-scale analytics  
 
-ELT
+> Data sources (OLTP, APIs, Files, IoT Logs) - Staging - Data warehouse -  Data marts, BI tools, Machine learning  
+Extract, Transform, Load
+
+**ELT**
 - Extract, Load, Transform
 - more common with big data project
-Data sources (OLTP, APIs, Files, IoT Logs) - Data lake - Data warehouse - Data marts, BI tools, Machine learning
-                                          Extract, Load, Transform
 
-Database design 
+> Data sources (OLTP, APIs, Files, IoT Logs) - Data lake - Data warehouse - Data marts, BI tools, Machine learning  
+Extract, Load, Transform
+
+**Database design** 
 - Determines how data is logically stored
    - How is data going to be read and updates?
 - Uses database models: high-level specifications for database structure
@@ -1826,7 +1964,7 @@ Database design
   - defines tables, fields, relationships, indexes, and views
   - When inserting data in relational databases, schemas must be respected
 
-Data modeling
+**Data modeling**
 - Process of creating a data model for the data to be stored
 
 1. Conceptual data model: describes entities, relationships, and attributes
@@ -1836,94 +1974,103 @@ Data modeling
 3. Physical data model: describes physical storage of data
    Tools: partitions, CPUs, indexes, backup system and tablespaces
 
-Dimensional modeling 
-= adaptation of the relational model for data warehouse design 
+**Dimensional modeling** 
+-  adaptation of the relational model for data warehouse design 
 - optimized for OLAP queries: aggregate data, not updating (OLTP)
 - built using the star schema
 - easy to understand and query
 
-Elements of dimensional modeling
-1. Fact tables
+**Elements of dimensional modeling**
+1. **Fact tables**
     - decided by business use-case
     - holds records of a metric
     - changes regularly
     - connects to dimensions via foregin keys
-2. Dimension tables
+2. **Dimension tables**
     - holds descriptive information
     - rarely changes
     - connects to fact tables via foregin keys
 
-Star schema
-Dimensional modeling: star schema
+**Star schema**  
+Dimensional modeling: star schema  
+    - **Fact tables:**
+        - Holds records of a metric
+        - Changes regularly
+        - Connect to dimensions via foreign keys
+        - Example: - supply books to stores in USA and Canada
+                - keep track of book sales  
+    - **Dimensions tables:**
+        - Holds decriptions of attributes
+        - Does not change as often
 
-Fact tables:
-- Holds records of a metric
-- Changes regularly
-- Connect to dimensions via foreign keys
-- Example: - supply books to stores in USA and Canada
-           - keep track of book sales
+> Snowflake schema (an extension)
 
-Dimensions tables:
-- Holds decriptions of attributes
-- Does not change as often
+> Star schema: one dimension  
+  Snowflake schema: more than one dimension
 
-Snowflake schema (an extension)
+> Because dimension tables are normalized
 
-Star schema: one dimension
-Snowflake schema: more than one dimension
-
-Because dimension tables are normalized
-
-Normalization:
+**Normalization:**
 - Database design technique
 - Divides tables into smaller tables and connects them via relationships
 - Goal: reduce redundancy and increase data integrity
 
-Identify repeating groups of data anc create new tables for them
+> Identify repeating groups of data anc create new tables for them
 
-Book dimension of the star schema
+**Book dimension of the star schema**  
 dim_book_star -: book_id, title, author, publisher, genre
 
-Most likely to have repeating values:
+**Most likely to have repeating values:**
 - author
 - publisher
 - genre
 
-divides tables:
-dim_book_sf: book_id, title, author_id, publisher_id, genre_id
-dim_genre_sf: genre_id, genre
-dim_publisher_sf: publisher_id, publisher
+**divides tables:**  
+dim_book_sf: book_id, title, author_id, publisher_id, genre_id  
+dim_genre_sf: genre_id, genre  
+dim_publisher_sf: publisher_id, publisher  
 dim_author_sf: author_id, author
 
+```sql
 -- Create dim_author with an author column
 CREATE TABLE dim_author (
     author VARCHAR(256)  NOT NULL
 );
+```
 
+```sql
 -- Insert distinct authors 
 INSERT INTO dim_author
 SELECT DISTINCT author FROM dim_book_star;
+```
 
+```sql
 -- Add a primary key 
 ALTER TABLE dim_author ADD COLUMN author_id SERIAL PRIMARY KEY;
+```
 
+```sql
 -- Output the new table
 SELECT * FROM dim_author;
+```
 
-Normalized and denormalized databases
+**Normalized and denormalized databases**
 
-Denormalized query:
+**Denormalized query:**  
 get quantity of all Octavia E.Butler books sold in Vancouver in Q4 of 2018
 
+```sql
 SELECT SUM(quantity) FROM fact_booksales
 INNER JOIN dim_store_star on fact_booksales.store_id = dim_store_star.store_id
 INNER JOIN dim_book_star on fact_booksales.book_id = dim_book_star.book_id
 INNER JOIN dim_time_star on fact_booksales.time_id = dim_time_star.time_id
 WHERE dim_store_star.city = 'Vancouver' AND dim_book_star.author = 'Octavia E. Butler' AND dim_time_star.quarter = 4 AND dim_time_star.year = 2018;
+```
 
-Normalized query:
+**Normalized query:**  
 get quantity of all Octavia E.Butler books sold in Vancouver in Q4 of 2018
 
+```sql
 SELECT SUM(fact_booksales.quantity)
 FROM fact_booksales
 INNER JOIN dim_store_sf ON fact_booksales.store_id = dim_store_sf.store_id
@@ -1932,35 +2079,38 @@ INNER JOIN dim_time_sf ON fact_booksales.time_id = dim_time_sf.time_id
 INNER JOIN dim_author_sf ON dim_book_sf.author_id = dim_author_sf.author_id
 ..........
 WHERE dim_city_sf.city = 'Vancouver' AND dim_author_sf.author = 'Octavia E. Butler' AND dim_time_sf.quarter = 4 AND dim_time_sf.year = 2018;
+```
 
+```
 Normalization saves space
 Denormalized databases enable data redundancy
 Normalization eliminates data redundancy
+```
 
-Normalization ensures better data integrity
+**Normalization ensures better data integrity**
 - Enforces data consistency
 - Safer updating, removing, and inserting (less data redundancy = less records to alter)
 - Easier to redesign by extending (smaller tables are easier to extend than larger tablea)
 
-Database Normalization
-Advantages:
+**Database Normalization**  
+**Advantages:**
 - Eliminates data redundancy: save on storage
 - Better daya integrity: accurate and consistent data
 
-Disadvantages:
+**Disadvantages:**
 - Complex queries require more CPU
 
-OLTP -> operational databases
+**OLTP -> operational databases**
 - Typically highly normalized
 - Write-intensive
 - Prioritize quicker and safer insertion of data
 
-OLAP -> data warehouses
+**OLAP -> data warehouses**
 - Typically denormalized
 - Read-intensive
 - Prioritize quicker queries for analytics
 
-
+```sql
 -- Star schema
 -- Output each state and their total sales_amount
 SELECT dim_store_star.state, SUM(fact_booksales.sales_amount)
@@ -1975,7 +2125,9 @@ WHERE
 -- Group results by state
 GROUP BY
     dim_store_star.state;
+```
 
+```sql
 -- Snowflake schema    
 -- Output each state and their total sales_amount
 SELECT dim_state_sf.state, SUM(fact_booksales.sales_amount)
@@ -1992,26 +2144,33 @@ WHERE
     dim_genre_sf.genre = 'novel'
 GROUP BY
     dim_state_sf.state;
+```
 
+```sql
 -- Add a continent_id column with default value of 1
 ALTER TABLE dim_country_sf
 ADD COLUMN continent_id int NOT NULL DEFAULT(1);
+```
 
+```sql
 -- Add the foreign key constraint
 ALTER TABLE dim_country_sf ADD CONSTRAINT country_continent
    FOREIGN KEY (continent_id) REFERENCES dim_continent_sf(continent_id);
-   
+```
+
+```sql 
 -- Output updated table
 SELECT * FROM dim_country_sf;
+```
 
-Normal forms
-Normalization: identify repeating groups of data and create new tables for them
+**Normal forms**  
+**Normalization**: identify repeating groups of data and create new tables for them
 
-A more formal definition:
-- Be able to characterize the level of redundancy in a relational schema
-- Provide mechanism for transforming schemas in order to remove redundancy
+- A more formal definition:
+    - Be able to characterize the level of redundancy in a relational schema
+    - Provide mechanism for transforming schemas in order to remove redundancy
 
-Normal forms (NF):
+**Normal forms (NF):**  
 Ordered from least to most normalized
 - First normal form (1NF)
 - Second normal form (2NF)
@@ -2024,29 +2183,32 @@ Ordered from least to most normalized
 - Domain key normal form (DKNF)
 - Sixth normal form (6NF)
 
-1NF rules:
+**1NF rules:**
+```
 - each record must be unique - no duplicate rows
 - each cell must hold one value
 
-student id - student email - course_completed
+student id - student email - course_completed  
 235 - jim@gmail.com - intro to python, intermediate python 
 
 1NF form:
-student_id - student_email 
+student_id - student_email  
 235 - jim@gmail.com
 
 student_id - course_completed
 235 - intro to python
 235 - intermediate python
+```
 
-2NF rules:
+**2NF rules:**
+```
 - must satisfy 1NF AND
     - if primary key is one column then automatically satisfies 2NF
     - if there is a composite primary key then each non-key column must be dependent on all the keys
 
 composite primary key: when two or more columns are used as a primary key
 
-student_id(PK) - course_id (PK) - instructor_id - instructor_name - progress
+student_id(PK) - course_id (PK) - instructor_id - instructor_name - progress  
 235 - 2001 - 560- Nick Carchedi - .55
 
 instructor isn't dependent on student_id, only on course_id
@@ -2057,34 +2219,38 @@ student_id(PK) - course_id (PK) - progress
 
 course_id (PK) - instructor_id - instructor_name
 2001 - 560 - Nick Carchedi
+```
 
-3NF rules:
+**3NF rules:**
+```
 - satisfies 2NF AND
     - no transitive dependencies
     - non key columns can't depend on other non-key columns
 
-course_id (PK) - instructor_id - instructor_name - tech
+course_id (PK) - instructor_id - instructor_name - tech  
 2001 - 560 - Nick Carchedi - python
 
-course_id (PK) - instructor_id - tech
+course_id (PK) - instructor_id - tech 
 2001 - 560 - python
 
-instructor_id - instructor_name
+instructor_id - instructor_name  
 560 - Nick Carchedi
+```
 
-Data anomalies
+**Data anomalies**  
 What is risked if we don't normalize enough?
 
 1. Update anomaly
 2. Insert anomaly
 3. Delete anomaly
 
-update anomaly: data inconsistency cause by data redundancy when updating
-insertion anomaly: unable to add data because of missing data
-delete anomaly: unintentional loss of data when deleting
+**update anomaly**: data inconsistency cause by data redundancy when updating
+**insertion anomaly**: unable to add data because of missing data
+**delete anomaly**: unintentional loss of data when deleting
 
-The mre normalized the database, the less likely these anomalies are to occur
+The more normalized the database, the less likely these anomalies are to occur
 
+```sql
 -- Create a new table to satisfy 2NF
 CREATE TABLE cars (
   car_id VARCHAR(256) NULL,
@@ -2094,7 +2260,9 @@ CREATE TABLE cars (
   condition VARCHAR(128),
   color VARCHAR(128)
 );
+```
 
+```sql
 -- Insert data into the new table
 INSERT INTO cars
 SELECT DISTINCT
@@ -2105,7 +2273,9 @@ SELECT DISTINCT
   condition,
   color
 FROM customer_rentals;
+```
 
+```sql
 -- Drop columns in customer_rentals to satisfy 2NF
 ALTER TABLE customer_rentals
 DROP COLUMN model,
@@ -2113,108 +2283,147 @@ DROP COLUMN manufacturer,
 DROP COLUMN type_car, 
 DROP COLUMN condition ,
 DROP COLUMN color;
+```
 
+```sql
 -- Create a new table to satisfy 3NF
 CREATE TABLE car_model(
   model VARCHAR(128),
   manufacturer VARCHAR(128),
   type_car VARCHAR(128)
 );
+```
 
+```sql
 -- Drop columns in rental_cars to satisfy 3NF
 ALTER TABLE rental_cars
 DROP COLUMN model,
 DROP COLUMN manufacturer;
+```
 
-Database views 
-------------------------------
-A view -> the result set of a stored query on the data, which the database users can query just as they would in a persistent database collection object
-Virtual table that is not oart of the physical schema
+**Database views** 
 
+**A view** -> the result set of a stored query on the data, which the database users can query just as they would in a persistent database collection object  
+- Virtual table that is not oart of the physical schema
 - Query, not data is stored in memory
 - Data is aggregated from data in tables
 - Can be queried like a regular database table
 - No need to retype common queries or alter schemas
 
+```sql
 CREATE VIEW view_name AS
 SELECT col1, col2
 FROM table_name
 WHERE condition;
+```
 
-Viewing views:
-Include system views:
+```sql
+-- Viewing views
+-- Include system views
 SELECT * FROM INFORMATION_SCHEMA.views;
+```
 
-Exclude system views:
+```sql
+-- Exclude system views:
 SELECT * FROM information_schema.views
 WHERE table_schema NOT IN ('pg_catalog', 'information_schema');
+```
 
-Benefits of views:
+**Benefits of views:**
 - Doesnt take up storage
 - A form of access control 
 - Masks complexity of queries
 
+```sql
 -- Create a view for reviews with a score above 9
 CREATE VIEW high_scores AS
 SELECT * FROM REVIEWS
 WHERE score > 9;
+```
 
+```sql
 -- Count the number of self-released works in high_scores
 SELECT COUNT(*) FROM high_scores
 INNER JOIN labels ON high_scores.reviewid = labels.reviewid
 WHERE label = 'self-released';
+```
 
-Managing views
-Granting and revoking access to a view:
+**Managing views**  
+**Granting and revoking access to a view:**
+
+```sql
 GRANT privilege(s) or REVOKE privilege(s)
 ON object
 TO role or FROM role
-
+```
+```
 Privileges: SELECT, INSERT, UPDATE, DELETE
 Objects: table, view, schema, etc
 Roles: a database user or a group of database users
+```
 
+```sql
 GRANT UPDATE ON ratings TO PUBLIC;
 REVOKE INSERT ON films FROM db_user;
+```
 
-Updating a view:
+**Updating a view:**
+```sql
 UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';
+```
 
+```
 - Note all views are updatable
 - View is made up of one table
 - Doesn't use a window or aggregate function
+```
 
-Inserting into a view:
+**Inserting into a view:**
+```sql
 INSERT INTO view_name
 VALUES (value1, value2, ...);
+```
 
+```
 - Not all views are insertable
 - Avoid modifying data through views
+```
 
-Dropping a view:
+**Dropping a view:**
+```sql
 DROP VIEW view_name [CASCADE | RESTRICT];
+```
 
-Restrict -> only drop the view if no other objects depend on it
-Cascade -> drop the view and all objects that depend on it
+**Restrict** -> only drop the view if no other objects depend on it
+**Cascade** -> drop the view and all objects that depend on it
 
-Redefining a view:
+**Redefining a view:**
+```sql
 CREATE OR REPLACE VIEW view_name AS new_query;
+```
 
 - if a view with view_name exists, it will be replaced
 - new_query must have the same number of columns as the original view
 - the column output may be different
 - new column may be added at the end
 
-Altering a view:
+**Altering a view:**
+```sql
 ALTER VIEW [IF EXISTS] view_name ALTER [COLUMN] column_name SET DATA TYPE new_data_type;
 ALTER VIEW [ IF EXISTS] view_name RENAME COLUMN column_name TO new_column_name;
+```
 
+```sql
 -- Revoke everyone's update and insert privileges
 REVOKE UPDATE, INSERT ON long_reviews FROM PUBLIC; 
+```
 
+```sql
 -- Grant the editor update and insert privileges 
 GRANT UPDATE, INSERT ON long_reviews TO editor; 
+```
 
+```sql
 -- Redefine the artist_title view to have a label column
 CREATE OR REPLACE VIEW artist_title AS
 SELECT reviews.reviewid, reviews.title, artists.artist, labels.label
@@ -2223,33 +2432,41 @@ INNER JOIN artists
 ON artists.reviewid = reviews.reviewid
 INNER JOIN labels
 ON labels.reviewid = artists.reviewid;
+```
 
+```sql
 SELECT * FROM artist_title;
+```
 
-Materialized views
-Two types of views:
-Views: 
+**Materialized views**  
+
+**Views:** 
 - also known as non materialized views
 - how we've defined views so far
 
-Materialized views:
+**Materialized views:**
 - physically views stored in memory
 - stores the query result not the query
 - querying a materialized view means accessing the stored result
 - refreshed or rematerialized to update the data when prompted
 
-when to use materialized views:
+**When to use materialized views:**
 - long running queries
 - underlying query result dont change often
 - data warehouse because OLAP is not write-intensive
 
-CREATE MATERIALIZED VIEW view_name AS SELECT * FROM table_name;
+```sql
+CREATE MATERIALIZED VIEW view_name AS 
+SELECT * FROM table_name;
+```
 
+```sql
 REFRESH MATERIALIZED VIEW view_name;
+```
 
-Database roles and access control
+**Database roles and access control**
 
-Database roles:
+**Database roles:**
 - Manage database access and permissions
 - A database role in an entity that contains information that:
     - Define the role's privileges
@@ -2261,120 +2478,159 @@ Database roles:
 - Roles can be assigned to one or more users
 - Roles are global across a database cluster installation
 
-Create a role:
-- Empty role
+**Create a role:**
+```sql
+-- Empty role
 CREATE ROLE role_name;
+```
 
-- Role with some attributes set
+**Role with some attributes set**
+```sql
 CREATE ROLE intern WITH PASSWORD 'PasswordForIntern' VALID UNTIL '2020-01-01';
+```
 
+```sql
 CREATE ROLE admin CREATEDB;
 ALTER ROLE admin CREATEROLE;
+```
 
+```sql
 GRANT UPDATE ON ratings TO data_analyst;
 REVOKE UPDATE ON ratings FROM data_analyst;
+```
 
-The available privileges in PostgreSQL are:
+**The available privileges in PostgreSQL are:**
+```
 - SELECT, INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER, CREATE, CONNECT, TEMPORARY, EXECUTE, and USAGE
+```
 
-Users and groups (are both roles):
+**Users and groups (are both roles):**
 - A role is an entity that can function as a user and/or a group
     - User roles
     - Group roles
 
+```sql
 CREATE ROLE data_analyst;
 CREATE ROLE alex WITH PASSWORD 'PasswordForAlex' VALID UNTIL '2020-01-01';
 GRANT data_analyst TO alex;
+```
 
+```sql
 -- Create an admin role
 CREATE ROLE admin WITH CREATEDB CREATEROLE;
+```
 
+```sql
 -- Grant data_scientist update and insert privileges
 GRANT UPDATE, INSERT ON long_reviews TO data_scientist;
+```
 
+```sql
 -- Give Marta's role a password
 ALTER ROLE Marta WITH PASSWORD 's3cur3p@ssw0rd';
+```
 
+```sql
 -- Add Marta to the data scientist group
 GRANT data_scientist TO Marta;
+```
 
--- Celebrate! You hired data scientists.
-
+```sql
 -- Remove Marta from the data scientist group
 REVOKE data_scientist FROM Marta;
+```
 
-Table partitioning
-Why partition?
-Tables grow (100gb / 1tb / 10tb)
+**Table partitioning**  
+**Why partition?**
+- Tables grow (100gb / 1tb / 10tb)
 
-Problem: queries/update become slower 
+Problem: queries/update become slower  
 Because: e.g. indices don't fit memory
 
-Solution: split table into smaller tables (partitions)
+**Solution**: split table into smaller tables (partitions)
 
-Data modeling refresher
+**Data modeling refresher**
 1. Conceptual data model
 2. Logical data model
     For partitioning, logical data model is the same
 3. Physical data model
     Partitioning is part of the physical data model
 
-Vertical partitioning:
-Split table even when fully normalized
-e.g. store long_description on slower medium
+**Vertical partitioning:**  
+Split table even when fully normalized     
+e.g. store long_description on slower medium  
 
-horizontal partitioning:
-Split table over the rows
+**Horizontal partitioning:**  
+Split table over the rows  
 e.g. partition the table by the timestamp
 
+```sql
 CREATE TABLE sales (
     ....
     timestamp DATE NOT NULL
 )
 PARTITION BY RANGE (timestamp);
+```
 
+```sql
 CREATE TABLE sales_2019_q1 PARTITION OF sales
 FOR VALUES FROM ('2019-01-01') TO ('2019-04-01');
+```
 
+```sql
 CREATE INDEX ON sales('timestamp');
+```
 
-Pros:
+**Pros:**
 - Indices of heavily-used partitions fit in memory
 - Move to specific medium: slower vs faster
 - Used for both OLTP and OLAP
 
-Cons:
+**Cons:**
 - Partitioninng existing table can be a hassle
 - Some constraints can not be set
 
+```sql
 -- Create a new table called film_descriptions
 CREATE TABLE film_descriptions (
     film_id INT,
     long_description TEXT
 );
+```
 
+```sql
 -- Copy the descriptions from the film table
 INSERT INTO film_descriptions
 SELECT film_id, long_description FROM film;
+```
 
+```sql
 -- Create a new table called film_descriptions
 CREATE TABLE film_descriptions (
     film_id INT,
     long_description TEXT
 );
+```
 
+```sql
 -- Copy the descriptions from the film table
 INSERT INTO film_descriptions
 SELECT film_id, long_description FROM film;
-    
+```
+
+```sql
 -- Drop the descriptions from the original table
 ALTER TABLE film
 DROP COLUMN long_description;
+```
 
+```sql
 -- Join to view the original table
 SELECT * FROM film_descriptions
 JOIN film USING(film_id);
+```
 
+```sql
 -- Create a new table called film_partitioned
 CREATE TABLE film_partitioned (
   film_id INT,
@@ -2382,7 +2638,9 @@ CREATE TABLE film_partitioned (
   release_year TEXT
 )
 PARTITION BY RANGE (release_year);
+```
 
+```sql
 CREATE TABLE sales (
     id INT,
     sales_date DATE,
@@ -2393,7 +2651,9 @@ PARTITION BY RANGE (YEAR(sales_date)) (
     PARTITION p2 VALUES LESS THAN (2021),
     PARTITION p3 VALUES LESS THAN (2026)
 );
+```
 
+```sql
 -- Create a new table called film_partitioned
 CREATE TABLE film_partitioned (
   film_id INT,
@@ -2401,7 +2661,9 @@ CREATE TABLE film_partitioned (
   release_year TEXT
 )
 PARTITION BY LIST (release_year);
+```
 
+```sql
 CREATE TABLE sales (
     id INT,
     country VARCHAR(50),
@@ -2412,17 +2674,21 @@ PARTITION BY LIST (country) (
     PARTITION p2 VALUES IN ('USA', 'Canada'),
     PARTITION p3 VALUES IN ('Japan', 'South Korea')
 );
+```
 
+```sql
 -- Create the partitions for 2019, 2018, and 2017
 CREATE TABLE film_2019
 	PARTITION OF film_partitioned FOR VALUES IN ('2019');
-    
+
 CREATE TABLE film_2018
 	PARTITION OF film_partitioned FOR VALUES IN ('2018');
-    
+
 CREATE TABLE film_2017
 	PARTITION OF film_partitioned FOR VALUES IN ('2017');
+```
 
+```sql
 -- Create a new table called film_partitioned
 CREATE TABLE film_partitioned (
   film_id INT,
@@ -2430,7 +2696,9 @@ CREATE TABLE film_partitioned (
   release_year TEXT
 )
 PARTITION BY LIST (release_year);
+```
 
+```sql
 -- Create the partitions for 2019, 2018, and 2017
 CREATE TABLE film_2019
 	PARTITION OF film_partitioned FOR VALUES IN ('2019');
@@ -2440,128 +2708,132 @@ CREATE TABLE film_2018
 
 CREATE TABLE film_2017
 	PARTITION OF film_partitioned FOR VALUES IN ('2017');
+```
 
+```sql
 -- Insert the data into film_partitioned
 INSERT INTO film_partitioned
 SELECT film_id, title, release_year FROM film;
+```
 
+```sql
 -- View film_partitioned
 SELECT * FROM film_partitioned;
+```
 
-Data integration
+**Data integration**  
 Combines data from different sources, formats, technologies to provide users with a translated and unified view of that data
 
 
-Business cas examples:
+**Business case examples:**
 - 360 degree customer
 - acquisition
 - legacy Systems
 
+```
 Data source 1 (postgresql) ----
 Data source 2 (mongodb)  ----- Unified data model (Redshift)
 Data source 3 (csv)  ------
+```
 
-Choosing a data integration toola:
-flexible
-reliable
-scalable
+Choosing a data integration tools:
+- flexible
+- reliable
+- scalable
 
-different DBMS types:
+**Different DBMS types:**
 
-SQL: RDBMS
-NoSQL: key-value store, document store, columnar database, graph database
+**SQL**: RDBMS  
+**NoSQL**: key-value store, document store, columnar database, graph database
 
--------------------------------------
-Data Warehousing Concept             |
--------------------------------------
+<br>
 
-Data warehouse: A computer system designed to store and analyze large amounts of data for an organization
+## Data Warehousing Concept
 
-What does a data warehouse do?
+**Data warehouse:** A computer system designed to store and analyze large amounts of data for an organization
+
+**What does a data warehouse do?**
 - Gathers data from different areas of an organization
 - Integrates and stores the data
 - Make it available for analysis
 
-Why is a data warehouse valuable?
+**Why is a data warehouse valuable?**
 Organizations implement data warehouse in order to:*
 - Support business intelligence activity
 - Enable effective organizational analysis and decision-making
 - Find ways to innovate based on insights from their data
 
-Common scenarios:
+**Common scenarios:**
 - Product sales forecasting
 - Governance and regulation adherence
 - Insight and growth
 
-Difference between data warehouses and data lakes:
+**Difference between data warehouses and data lakes:**
 
-Database:
-- Structures data in rows and columns
-- Transactional databases store transactions
-
-Data warehouse:
-- Gather data, integrate, and make available for analysis
-- Many input data sources
-- Store structured data
-- Complex to change
+- **Database:**
+    - Structures data in rows and columns
+    - Transactional databases store transactions
+- **Data warehouse:**
+    - Gather data, integrate, and make available for analysis
+    - Many input data sources
+    - Store structured data
+    - Complex to change
     - Upstream and downstream effects must be considered
-- Typically > 10 gigabytes
+    - Typically > 10 gigabytes
+    - How quickly query will run on a large amount of data
+    - Avoid slowing down transactional database
+- **Data marts:**
+    - a relational database for analysis
+    - Data is focused on one subject area 
+    - Few input data sources
+    - Typically < 100 GBs
 
-Why the data warehouse?
-- How quickly query will run on a large amount of data
-- Avoid slowing down transactional database
+- **Data lakes:**
+    - Entire organization store of data
+        - Contains data from many departments
+        - Many data input sources
+        - Typically > 100 gb in size
+    - Stores structured and unstructured data
+    Example: video, audio, and documents
+    - Less complex to make changes
+        - Fewer upstream and downstream effects to consider
+    - Purpose to store data may not be known
+        - Less organized
 
-Data marts:
-- a relational database for analysis
-- Data is focused on one subject area 
-- Few input data sources
-- Typically < 100 GBs
+**Data warehouse support organizational analysis:**
 
-Data lakes:
-- Entire organization store of data
-    - Contains data from many departments
-    - Many data input sources
-    - Typically > 100 gb in size
-- Stores structured and unstructured data
-Example: video, audio, and documents
-- Less complex to make changes
-    - Fewer upstream and downstream effects to consider
-- Purpose to store data may not be known
-    - Less organized
+- High-level life cycle data warehouse project  
+- Planning -> Business requirements (Analyst, DS), data modelling ( analysts, DS, DE, DB admin)
+- Implementation -> ETL design & development (DE, DB admin), BI application development (Analyst, DS)
+- Support/ maintenance -> Maintenance (DE), test & deploy (Analyst, DS, DE)
 
-Data warehouse support organizational analysis:
-
-High-level llife cycle data warehouse project
-Planning -> Business requirements (Analyst, DS), data modelling ( analysts, DS, DE, DB admin)
-Implementation -> ETL design & development (DE, DB admin), BI application development (Analyst, DS)
-Support/ maintenance -> Maintenance (DE), test & deploy (Analyst, DS, DE)
-
-Warehouse Architectures and Properties
-----------------------------------------
+**Warehouse Architectures and Properties**
 
 Layer overview - data staging
 
+```
 Data source -> Data source 1 & 2 -> Data staging (ETL) -> Data storage (data warehouse & data mart) -> Data presentation (data analytics, reporting tools, analysis tools)
+```
 
-Data source layer:
+**Data source layer:**
 - All data sources for data warehouse
 - Example:
     - Transactional database
     - Log files
     - Spreadsheet
 
-Data staging (ETL)
+**Data staging (ETL)**
 - Layer extracts, transform, and clean data through ETL process
 - Contains ETL process and storage tables
 
-ETL process within data staging layer:
+**ETL process within data staging layer:**
 - extracted
 - business rules applied and cleaned
 - staging database often used
 - must be able to extract valid data
 - batch / full loading
 
-Data storage layer:
+**Data storage layer**
 - Data is stored in warehouse and data marts
 
 Data presentation layer:
@@ -4247,7 +4519,7 @@ WHERE
                     FROM match AS m
                     WHERE s.stage > m.stage);
 
-Simple subquery                                 | Correlated subquery
+Simple subquery  Correlated subquery
 - Can be run independently from the main query  | Dependent on the main query to EXECUTE
 - Evaluated once in the whole query             | Evaluated in loops (running time longer)
 
@@ -4755,6 +5027,7 @@ WHERE
 	season = '2014/2015'
 	AND t.team_long_name = 'Manchester United';
 
+```sql
 -- Set up the home team CTE
 WITH home AS (
   SELECT m.id, t.team_long_name,
@@ -4786,7 +5059,7 @@ WHERE m.season = '2014/2015'
       AND (home.team_long_name = 'Manchester United' 
            OR away.team_long_name = 'Manchester United');
 
-
+```sql
 WITH home AS (
   SELECT m.id, t.team_long_name,
 	  CASE WHEN m.home_goal > m.away_goal THEN 'MU Win'
@@ -4802,6 +5075,7 @@ away AS (
   		   ELSE 'Tie' END AS outcome
   FROM match AS m
   LEFT JOIN team AS t ON m.awayteam_id = t.team_api_id)
+
 -- Select columns and and rank the matches by goal difference
 SELECT DISTINCT
     m.date,
@@ -4816,12 +5090,12 @@ LEFT JOIN away ON m.id = away.id
 WHERE m.season = '2014/2015'
       AND ((home.team_long_name = 'Manchester United' AND home.outcome = 'MU Loss')
       OR (away.team_long_name = 'Manchester United' AND away.outcome = 'MU Loss'));
+```
+<br> 
 
-------------------
-Leetcode
-------------------
+## Leetcode
 
-# Write your MySQL query statement below
+```sql
 SELECT p.product_id, 
        IFNULL(ROUND(SUM(p.price * u.units) / SUM(u.units), 2), 0) AS average_price
 FROM 
@@ -4833,7 +5107,9 @@ ON
     AND u.purchase_date BETWEEN p.start_date AND p.end_date
 GROUP BY 
     p.product_id;
+```
 
+```sql
 -- Write a solution to find all dates' id with higher temperatures compared to its previous dates (yesterday).
 # Write your MySQL query statement below
 SELECT w1.id
@@ -4841,7 +5117,9 @@ FROM Weather AS w1
 JOIN Weather AS w2
 ON DATEDIFF(w1.recordDate, w2.recordDate) = 1
 WHERE w1.temperature > w2.temperature
+```
 
+```sql
 SELECT a.machine_id, 
        ROUND(AVG(b.timestamp - a.timestamp), 3) AS processing_time
 FROM Activity a, 
@@ -4855,25 +5133,25 @@ AND
 AND 
     b.activity_type = 'end'
 GROUP BY machine_id
+```
+<br>
 
+## Addition
+**ROW_NUMBER()** -> Memberi nomor urut unik ke setiap baris, meskipun nilai sama
+**RANK()** -> Memberi peringkat dengan nilai yang sama memiliki peringkat yang sama, tetapi nomor berikutnya akan meloncat  
+**DENSE_RANK()** -> Mirip RANK(), tetapi tanpa loncatan  
+**NTILE(N)** -> Membagi data menjadi N kelompok yang sama besar
 
-ROW_NUMBER()	Memberi nomor urut unik ke setiap baris
-RANK()	Memberi peringkat dengan nilai yang sama memiliki peringkat yang sama, tetapi nomor berikutnya akan meloncat
-DENSE_RANK()	Mirip RANK(), tetapi tanpa loncatan
-NTILE(N)	Membagi data menjadi N kelompok yang sama besar
+**LAG()** -> Mengambil nilai dari baris sebelumnya  
+**LEAD()** -> Mengambil nilai dari baris berikutnya  
+**FIRST_VALUE()** -> Mengambil nilai pertama dalam window  
+**LAST_VALUE()** -> Mengambil nilai terakhir dalam window  
 
-LAG()	Mengambil nilai dari baris sebelumnya
-LEAD()	Mengambil nilai dari baris berikutnya
-FIRST_VALUE()	Mengambil nilai pertama dalam window
-LAST_VALUE()	Mengambil nilai terakhir dalam window
-
+```sql
 SELECT id_karyawan, nama, departemen, gaji,
        ROW_NUMBER() OVER (ORDER BY gaji DESC) AS row_num,
        RANK() OVER (ORDER BY gaji DESC) AS rank_num,
        DENSE_RANK() OVER (ORDER BY gaji DESC) AS dense_rank_num
 FROM Karyawan;
-
-ROW_NUMBER() tetap unik meskipun nilai sama.
-RANK() mengulang nomor untuk nilai yang sama, tetapi melompati angka berikutnya.
-DENSE_RANK() juga mengulang nomor, tetapi tidak melompati angka berikutnya.
+```
 
