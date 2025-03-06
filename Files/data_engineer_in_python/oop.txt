@@ -1,0 +1,587 @@
+OOP Fundamentals
+------------------------------------------------------------------------
+Procedural programming:
+- Code as a sequence of steps 
+- Great for data analysis
+
+Object-oriented programming:
+- Code as interactions of objects
+- Great for building frameworks and tools
+- Reusable and maintainable code
+
+Object as data structures:
+Object = state + behavior
+
+Encapsulation:
+- Bundling data with code operating on it 
+
+Classes as blueprints:
+- Class: blueprint for objects outlining possible states and behaviors
+
+Objects in Python:
+- Everything in Python is an object
+- Every object has a class
+- Use type() to check the class of an object
+
+Attributes and methods:
+State -> attributes
+Behavior -> methods
+
+import numpy as np
+a = np.array([1, 2, 3])
+a.shape -> attribute
+a.sum() -> method
+a.reshape(1, 3) -> method
+
+object = attributes + methods
+attributes -> variables -> obj.attribute,
+methods -> functions -> obj.method()
+
+dir(obj) -> list of attributes and methods of an object
+
+class -> blueprint
+object -> instance of a class
+
+------------------------------------------------------------------------
+# Print the mystery employee's name
+print(mystery.name)
+
+# Print the mystery employee's salary
+print(mystery.salary)
+
+# Give the mystery employee a raise of $2500
+mystery.give_raise(2500)
+
+# Print the salary again
+print(mystery.salary)
+
+------------------------------------------------------------------------
+Class anatomy: attributes and methods
+A basic class:
+
+class Customer: -> class name
+    pass
+
+c1 = Customer() -> object of the class
+c2 = Customer() -> object of the class
+
+class Customer:
+    
+    def identity(self, name): -> method
+        print(f"I am Customer {name}")
+
+cust = Customer()
+cust.identity("Nia")
+-> I am Customer Nia
+
+What is self?
+- Classes are templates, how to refer data of a particular object?
+- self is a stand-in for a particular object used in class definition
+- should be the first argument of any method
+
+Add an attribute to class:
+
+class Customer:
+    def set_name(self, new_name):
+        self.name = new_name
+    
+cust = Customer() -> .name attribute is not defined
+cust.set_name("Nia") -> .name attribute is defined
+print(cust.name) 
+-> Nia
+
+------------------------------------------------------------------------
+class Employee:
+    def set_name(self, new_name):
+        self.name = new_name
+
+    def set_salary(self, new_salary):
+        self.salary = new_salary 
+  
+emp = Employee()
+emp.set_name('Korel Rossi')
+emp.set_salary(50000)
+
+# Print the salary attribute of emp
+print(emp.salary)
+
+# Increase salary of emp by 1500
+emp.salary = emp.salary + 1500
+
+# Print the salary attribute of emp again
+print(emp.salary)
+
+------------------------------------------------------------------------
+class Employee:
+    def set_name(self, new_name):
+        self.name = new_name
+
+    def set_salary(self, new_salary):
+        self.salary = new_salary 
+
+    # Add a give_raise() method with raise amount as a parameter
+    def give_raise(self, amount):
+        self.salary = self.salary + amount
+
+
+emp = Employee()
+emp.set_name('Korel Rossi')
+emp.set_salary(50000)
+
+print(emp.salary)
+emp.give_raise(1500)
+print(emp.salary)
+------------------------------------------------------------------------
+class Employee:
+    def set_name(self, new_name):
+        self.name = new_name
+
+    def set_salary(self, new_salary):
+        self.salary = new_salary 
+
+    def give_raise(self, amount):
+        self.salary = self.salary + amount
+
+    # Add monthly_salary method that returns 1/12th of salary attribute
+    def monthly_salary(self):
+        return self.salary / 12
+
+    
+emp = Employee()
+emp.set_name('Korel Rossi')
+emp.set_salary(50000)
+
+# Get monthly salary of emp and assign to mon_sal
+mon_sal = emp.monthly_salary()
+
+# Print mon_sal
+print(mon_sal)
+------------------------------------------------------------------------
+Class anatomy: the __init__ constructor
+
+Constructor:
+- Add data to object when creating it
+- Constructor __init__() method is called every time an object is created.
+
+class Customer:
+    def __init__(self, name):
+        self.name = name
+        print("The __init__ method was called")
+
+cust = Customer("Lara")
+print(cust.name)
+-> The __init__ method was called
+-> Lara
+
+Attributes in methods vs. constructor:
+- Attributes can be added in methods
+- Constructor is a good place to add attributes
+
+Best practices:
+- Initializes attributes in __init__()
+- Naming :
+    - CamelCase for class names
+    - lower_snake_case for method and attribute names
+- Keep self as self in methods
+- Use docstrings to document classes
+
+------------------------------------------------------------------------
+class Employee:
+  
+    def __init__(self, name, salary=0):
+        self.name = name
+        # Modify code below to check if salary is positive
+        if salary > 0:
+            self.salary = salary
+        else:
+            self.salary = 0
+            print("Invalid salary!")
+   
+   # ...Other methods omitted for brevity ...
+      
+emp = Employee("Korel Rossi", -1000)
+print(emp.name)
+print(emp.salary)
+
+------------------------------------------------------------------------
+# Write the class Point as outlined in the instructions
+import numpy as np
+
+class Point:
+    """ A point on a 2D plane 
+
+    Attributes
+    ----------
+    x : float, default 0.0. The x coordinate of the point        
+    y : float, default 0.0. The y coordinate of the point
+    """
+
+    def __init__(self, x=0.0, y=0.0):
+        self.x = x
+        self.y = y
+
+    def distance_to_origin(self):
+        return np.sqrt((self.x**2) + (self.y**2))
+
+    def reflect(self, axis):
+        if axis == "x":
+            self.y = - self.y
+        elif axis == "y":
+            self.x = - self.x
+        else:
+            print("The argument axis only accepts values 'x' and 'y'!")
+
+pt = Point(x=3.0)
+pt.reflect("y")
+print((pt.x, pt.y))
+pt.y = 4.0
+print(pt.distance_to_origin())
+------------------------------------------------------------------------
+Inheritance and Polymorphism
+
+Core principles of OOP:
+- Inheritance: Extending functionality of existing code
+- Polymorphism: Creating a unified interface
+- Encapsulation: Bundling of data and methods   
+
+Instance-level data:
+- Attributes are instance-level data
+- Each object has its own copy of attributes
+
+class Employee:
+    def __init__(self, name, salary=30000):
+        self.name = name
+        self.salary = salary
+
+emp1 = Employee("Amar Howard", 30000)
+emp2 = Employee("Carolyn Ramirez", 35000)
+
+name, salary -> instance-level data
+------------------------------------------------------------------------
+Class-level data:
+- Data shared among all instances of a class 
+- Define class attributes in the class body
+
+class MyClass:
+    # Class attribute
+    CLASS_ATTR_NAME = value
+
+"Global variables" for the class
+
+class Employee:
+    MIN_SALARY = 30000 --> no self
+    def __init__(self, name, salary):
+        self.name = name
+        if salary >= Employee.MIN_SALARY:
+            self.salary = salary
+        else:
+            self.salary = Employee.MIN_SALARY
+
+emp1 = Employee("Amar Howard", 30000)
+emp1.MIN_SALARY
+-> 30000
+
+Why use class attributes?
+- Global constants related to the class
+- Minimal/maximal values for attributes
+- Commonly used values and constants, e.g PI
+
+------------------------------------------------------------------------
+Class methods:
+- Methods are already "shared" among all instances
+- Class methods can't use instance-level data
+- Use @classmethod decorator
+
+class MyClass:
+
+    @classmethod
+    def my_class_method(cls, arg1, arg2): -> cls is the class itself
+        pass
+    
+MyClass.my_class_method(arg1, arg2)
+
+class Employee:
+    MIN_SALARY = 30000
+
+    def __init__(self, name, salary):
+        self.name = name
+        if salary >= Employee.MIN_SALARY:
+            self.salary = salary
+        else:
+            self.salary = Employee.MIN_SALARY
+
+    @classmethod
+    def from_file(cls, filename):
+    with open(filename, 'r') as f:
+        name = f.readline()
+    return cls(name)
+
+emp = Employee.from_file('employee_data.txt')
+print(emp.name)
+-> Amar Howard
+
+------------------------------------------------------------------------
+# Create a Player class
+class Player:
+    MAX_POSITION = 10
+
+    def __init__(self, position=0):
+        self.position = position
+
+# Print Player.MAX_POSITION       
+print(Player.MAX_POSITION)
+
+# Create a player p and print its MAX_POSITITON
+p = Player()
+print(p.MAX_POSITION)
+
+------------------------------------------------------------------------
+class Player:
+    MAX_POSITION = 10
+    
+    def __init__(self):
+        self.position = 0
+
+    # Add a move() method with steps parameter
+    def move(self, steps):
+        if self.position + steps < Player.MAX_POSITION:
+            self.position += steps
+        else:
+            self.position = Player.MAX_POSITION
+       
+    # This method provides a rudimentary visualization in the console    
+    def draw(self):
+        drawing = "-" * self.position + "|" +"-"*(Player.MAX_POSITION - self.position)
+        print(drawing)
+
+p = Player(); p.draw()
+p.move(4); p.draw()
+p.move(5); p.draw()
+p.move(3); p.draw()
+
+------------------------------------------------------------------------
+# Create Players p1 and p2
+p1 = Player()
+p2 = Player()
+
+print("MAX_SPEED of p1 and p2 before assignment:")
+# Print p1.MAX_SPEED and p2.MAX_SPEED
+print(p1.MAX_SPEED) -> 3
+print(p2.MAX_SPEED) -> 3
+
+# Assign 7 to p1.MAX_SPEED
+p1.MAX_SPEED = 7
+
+print("MAX_SPEED of p1 and p2 after assignment:")
+# Print p1.MAX_SPEED and p2.MAX_SPEED
+print(p1.MAX_SPEED) -> 7
+print(p2.MAX_SPEED) -> 3
+
+print("MAX_SPEED of Player:")
+# Print Player.MAX_SPEED
+print(Player.MAX_SPEED) -> 3
+
+------------------------------------------------------------------------
+class BetterDate:    
+    # Constructor
+    def __init__(self, year, month, day):
+      # Recall that Python allows multiple variable assignments in one line
+      self.year, self.month, self.day = year, month, day
+    
+    # Define a class method from_str
+    @classmethod
+    def from_str(cls, datestr):
+        # Split the string at "-" and convert each part to integer
+        parts = datestr.split("-")
+        year, month, day = int(parts[0]), int(parts[1]), int(parts[2])
+        # Return the class instance
+        return cls(year, month, day)
+        
+bd = BetterDate.from_str('2020-04-30')   
+print(bd.year)
+print(bd.month)
+print(bd.day)
+
+------------------------------------------------------------------------
+# import datetime from datetime
+from datetime import datetime
+
+class BetterDate:
+    def __init__(self, year, month, day):
+      self.year, self.month, self.day = year, month, day
+      
+    @classmethod
+    def from_str(cls, datestr):
+        year, month, day = map(int, datestr.split("-"))
+        return cls(year, month, day)
+      
+    # Define a class method from_datetime accepting a datetime object
+    @classmethod
+    def from_datetime(cls, datetime):
+      year = datetime.year
+      month = datetime.month
+      day = datetime.day
+      return cls(year, month, day)
+      
+# You should be able to run the code below with no errors: 
+today = datetime.today()     
+bd = BetterDate.from_datetime(today)   
+print(bd.year)
+print(bd.month)
+print(bd.day)
+
+------------------------------------------------------------------------
+Class inheritance:
+
+DRY -> Don't Repeat Yourself
+New class functionality = Old class functionality + extra
+
+class MyChild(MyParent):
+    pass
+
+class bankAccount:
+    def __init__(self, balance):
+        self.balance = balance
+
+    def withdraw(self, amount):
+        self.balance -= amount
+
+class SavingsAccount(BankAccount):
+    pass
+
+- Child class has all of the parent's attributes and methods
+- isinstance() checks if an object is an instance of a class
+
+------------------------------------------------------------------------
+class Employee:
+  MIN_SALARY = 30000    
+
+  def __init__(self, name, salary=MIN_SALARY):
+      self.name = name
+      if salary >= Employee.MIN_SALARY:
+        self.salary = salary
+      else:
+        self.salary = Employee.MIN_SALARY
+        
+  def give_raise(self, amount):
+      self.salary += amount      
+        
+# Define a new class Manager inheriting from Employee
+class Manager(Employee):
+  pass
+
+# Define a Manager object
+mng = Manager("Debbie Lashko", 86500)
+
+# Print mng's name
+print(mng.name)
+------------------------------------------------------------------------
+class Employee:
+  MIN_SALARY = 30000    
+
+  def __init__(self, name, salary=MIN_SALARY):
+      self.name = name
+      if salary >= Employee.MIN_SALARY:
+        self.salary = salary
+      else:
+        self.salary = Employee.MIN_SALARY
+  def give_raise(self, amount):
+    self.salary += amount      
+        
+# MODIFY Manager class and add a display method
+class Manager(Employee):
+  def display(self):
+    print(f"Manager {self.name}")
+
+mng = Manager("Debbie Lashko", 86500)
+print(mng.name)
+
+# Call mng.display()
+print(mng.display())
+
+------------------------------------------------------------------------
+Customizing constructors:
+
+class BankAccount:
+    def __init__(self, balance):
+        self.balance = balance
+
+    def withdraw(self, amount):
+        self.balance -= amount
+
+class SavingsAccount(BankAccount):
+    def __init__(self, balance, interest_rate):
+        bankAccount.__init__(self, balance) -> call the parent constructor
+        self.interest_rate = interest_rate
+
+class CheckingAccount(BankAccount):
+    def __init__(self, balance, limit):
+        BankAccount.__init__(self, balance)
+        self.limit = limit
+    def deposit(self, amount):
+        self.balance += amount
+    def withdraw(self, amount, fee=0):
+        if fee <= self.limit:
+            BankAccount.withdraw(self, amount + fee)
+        else:
+            BankAccount.withdraw(self, amount + self.limit)
+
+------------------------------------------------------------------------
+class Employee:
+    def __init__(self, name, salary=30000):
+        self.name = name
+        self.salary = salary
+
+    def give_raise(self, amount):
+        self.salary += amount
+
+        
+class Manager(Employee):
+    def display(self):
+        print("Manager ", self.name)
+
+    def __init__(self, name, salary=50000, project=None):
+        Employee.__init__(self, name, salary)
+        self.project = project
+
+    # Add a give_raise method
+    def give_raise(self, amount, bonus=1.05): --> override the parent method
+        return Employee.give_raise(self, amount * bonus)
+    
+    
+mngr = Manager("Ashta Dunbar", 78500)
+mngr.give_raise(1000)
+print(mngr.salary)
+mngr.give_raise(2000, bonus=1.03)
+print(mngr.salary)
+
+------------------------------------------------------------------------
+# Import pandas as pd
+import pandas as pd
+
+# Define LoggedDF inherited from pd.DataFrame and add the constructor
+class LoggedDF(pd.DataFrame):
+  
+  def __init__(self, *args, **kwargs):
+    pd.DataFrame.__init__(self, *args, **kwargs)
+    self.created_at = datetime.today()
+    
+  def to_csv(self, *args, **kwargs):
+    # Copy self to a temporary DataFrame
+    temp = self.copy()
+    
+    # Create a new column filled with self.created_at
+    temp["created_at"] = self.created_at
+    
+    # Call pd.DataFrame.to_csv on temp, passing in *args and **kwargs
+    pd.DataFrame.to_csv(temp, *args, **kwargs)
+
+------------------------------------------------------------------------
+
+
+
+
+
+
+
+
