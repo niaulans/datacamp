@@ -1,0 +1,810 @@
+--------------------------------------------------------------------
+INTRODUCTION TO SHELL
+--------------------------------------------------------------------
+Manipulating files and directories
+
+pwd - print working directory -> shows the current directory
+ls - list -> shows the files and directories in the current directory
+
+/home/repl/seasonal/winter.csv - absolute path - specifies the location of a file or directory from the root directory
+winter.csv - relative path - specifies the location of a file or directory from the current directory
+with / -> absolute path
+without / -> relative path
+
+cd - change directory -> changes the current directory
+cd /home/repl/seasonal -> changes the current directory to /home/repl/seasonal
+cd .. -> changes the current directory to the parent directory
+cd ~ -> changes the current directory to the home directory
+cd ~/../. -> The path means 'home directory', 'up a level', 'here'.
+
+cp original.txt duplicate.txt -> copies a file to another file
+cp seasonal/autumn.csv seasonal/winter.csv backup/ -> copies a file to a directory backup
+
+mv autumn.csv winter.csv .. -> moves a file to another directory one level up (..)
+mv course.txt old-course.txt -> renames a file
+
+rm thesis.txt -> removes a file
+rm -r thesis -> removes a directory and all its contents
+rmdir thesis -> removes a directory if it is empty
+
+mkdir thesis -> creates a new directory
+
+Linux directories:
+Direktori	Fungsi
+/ (root)	Direktori utama (root) yang menjadi awal dari semua direktori lain.
+/home	Menyimpan direktori pengguna (misalnya /home/user).
+/root	Direktori home untuk pengguna root (administrator).
+/bin	Berisi binaries (program eksekusi) dasar seperti ls, cp, mv, dll.
+/sbin	Seperti /bin, tetapi untuk perintah administratif (hanya root).
+/usr	Berisi aplikasi dan file tambahan (misalnya /usr/bin/, /usr/lib/).
+/var	Berisi file variabel seperti log (/var/log/), data aplikasi, dll.
+/tmp	Direktori sementara yang digunakan oleh sistem dan aplikasi.
+/etc	Berisi file konfigurasi sistem dan aplikasi.
+/dev	Berisi file perangkat (device) seperti disk, USB, dll.
+/mnt dan /media	Tempat mounting (penyambungan) sistem file tambahan seperti hard disk eksternal, flash drive, dll.
+/opt	Menyimpan perangkat lunak tambahan yang tidak termasuk dalam sistem standar.
+/proc	Berisi informasi tentang proses yang sedang berjalan dan sistem kernel.
+/sys	Menyediakan informasi tentang perangkat keras sistem.
+/lib	Berisi pustaka (library) yang diperlukan oleh sistem dan program dalam /bin dan /sbin.
+
+--------------------------------------------------------------------
+Manipulating data
+
+cat file.txt -> displays the contents of a file
+less file.txt -> displays the contents of a file one page at a time
+    spacebar -> next page
+    :q -> quit
+    :n -> next file 
+
+head file.txt -> first few lines of a file (10)
+use tab to autocomplete
+head f -> tab -> head file.txt
+head -n 3 file.txt -> first 3 lines of a file
+
+tail file.txt -> last few lines of a file (10)
+tail -n 5 file.txt -> last 5 lines of a file
+tail -n +7 file.txt -> all lines starting from the 7th line until the end (1-6 are skipped)
+
+ls -R -> lists all files in the current directory and all its subdirectories
+ls -R -F -> lists all files in the current directory and all its subdirectories with / for directories and * for executables
+
+man ls -> manual for ls command
+
+cut -f 2-5,8 -d , values.csv -> extracts columns 2-5 and 8 with delimiter , from values.csv
+- adding space after flag is optional
+
+!head -> runs the last command starting with head
+!2 -> runs the second command in the history
+history -> shows the history of commands
+
+head, tail -> select rows
+cut -> select columns
+grep -> select lines according to what they contain
+
+grep
+    -c -> count of matching lines
+    -h -> do not print filenames
+    -i -> case-insensitive
+    -l -> print only the names of files with matching lines
+    -n -> print line numbers of matching lines
+    -v -> invert match, i.e., only show lines that don't match
+
+grep molar seasonal/autumn.csv -> shows lines containing molar in autumn.csv
+grep -v -n molar seasonal/autumn.csv -> shows lines not containing molar in autumn.csv with line numbers
+
+--------------------------------------------------------------------
+Combining tools
+
+head -n 5 seasonal/summer.csv > top.csv -> writes the first 5 lines of summer.csv to top.csv
+head -n 5 seasonal/summer.csv | tail -n 3 -> first 5 lines of summer.csv to tail command to get the last 3 lines
+cut -f 2 -d , seasonal/winter.csv | grep -v Tooth -> extracts the second column from winter.csv and shows lines not containing Tooth
+cut -f 2 -d , seasonal/winter.csv | grep -v Tooth | head -n 1 -> extracts the second column from winter.csv, shows lines not containing Tooth, and shows the first line
+
+wc 
+    -l -> count lines
+    -w -> count words
+    -c -> count characters 
+wc -l seasonal/summer.csv -> counts the number of lines in summer.csv
+grep 2017-07 seasonal/winter.csv | wc -l -> counts the number of lines containing 2017-07 in winter.csv
+
+wildcards 
+* -> match zero or more characters
+? -> match a single character
+[...] -> match any one of the characters inside the square brackets
+[!...] -> match any character not inside the square brackets
+{...} -> match any of the comma-separated patterns inside the curly brackets
+
+head -n3 seasonal/s*.csv -> shows the first 3 lines of all files in seasonal starting with s and ending with .csv
+[singh, johel]{*.csv, *.txt} -> shows all files starting with singh or johel and ending with .csv or .txt
+
+sort 
+    -n -> sort numerically
+    -r -> reverse order
+    -b -> ignore leading blanks
+    -f -> fold case
+    -o -> output to file
+
+cut -f 2 -d , seasonal/winter.csv | grep -v Tooth | sort -r -> extracts the second column from winter.csv, shows lines not containing Tooth, and sorts in reverse order
+
+uniq 
+    -c -> count occurrences
+    -i -> ignore case
+    -d -> only show duplicate lines
+    -u -> only show unique lines
+
+cut -f 2 -d , seasonal/winter.csv | grep -v Tooth | sort | uniq -c -> extracts the second column from winter.csv, shows lines not containing Tooth, sorts, and counts unique lines
+
+cut -d , -f 2 seasonal/*.csv | grep -v Tooth > teeth-only.txt -> extracts the second column from all csv files in seasonal, shows lines not containing Tooth, and writes to teeth-only.txt
+
+wc -l seasonal/*.csv | grep -v total | sort -n | head -n 1
+- counts the number of lines in all csv files in seasonal 
+- shows lines not containing total
+- sorts numerically
+- shows the first line
+
+--------------------------------------------------------------------
+Batch processing
+
+echo $USER -> shows the value of the USER environment variable
+-> repl
+
+testing=seasonal/winter.csv
+head -n 1 $testing -> shows the first line of winter.csv
+
+for filetype in gif jpg png; do echo $filetype; done
+- prints gif, jpg, png
+
+for filetype in docx odt pdf; do echo $filetype; done
+- prints docx, odt, pdf
+
+for file in seasonal/*.csv; do head -n 2 $file | tail -n 1; done
+
+for f in seasonal/*.csv; do echo $f; head -n 2 $f | tail -n 1; done
+seasonal/autumn.csv
+2017-01-05,canine
+seasonal/spring.csv
+2017-01-25,wisdom
+seasonal/summer.csv
+2017-01-11,canine
+seasonal/winter.csv
+2017-01-03,bicuspid
+
+--------------------------------------------------------------------
+Creating new tools
+
+ctrl+k -> delete a line
+ctrl+u -> un-delete a line
+ctrl+o -> save the file
+ctrl+x -> exit the editor
+
+
+cut -d , -f 1 seasonal/*.csv | grep -v Date | sort | uniq (all-dates.sh)
+bash all-dates.sh > dates.out -> writes the output of all-dates.sh to dates.out
+
+tail -q -n +2 $@ | wc -l -> counts the number of lines in all files except the first line
+bash count-records.sh seasonal/*.csv > num-records.out -> counts the number of lines in all csv files in seasonal except the first line and writes to num-records.out
+
+cut -d , -f $2 $1 -> extracts the column specified by the second argument from the file specified by the first argument
+$2 -> file
+$1 -> column
+
+bash get-field.sh seasonal/summer.csv 4 2
+- filename 1
+- number of row to extract 2
+- number of column to extract 3
+
+wc -l $@ | grep -v total | sort -n | head -n 1 -> shortest
+wc -l $@ | grep -v total | sort -n -r | head -n 1 > longest
+
+--------------------------------------------------------------------
+INTRODUCTION TO BASH SCRIPTING
+--------------------------------------------------------------------
+From Command-Line to Bash Script
+
+Bash -> Bourne Again Shell
+- Develop in the 80's but a very popular shell today. Default in many Unix systems, Macs
+- Unix is the internet! (Running ML models, data pipelines).
+
+Why Bash scripting?
+- Ease of execution of shell commands 
+- Powerfurl programming constructs
+
+--------------------------------------------------------------------
+cat book.txt | grep -E "Sydney Carton|Charles Darnay" | wc -l
+- count the number of lines in book.txt containing Sydney Carton or Charles Darnay
+
+--------------------------------------------------------------------
+Bash scripting
+
+Anatomy:
+- Begins with #!/usr/bash (shebang)
+- Middle line contain code 
+- File extension .sh
+- Run with bash filename.sh or ./filename.sh
+
+eg.sh
+#!/usr/bash
+echo "Hello World"
+echo "Goodby World"
+
+> ./eg.sh
+Hello World
+Goodby World
+
+#!/usr/bash
+cat animals.txt | cut -d " " -f 2 | sort | uniq -c
+-> counts the number of occurrences of each animal in animals.txt
+
+#!/usr/bash
+cat soccer_scores.csv | cut -d "," -f 2 | tail -n +2 | sort | uniq -c
+-> counts the number of occurrences of each team in soccer_scores.csv
+
+sed 
+    - stream editor
+    - sed 's/error/warning/g' file.txt   # Mengganti semua "error" menjadi "warning"
+    - sed 's/error/warning/gi' file.txt  # Tidak membedakan huruf besar/kecil
+    - sed -n 's/error/warning/p' file.txt  # Hanya mencetak baris yang berubah
+    - sed 's/error/warning/w output.txt' file.txt  # Simpan hasil ke output.txt
+
+#!/bin/bash
+
+# Create a sed pipe to a new file
+cat soccer_scores.csv | sed 's/Cherno/Cherno City/g' | sed 's/Arda/Arda United/g' > soccer_scores_edited.csv
+- replaces Cherno with Cherno City and Arda with Arda United in soccer_scores.csv and writes to soccer_scores_edited.csv
+
+--------------------------------------------------------------------
+Standard streams and arguments
+
+STDIN -> Standard Input
+STDOUT -> Standard Output
+STDERR -> Standard Error
+
+STDIN vs ARGV
+- STDIN -> cat file.txt | cut -d " " -f 2
+- ARGV used for passing arguments to the script -> bash script.sh arg1 arg2
+$@ -> all arguments
+$* -> all arguments as a single string
+$# -> number of arguments
+$1, $2, ... -> first, second, ... arguments
+
+args.sh
+#!/usr/bash
+echo $1
+echo $2
+echo $@
+echo "There are " $# " arguments"
+-> ./args.sh one two three four five
+one
+two
+one two three four five
+There are 5 arguments
+
+# Echo the first ARGV argument
+echo $1
+
+# Cat all the files
+# Then pipe to grep using the first ARGV argument
+# Then write out to a named csv using the first ARGV argument
+cat hire_data/* | grep "$1" > "$1".csv
+
+--------------------------------------------------------------------
+Basic variables in Bash 
+
+var1="Moon 
+$var1 -> Moon
+
+firstname='Nia'
+lastname='Ulan Sari'
+echo "Hi there $firstname $lastname"
+-> Hi there Nia Ulan Sari
+
+Beware of adding spaces in variable assignment
+var1 = "Moon" -> error
+
+single quotation marks -> literal string
+double quotation marks -> variable substitution
+backticks -> command substitution STDOUT
+
+now_var='NOW'
+now_var_singlequote='@now_var'
+echo $now_var_singlequote
+-> @now_var
+
+now_var='NOW'
+now_var_doublequote="@now_var"
+echo $now_var_doublequote
+-> NOW
+
+now_var='NOW'
+now_var_backticks="The data is `date`" same as $(date)
+echo $now_var_backticks
+-> The data is Thu 15 Jul 2021 10:00:00 AM WIB
+
+# Create the required variable
+yourname="Sam"
+
+# Print out the assigned name (Help fix this error!)
+echo "Hi there "$yourname", welcome to the website!"
+-> Hi there Sam, welcome to the website!
+
+--------------------------------------------------------------------
+Number variables in Bash
+
+expr 1 + 1 -> 2
+
+bc -> arbitrary precision calculator
+echo "5 + 7.5" | bc -> 12.5
+echo "scale=3; 5 / 3" | bc -> 1.666
+
+expr 5 + 7
+echo $((5 + 7)) -> no decimals
+
+model1=57.54
+model2=57.87
+echo "The total score is $(echo "$model1 + $modell2" | bc)"
+-> The total score is 115.41
+echo "the total score is $((model1 + model2))"
+-> the total score is 115
+
+--------------------------------------------------------------------
+temp_f=$1
+
+temp_f2=$(echo "scale=2; $temp_f - 32" | bc)
+temp_c=$(echo "scale=2; $temp_f2 * 5 / 9" | bc)
+
+echo $temp_c
+
+--------------------------------------------------------------------
+Arrays in Bash 
+
+Two types array in Bash
+- Indexed array
+- Associative array
+
+Indexed array
+- Declare with ()
+- Access with []
+- Assign with =()
+
+arr=(1 2 3 4 5) -> no commas
+echo ${arr[0]} -> 1
+echo ${arr[@]} -> 1 2 3 4 5
+echo ${#arr[@]} -> 5
+echo ${arr[@]:1:2} -> 2 3 (from index 1 to 2)
+
+arr+=(6) -> add 6 to the end of the array
+echo ${arr[@]} -> 1 2 3 4 5 6
+
+Associative array
+- Declare with -A
+- Access with []
+- Assign with =()
+
+declare -A arr
+arr[fruit]=apple
+arr[veggie]=carrot
+echo ${arr[fruit]} -> apple
+
+declare -A city_details
+city_details=([city]="Tokyo" [population]=10000000 [city_code]=03)
+echo ${city_details[city]} -> Tokyo
+echo ${!city_details[@]} -> city population city_code
+echo ${city_details[@]} -> Tokyo 10000000 03
+--------------------------------------------------------------------
+# Create a normal array with the mentioned elements
+capital_cities=("Sydney" "Albany" "Paris")
+
+# Create a normal array with the mentioned elements using the declare method
+declare -a capital_cities
+
+# Add (append) the elements
+capital_cities+=("Sydney")
+capital_cities+=("Albany")
+capital_cities+=("Paris")
+
+# The array has been created for you
+capital_cities=("Sydney" "Albany" "Paris")
+
+# Print out the entire array
+echo ${capital_cities[@]}
+
+# Print out the array length
+echo ${#capital_cities[@]}
+--------------------------------------------------------------------
+# Create empty associative array
+declare -A model_metrics
+
+# Add the key-value pairs
+model_metrics[model_accuracy]=98
+model_metrics[model_name]="knn"
+model_metrics[model_f1]=0.82
+
+# Declare associative array with key-value pairs on one line
+declare -A model_metrics=([model_accuracy]=98 [model_name]="knn" [model_f1]=0.82)
+
+# Print out the entire array
+echo ${model_metrics[@]}
+
+--------------------------------------------------------------------
+# Create variables from the temperature data files
+temp_b="$(cat temps/region_B)"
+temp_c="$(cat temps/region_C)"
+
+# Create an array with these variables as elements
+region_temps=($temp_b $temp_c)
+
+# Call an external program to get average temperature
+average_temp=$(echo "scale=2; (${region_temps[0]} + ${region_temps[1]}) / 2" | bc)
+
+# Append average temp to the array
+region_temps+=($average_temp)
+
+# Print out the whole array
+echo ${region_temps[@]}
+--------------------------------------------------------------------
+Control statements in Bash scripting
+
+if [ condition ]; then
+    # code
+elif [ condition ]; then
+    # code
+else
+    # code
+fi
+
+x="Queen"
+if [$x == "King"]; then
+    echo "$x is a King!"
+else 
+    echo "$x is not a King!"
+fi
+
+x=10
+if ($x > 5); then
+    echo "$x is greater than 5"
+else
+    echo "$x is not greater than 5"
+fi
+
+-eq -> equal
+-ne -> not equal
+-gt -> greater than
+-ge -> greater than or equal
+-lt -> less than
+-le -> less than or equal
+
+-e -> file exists
+-s -> file exists and is not empty
+-r -> file exists and is readable
+-w -> file exists and is writable
+
+&& -> and
+|| -> or
+
+# Extract Accuracy from first ARGV element
+accuracy=$(grep Accuracy $1 | sed 's/.* //')
+
+# Conditionally move into good_models folder
+if [ $accuracy -ge 90 ]; then
+    mv $1 good_models/
+fi
+
+# Conditionally move into bad_models folder
+if [ $accuracy -lt 90 ]; then
+    mv $1 bad_models/
+fi
+
+--------------------------------------------------------------------
+# Create variable from first ARGV element
+sfile=$1
+
+# Create an IF statement on sfile's contents
+if grep -q 'SRVM_' $sfile && grep -q 'vpt' $sfile; then
+	
+    # Move file if matched
+	mv $sfile good_logs/
+    
+fi
+
+--------------------------------------------------------------------
+for loop and while loop in Bash
+
+for x in 1 2 3
+do 
+    echo $x
+done
+---------------------------------------------------------------------
+for x in {1..5..2} -> start end increment
+do 
+    echo $x
+done
+---------------------------------------------------------------------
+for ((x=2;x<=4;x++))
+do 
+    echo $x
+done
+
+---------------------------------------------------------------------
+for book in books/*
+do 
+    echo $book
+done
+---------------------------------------------------------------------
+for book in $(ls book/ | grep -i 'air)
+do 
+    echo $book
+done
+
+---------------------------------------------------------------------
+
+x=1
+while [ $x -le 3 ];
+do 
+    echo $x
+    ((x+=1))
+done
+
+---------------------------------------------------------------------
+# Create a FOR statement on files in directory
+for file in robs_files/*.py
+do 
+    # Create IF statement using grep
+    if grep -q 'RandomForestClassifier' $file ; then
+        # Move wanted files to to_keep/ folder
+        mv $file to_keep/
+    fi
+done
+
+---------------------------------------------------------------------
+# Use a FOR loop on files in directory
+for file in inherited_folder/*.R
+do 
+    # Echo out each file
+    echo $file
+done
+
+---------------------------------------------------------------------
+CASE statement in Bash
+
+if a file contains sydney -> move to sydney folder
+if a file contains melbourne -> delete the file
+if a file contains canberra then rename it to IMPORTANT_filename where filename was the original filename
+
+case 'SRINGVAR' in 
+    PATTERN1)
+    COMMAND1;;
+    PATTERN2)
+    COMMAND2;;
+*)
+DEFAULT COMMAND;;
+esac
+
+if grep -q 'sydney $1; then 
+    mv $1 sydney/
+fi
+
+if grep -q 'melbourne' $1; then 
+    rm $1
+fi
+
+if grep -q 'canberra' $1; then 
+    mv $1 IMPORTANT_$1
+fi
+
+case $(cat $1) in 
+    *sydney*)
+    mv $1 sydney/ ;;
+    *melbourne*|*brisbane*)
+    rm $1 ;;
+    *canbera*)
+    mv $1 "IMPORTANT_$1" ;;
+*)
+echo "No cities found";;
+esac
+
+---------------------------------------------------------------------
+# Create a CASE statement matching the first ARGV element
+case $1 in
+  # Match on all weekdays
+  Monday|Tuesday|Wednesday|Thursday|Friday)
+  echo "It is a Weekday!" ;;
+  # Match on all weekend days
+  Saturday|Sunday)
+  echo "It is a Weekend!" ;;
+  # Create a default
+  *) 
+  echo "Not a day!" ;;
+esac
+
+---------------------------------------------------------------------
+# Use a FOR loop for each file in 'model_out/'
+for file in model_out/*
+do
+    # Create a CASE statement for each file's contents
+    case $(cat $file) in
+      # Match on tree and non-tree models
+      *"Random Forest"*|*GBM*|*XGBoost*)
+      mv $file tree_models/ ;;
+      *KNN*|*Logistic*)
+      rm $file ;;
+      # Create a default
+      *) 
+      echo "Unknown model in $file" ;;
+    esac
+done
+
+---------------------------------------------------------------------
+Function and Automation in Bash
+
+function_name() {
+    # code
+    return #something
+}
+
+function print_hello () {
+    echo "Hello World"  
+}
+print_hello
+-> Hello World
+
+temp_f=30
+function convert_temp() {
+    temp_c=$(echo "scale=2; ($temp_f - 32) * 5 / 9" | bc)
+    echo $temp_c
+}
+
+---------------------------------------------------------------------
+# Create function
+function upload_to_cloud () {
+  # Loop through files with glob expansion
+  for file in output_dir/*results*
+  do
+    # Echo that they are being uploaded
+    echo "Uploading $file to cloud"
+  done
+}
+
+# Call the function
+upload_to_cloud
+
+---------------------------------------------------------------------
+# Create function
+function what_day_is_it {
+
+  # Parse the results of date
+  current_day=$(date | cut -d " " -f1)
+
+  # Echo the result
+  echo $current_day
+}
+
+# Call the function
+what_day_is_it
+
+---------------------------------------------------------------------
+function print_filename {
+    first_filename=$1 -> global
+}
+print_filename "file1.txt"
+echo $first_filename
+-> file1.txt
+
+function print_filename {
+    local first_filename=$1 -> local
+}
+print_filename "file1.txt"
+echo $first_filename
+-> error
+
+---------------------------------------------------------------------
+function convert_temp () {
+    echo $(echo "scale=2; ($1 - 32) * 5 / 9" | bc)
+}
+converted=$(convert_temp 30)
+echo $converted
+-> -1.11
+
+---------------------------------------------------------------------
+# Create a function 
+function return_percentage () {
+
+  # Calculate the percentage using bc
+  percent=$(echo "scale=2; 100 * $1 / $2" | bc)
+
+  # Return the calculated percentage
+  echo $percent
+}
+
+# Call the function with 456 and 632 and echo the result
+return_test=$(return_percentage 456 632)
+echo "456 out of 632 as a percent is $return_test%"
+
+---------------------------------------------------------------------
+# Create a function
+function get_number_wins () {
+
+  # Filter aggregate results by argument
+  win_stats=$(cat soccer_scores.csv | cut -d "," -f2 | egrep -v 'Winner'| sort | uniq -c | egrep "$1")
+
+}
+
+# Call the function with specified argument
+get_number_wins "Etar"
+
+# Print out the global variable
+echo "The aggregated stats are: $win_stats"
+
+---------------------------------------------------------------------
+# Create a function with a local base variable
+function sum_array () {
+  local sum=0
+  # Loop through, adding to base variable
+  for number in "$@"
+  do
+    sum=$(echo "$sum + $number" | bc)
+  done
+  # Echo back the result
+  echo $sum
+  }
+# Call function with array
+test_array=(14 12 23.5 16 19.34)
+total=$(sum_array "${test_array[@]}")
+echo "The total sum of the test array is $total"
+
+---------------------------------------------------------------------
+Cronjob
+
+Crontab -> file that contains the schedule of cron jobs
+Crontab 
+    -l -> list cron jobs
+    -e -> edit cron jobs
+    -r -> remove cron jobs
+
+* * * * * command 
+- minute (0-59)
+- hour (0-23)
+- day of month (1-31)
+- month (1-12)
+- day of week (0-7) (0-6 -> Sunday-Saturday)/ (7 -> Sunday)
+
+5 1 * * * bash myscript.sh -> run myscript.sh at 1:05 AM every day
+15 14 * * 7 bash myscript.sh -> run myscript.sh at 2:15 PM every Sunday
+15,30,45 * * * * bash myscript.sh -> run myscript.sh at 15, 30, 45 minutes past the hour every day
+*/15 * * * * bash myscript.sh -> run myscript.sh every 15 minutes every day
+0 0 1 * * bash myscript.sh -> run myscript.sh at midnight on the first of every month
+
+---------------------------------------------------------------------
+# Create a schedule for 30 minutes past 2am every day
+30 2  * * * bash script1.sh
+
+# Create a schedule for every 15, 30 and 45 minutes past the hour
+15,30,45 * * * *  bash script2.sh
+
+# Create a schedule for 11.30pm on Sunday evening, every week
+30 23 * * 0 bash script3.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
