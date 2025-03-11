@@ -51,7 +51,6 @@ IQR = Q3 - Q1
 min_value = Q1 - 1.5 * IQR
 max_value = Q3 + 1.5 * IQR
 
-
 # Drop data that is out of range
 df = df[(df['column_name'] >= min_value) & (df['column_name'] <= max_value)]
 df.drop(df[df['column_name'] < min_value].index, inplace=True)

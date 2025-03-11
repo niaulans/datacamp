@@ -423,7 +423,7 @@ re.findall(r"lisar\d", "The winner are lisar9")
 -> ["lisar9"]
 
 \D -> non-digit
-re.findall(r"lisar\d", "The winner are lisarN")
+re.findall(r"lisar\D", "The winner are lisarN")
 -> ["lisarN"]
 
 \w -> word

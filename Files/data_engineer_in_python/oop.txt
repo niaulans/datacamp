@@ -774,7 +774,7 @@ a + b
 
 try - except - finally:
 try: 
-    # SOme code
+    # Some code
 except ExceptionNameHere:
     # Handle exception
 finally:
@@ -950,7 +950,7 @@ obj._att_name, obj._method_name
 Naming convention: private attributes
 obj.__att_name, obj.__method_name
 
-- Starts with a double _ -> private use
+- Starts with a double __ -> private use
 - Name mangling: __att_name -> _ClassName__att_name
 
 ------------------------------------------------------------------------

@@ -24,7 +24,7 @@ Data engineer's responsibilities:
 The five Vs:                      |
 - Volume (how much?)              |
 - Variety (what kind?)            |
-- Velocitty (how frequent?)       |
+- Velocity (how frequent?)        |
 - Veracity (how accurate?)        |
 - Value (how useful?)             |
 ----------------------------------
@@ -53,7 +53,7 @@ automate:
 - loading
 
 reduce:
-- human intervention 
+- human intervention
 - errors
 - time it takes data to flow
 
@@ -795,7 +795,7 @@ INNER JOIN
 --Inner join of presidents and prime_minister, joining on country                    |
 SELECT prime_minister.country, prime_minister.continent, prime_minister, president   |
 FROM presidents                                                                      |
-INNER JOIN prime_minister                                                            |
+INNER JOIN prime_minister                                                           |
 ON presidents.country = prime_minister.country;                                      |
 -------------------------------------------------------------------------------------
 
@@ -807,7 +807,7 @@ Aliasing tables:
 SELECT p2.country, p2.continent, prime_minister, president            |
 FROM presidents AS p1                                                 |
 INNER JOIN prime_ministers AS p2                                      |
-ON p1.country = p2.country;                                           |
+ON p1.country = p2.country;                                          |
 ----------------------------------------------------------------------
 
 Using USING:
@@ -1561,7 +1561,7 @@ CREATE TABLE students (
 
 Foreign keys:
 - A foreign key (FK) points to the primary key (PK) of another table
-- DOmain of FK must be equal to domain of PK
+- Domain of FK must be equal to domain of PK
 - Each value of FK must exist in PK of the other table (FK constraint or referential integrity constraint)
 - FK are not actual keys, but constraints
 
@@ -1898,19 +1898,19 @@ dim_publisher_sf: publisher_id, publisher
 dim_author_sf: author_id, author
 
 -- Create dim_author with an author column
-CREATE TABLE dim_author (
+CREATE TABLE dim_author_sf (
     author VARCHAR(256)  NOT NULL
 );
 
 -- Insert distinct authors 
-INSERT INTO dim_author
+INSERT INTO dim_author_sf
 SELECT DISTINCT author FROM dim_book_star;
 
 -- Add a primary key 
 ALTER TABLE dim_author ADD COLUMN author_id SERIAL PRIMARY KEY;
 
 -- Output the new table
-SELECT * FROM dim_author;
+SELECT * FROM dim_author_sf;
 
 Normalized and denormalized databases
 
@@ -2168,6 +2168,7 @@ WHERE label = 'self-released';
 
 Managing views
 Granting and revoking access to a view:
+
 GRANT privilege(s) or REVOKE privilege(s)
 ON object
 TO role or FROM role
@@ -3076,7 +3077,7 @@ Create stage:
 CREATE STAGE my_local_stage
 
 PUT file:///path_to_your_local_file/orders.csv
-@my_local_stage -- stage naame prefixed with @
+@my_local_stage -- stage name prefixed with @
 
 @ -> Prefix to reference stage
 
@@ -3312,7 +3313,7 @@ cte2 AS (
     SELECT ...
     FROM ....
 )
-    
+
 
 SELECT ...
 FROM cte1;
@@ -3375,6 +3376,7 @@ WITH most_ordered AS (
     WHERE price = (SELECT MIN(price) FROM pizzas)
     LIMIT 1
 )
+
 -- Select pizza_id and total_qty aliased as metric from first cte most_ordered
 SELECT pizza_id, 'Most Ordered' AS Description, total_qty AS metric
 FROM most_ordered
@@ -4692,12 +4694,17 @@ UNBOUNDED PRECEDING -> from the first row
 UNBOUNDED FOLLOWING -> to the last row
 CURRENT ROW -> the current row
 
+Penggunaa:
+Cumulative sum: UNBOUNDED PRECEDING
+Rolling sum (n baris sebelumnya): n PRECEDING
+Moving average (n sebelum & n setelah): n PRECEDING AND n FOLLOWING
+Sisa total dari titik tertentu: UNBOUNDED FOLLOWING
+
 SELECT 
     date, 
     home_goal, 
     away_goal, 
-    SUM(home_goal) OVER(ORDER BY date ROWS BETWEEN 
-    UNBOUNDED PRECEDING AND CURRENT ROW) AS running_total_home
+    SUM(home_goal) OVER(ORDER BY date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_total_home
 FROM match
 WHERE hometeam_id = 8673 AND season = '2013/2014';
 
@@ -4705,8 +4712,7 @@ SELECT
     date, 
     home_goal, 
     away_goal, 
-    SUM(home_goal) OVER(ORDER BY date ROWS BETWEEN 
-    1 AND CURRENT ROW) AS running_total_home
+    SUM(home_goal) OVER(ORDER BY date ROWS BETWEEN 1 AND CURRENT ROW) AS running_total_home
 FROM match
 WHERE hometeam_id = 8673 AND season = '2013/2014';
 
@@ -4878,4 +4884,51 @@ FROM Karyawan;
 ROW_NUMBER() tetap unik meskipun nilai sama.
 RANK() mengulang nomor untuk nilai yang sama, tetapi melompati angka berikutnya.
 DENSE_RANK() juga mengulang nomor, tetapi tidak melompati angka berikutnya.
+
+
+-- Return a checked_time column which contains timestamp one hour after the trip has started
+SELECT Trip_ID, Start_time, Start_time + INTERVAL '1 hour' AS checked_time
+FROM bike_trips;
+
+due_date + INTERVAL '90 days' AS new_due_date
+
+SELECT style, price
+FROM wine_region 
+WHERE id IN (
+    SELECT wine_id
+    FROM pairing
+)
+ORDER BY price, style
+LIMIT 5
+
+SELECT name
+FROM performers
+WHERE 'Reggaeton' = ANY(genre)
+ORDER BY name;
+
+SELECT COUNT(reference)
+FROM (SELECT reference, date('2020-05-01') - due_date AS days_overdue) AS sub 
+WHERE days_overdue > 90
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
