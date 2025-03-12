@@ -939,7 +939,33 @@ networks:
         - subnet: "10.11.12.0/24"
     
 ----------------------------------------------------------------------------
+Jalankan container jupyter tanpa images
+docker run -p 8890:8888 -v $(pwd):/home/jovyan/work jupyter/base-notebook
 
+sudo chmod -R 777 pgadmin_data -> mengubah permission folder
+docker-compose down
+docker-compose up -d --build -> bangun ulang container
+
+sudo chown -R 5050:5050 pgadmin_data
+sudo chmod -R 777 pgadmin_data
+
+docker stop $(docker ps -aq) -> stop all container
+docker rm -f $(docker ps -aq) -> remove all container
+
+docker rmi -f $(docker images -aq) -> remove all images
+docker volume prune -> remove all volume
+
+docker volume rm $(docker volume ls -q) -> remove all volume
+docker network prune -f -> remove all network
+
+Opsi	Kelebihan	Kekurangan
+Bind Mount (./postgres_data:/var/lib/postgresql/data)	Bisa diakses langsung dari host	Bisa bermasalah karena izin file
+Named Volume (postgres_data:/var/lib/postgresql/data)	Lebih stabil dan Docker menangani izin otomatis	Tidak bisa langsung diakses dari host
+
+Kondisi	Gunakan
+Mau data bisa diakses dari folder lokal?	    ✅ Bind Mount (./postgres_data:/var/lib/postgresql/data)
+Mau Docker menangani data tanpa pusing izin?	✅ Named Volume (postgres_data:/var/lib/postgresql/data)
+Mau deploy ke server (lebih aman)?	            ✅ Named Volume
 
 
 
