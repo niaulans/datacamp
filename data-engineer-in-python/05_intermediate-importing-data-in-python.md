@@ -203,7 +203,6 @@ print(guido_text)
 
 ### Scraping web using BeautifulSoup (3)
 ```python
----------------------------------------------------------------
 # Import packages
 import requests
 from bs4 import BeautifulSoup
