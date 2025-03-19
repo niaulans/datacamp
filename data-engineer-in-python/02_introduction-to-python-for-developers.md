@@ -24,11 +24,11 @@ Accessing elements in a list:
 a_list = [1, 2, 3, 4, 5]
 a_list[0]     -> 1
 a_list[-1]    -> 5
-a_list[1:3]   -> [2, 3] -> 3rd element is not included
-a_list[:3]    -> [1, 2, 3] -> 4th element is not included
-a_list[3:]    -> [4, 5] -> 3rd element is included
-a_list[::2]   -> [1, 3, 5] -> step size of 2
-a_list[1::3]  -> [2, 5] -> start from 2nd element and step size of 3
+a_list[1:3]   -> [2, 3]     -> 3rd element is not included
+a_list[:3]    -> [1, 2, 3]  -> 4th element is not included
+a_list[3:]    -> [4, 5]     -> 3rd element is included
+a_list[::2]   -> [1, 3, 5]  -> step size of 2
+a_list[1::3]  -> [2, 5]     -> start from 2nd element and step size of 3
 ```
 
 ### Dictionary
