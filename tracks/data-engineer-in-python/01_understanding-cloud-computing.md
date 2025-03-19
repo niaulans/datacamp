@@ -43,10 +43,11 @@ Delivery of technology services including compute storage, database, networking,
 - PaaS -> taxi
 - SaaS -> public transport
 
-<br>
-- IaaS -> Servers, virtual machines, storage, networks
-- PaaS -> Runtime, Operating system
-- SaaS -> Application software, data
+<br>  
+
+- IaaS -> Servers, virtual machines, storage, networks  
+- PaaS -> Runtime, Operating system  
+- SaaS -> Application software, data  
 
 ### Cloud Service Providers (CSP)
 ```
