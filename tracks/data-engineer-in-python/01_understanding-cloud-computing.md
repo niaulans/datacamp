@@ -5,6 +5,7 @@ Delivery of technology services including compute storage, database, networking,
 
 
 ### Use case: hosting a website
+```
 - Free week increases traffic
 - High traffic leads to slow service
 - Users stop learning on Datacamp
@@ -15,7 +16,7 @@ Delivery of technology services including compute storage, database, networking,
     - More people start using the website
     - Access more cloud servers
     - Easily release redundant cloud servers
-
+```
 
 ### The difference between cloud computing and on-premise
 
@@ -25,31 +26,36 @@ Delivery of technology services including compute storage, database, networking,
 | Fast set-up speed | Takes time to setup |
 | Pay-as-you-go pricing | High upfront costs & maintenance |
 
-### Other uses of cloud computing:
+### Other uses of cloud computing
+```
 - Store, backup, and recover data
 - Create cloud-native applications
 - Stream audio and video
 - Deliver software on demand
 - Analyze data
 - Embed artificial intelligence models
+```
 
 ### Cloud services
+```
 - Compute -> provide the brains to process your workload
 - Storage -> save and store data
+```
 
 ### Types of cloud services
+```
 - On premise -> car owned
 - IaaS -> car rental
 - PaaS -> taxi
 - SaaS -> public transport
 
-<br>  
-
 - IaaS -> Servers, virtual machines, storage, networks  
 - PaaS -> Runtime, Operating system  
 - SaaS -> Application software, data  
+```
 
 ### Cloud Service Providers (CSP)
+```
 1. Microfost Azure
 2. Alibaba Cloud
 3. Tencent Cloud
@@ -58,3 +64,4 @@ Delivery of technology services including compute storage, database, networking,
 6. Salesforce
 7. Orcale Cloud
 8. Google Cloud
+```
