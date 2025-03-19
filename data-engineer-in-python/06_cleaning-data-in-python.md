@@ -689,3 +689,145 @@ non_dup = restaurants_new[~restaurants_new.index.isin(matching_indices)]
 # Append non_dup to restaurants
 full_restaurants = restaurants.append(non_dup)
 print(full_restaurants)
+
+---------------------------------------------------------
+Urutan:
+1. Data type constraints
+2. Data range constraints
+3. Uniqueness constraints
+4. Consistency constraints
+5. Completeness constraints
+
+# Check dataframe
+df.head()
+df.info()
+df.describe()
+
+1. Data type constraints
+Data types:
+- text
+- integer
+- float
+- date
+- boolean
+- categories
+
+# Check data types
+df.dtypes
+
+# Change data types
+df['column_name'] = df['column_name'].astype('data_type')
+
+# Verify 
+assert df['column_name'].dtype == 'data_type'
+
+# Strip white spaces
+df['column_name'] = df['column_name'].str.strip()
+
+2. Data range constraints
+How to deal with out of range data:
+- Dropping data (depending the size of the dataset), drop data when it is not significant
+- Setting custom minimums and maximums
+- Treat as missing and impute
+- Setting custome value depending on business assumptions
+
+# Check data range
+df.describe()
+
+# Check for outliers
+df['column_name'].plot(kind='box')
+
+# Outlier detection
+Q1 = df['column_name'].quantile(0.25)
+Q3 = df['column_name'].quantile(0.75)
+IQR = Q3 - Q1
+min_value = Q1 - 1.5 * IQR
+max_value = Q3 + 1.5 * IQR
+
+# Drop data that is out of range
+df = df[(df['column_name'] >= min_value) & (df['column_name'] <= max_value)]
+df.drop(df[df['column_name'] < min_value].index, inplace=True)
+df.drop(df[df['column_name'] > max_value].index, inplace=True)
+
+# Convert max to spesific value
+df.loc[df['column_name'] > max_value, 'column_name'] = max_value
+
+3. Uniqueness constraints
+How to deal with duplicate data:
+- Drop duplicates
+- Mark duplicates
+- Combine duplicates
+- Setting custom value depending on business assumptions
+
+# Check duplicates
+df.duplicated().sum()
+
+# Drop duplicates
+df.drop_duplicates(inplace=True)
+df.drop_duplicates(subset=['column_name'], inplace=True)
+df.drop_duplicates(subset=['column_name'], keep='last', inplace=True)
+
+# Mark duplicates
+df['is_duplicated'] = df.duplicated()
+
+4. Consistency constraints
+How to deal with inconsistent data:
+- Standardize data
+- Correct data
+- Setting custom value depending on business assumptions
+
+# Check consistency
+df['column_name'].unique()
+
+# Standardize data
+df['column_name'] = df['column_name'].str.lower()
+df['column_name'] = df['column_name'].str.upper()
+
+# Correct data
+df['column_name'] = df['column_name'].replace('incorrect_value', 'correct_value')
+
+inconsistent_data = set(df['column_name']).difference(standard_data)
+df.loc[df['column_name'].isin(inconsistent_data), 'column_name'] = 'correct_value'
+
+5. Completeness constraints
+How to deal with missing data:
+- Drop data
+- Fill missing data
+- Setting custom value depending on business assumptions
+
+# Check missing data
+df.isnull().sum()
+
+# Fill with statistical value
+df['column_name'].fillna(df['column_name'].mean(), inplace=True)
+df['column_name'].fillna(df['column_name'].median(), inplace=True)
+df['column_name'].fillna(df['column_name'].mode()[0], inplace=True)
+
+# Fill with spesific value
+df['column_name'].fillna('spesific_value', inplace=True)
+
+# Drop missing data
+df.dropna(inplace=True)
+
+# Drop missing data based on column
+df.dropna(subset=['column_name'], inplace=True)
+
+# Drop missing data based on threshold
+df.dropna(thresh=2, inplace=True)
+
+
+axis
+✅ "0" untuk ke bawah (vertikal, baris akan diproses)
+✅ "1" untuk ke samping (horizontal, kolom akan diproses)
+
+.str.slice(start=n)	Hapus n karakter pertama
+.str[n:]	Alternatif .slice(), lebih simpel
+.str.lstrip("X")	Hapus karakter spesifik "X" dari kiri
+
+Do reset_index() after:
+- dropna()
+- fillna()
+- drop_duplicates()
+- drop()
+- groupby()
+
