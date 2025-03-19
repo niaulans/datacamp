@@ -2,12 +2,10 @@
 
 ### Cloud computing
 ```
-Delivery of technology services 
-including compute storage, database, networking, software, and many more - over the internet with pay-as-you-go pricing.
+Delivery of technology services including compute storage, database, networking, software, and many more - over the internet with pay-as-you-go pricing.
 ```
 
 ### Use case: hosting a website
-```
 - Free week increases traffic
 - High traffic leads to slow service
 - Users stop learning on Datacamp
@@ -18,14 +16,15 @@ including compute storage, database, networking, software, and many more - over 
     - More people start using the website
     - Access more cloud servers
     - Easily release redundant cloud servers
-```
+
+
 ### The difference between cloud computing and on-premise
 
 | Cloud computing | On-premise | 
 | --- | --- |
 | Scalable | Less scalable |
 | Fast set-up speed | Takes time to setup |
-| pay-as-you-go pricing | High upfront costs & maintenance |
+| Pay-as-you-go pricing | High upfront costs & maintenance |
 
 ### Other uses of cloud computing:
 ```
