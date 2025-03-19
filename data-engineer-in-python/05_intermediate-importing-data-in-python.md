@@ -111,7 +111,7 @@ r = requests.get(url)
 text = r.text
 ```
 
-### Scraping the web in Python
+### Using urllib.request
 ```python
 
 # Import packages
@@ -136,7 +136,7 @@ print(html)
 response.close()
 ```
 
-### Read the HTML
+### Using requests
 ```python
 # Import package
 import requests
@@ -154,7 +154,7 @@ text = r.text
 print(text)
 ```
 
-### Scraping the web in Python using BeautifulSoup
+### Scraping web using BeautifulSoup
 ```python
 from bs4 import BeautifulSoup
 url = 'https://www.crummy.com/software/BeautifulSoup/'
@@ -170,7 +170,7 @@ for link in soup.find_all('a'):
 ```
 
 
-### Scraping the web in Python using BeautifulSoup (2)
+### Scraping web using BeautifulSoup (2)
 ```python
 # Import packages
 import requests
@@ -201,7 +201,7 @@ guido_text = soup.get_text()
 print(guido_text)
 ```
 
-### Scraping the web in Python using BeautifulSoup (3)
+### Scraping web using BeautifulSoup (3)
 ```python
 ---------------------------------------------------------------
 # Import packages
