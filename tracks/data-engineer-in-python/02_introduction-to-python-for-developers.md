@@ -48,30 +48,41 @@ Accessing elements in a dictionary:
 - add a new key-value pair  -> a_dict['key3'] = 'value3'
 ```
 
-Sets = store unique values, unordered, mutable, ideal to identify unique elements
+### Set
+```
+- Store unique values
+- Unordered
+- Mutable
+- Ideal to identify unique elements
 
 Accessing elements in a set:
 - a_set = {1, 2, 3, 4, 5}
 - convert a list to a set -> set(a_list)
 - sorting a set -> sorted(a_set) -> return a list
+```
 
-Tuples
-- immutable - cannot change values
+### Tuples
+```
+- Immutable - cannot change values
 - No adding values
 - No removing values
 - No changing values
 - Can subset values by indexing
-- tuple = (1, 2, 3, 4, 5)
-- convert a list to a tuple -> tuple(a_list)
-- tuple[0] -> 1
+
+tuple = (1, 2, 3, 4, 5)
+convert a list to a tuple -> tuple(a_list)
+tuple[0] -> 1
+```
 
 Data structure    | Syntax        | Immutable | Allow duplicates | Ordered | Subset with []
---------------------------------------------------------------------------------------------
+| --- | --- | --- | --- | --- | --- |
 List             | [1, 2, 3]      | No        | Yes              | Yes     | Yes
 Dictionary       | {key:value}    | No        | Yes              | Yes     | Yes
 Set              | {1, 2, 3}      | No        | No               | No      | No
 Tuple            | (1, 2, 3)      | Yes       | Yes              | Yes     | Yes
 
+### Conditional statements
+```python
 # Check if September inflation is less than August inflation
 if inflation_september < inflation_august:
   print("Inflation decreased")
@@ -83,14 +94,21 @@ elif inflation_september > inflation_august:
 # Confirm that they are equal
 else:
   print("Inflation remained stable")
+```
 
-
+### Loop
+```python 
 for value in sequence:
     action
+```
 
+```
 - sequence = list, dictionary, set, tuple
 - value = variable that represents the value in the sequence, iterator
+```
 
+### Loop through a list
+```python
 prices = [10, 20, 30, 40, 50]
 for price in prices:
     print(price)
@@ -102,13 +120,17 @@ for price in prices:
         print("Equal to 10")
     else:
         print("Less than 10")
+```
 
-Looping through strings:
+### Loop through a string
+```python
 username = "Datacamp"
 for letter in username:
     print(letter)
+```
 
-Looping through dictionaries:
+### Loop through a dictionary
+```python
 a_dict = {'key1': 'value1', 'key2': 'value2'}
 for key, value in a_dict.items():
     print(key, value)
@@ -118,25 +140,36 @@ for key in a_dict.keys():
 
 for value in a_dict.values():
     print(value)
+```
 
+### Remember!!
+```
 range(start, end + 1, step)
 start = inclusive
 end = exclusive
+```
 
+### Loop through a range
+```python
 for i in range(1, 6):
     print(i)
-1
-2
-3
-4
-5
+-> 1
+   2
+   3
+   4
+   5
+```
 
+### Loop through a range with a step size
+```python
 visits = 0
 for i in range(1, 11):
     visits += 1 # Add 1 to visits during each iteration
 print(visits)
+```
 
--------------------------------------------------------------
+### Implementation of a loop
+```python
 # Create the tickets_sold variable
 tickets_sold = 0
 
@@ -150,7 +183,10 @@ for tickets in range(1, max_capacity + 1):
   tickets_sold += 1
   
 print("Sold out:", tickets_sold, "tickets sold!")
--------------------------------------------------------------
+```
+
+### Implementation of a loop (2)
+```python
 # Loop through the dictionary's keys and values
 for key, value in courses.items():
   
@@ -165,25 +201,39 @@ for key, value in courses.items():
   # Otherwise, print that it is a "Data Engineering" course
   else:
     print(key, "is a Data Engineering course")
+```
 
-While loop:
+### While loop
+```python
 while condition:
     action
+```
 
+### Implementation of a while loop
+```python
 stock = 10
 num_purchases = 0
 
 while num_purchases < stock:
     num_purchases += 1
     print("Purchase made")
+```
 
+### Remember!!
+```
 while runs until the condition is False
+```
 
+### Implementation of a while loop (2) with a break
+```python
 while num_purchases < stock:
     print(stock - num_purchases, "items left")
 
     break -> exit the loop
+```
 
+### Implementation of a while loop (3) with if-elif-else
+```python
 while num_purchases < stock:
     num_purchases += 1
     if stock - num_purchases == 7:
@@ -194,9 +244,10 @@ while num_purchases < stock:
         print("Last item left")
     else:
         print("No items left")
+  ```
 
--------------------------------------------------------------
-
+### Implementation of a while loop (4) 
+```python
 release_date = 26
 current_date = 22
 
@@ -215,8 +266,8 @@ while current_date <= release_date
     print("Coming soon!")
   else:
     print("Available now!")
+```
 
--------------------------------------------------------------
 # Create an empty list
 authors_below_twenty_five = []
 
