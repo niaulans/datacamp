@@ -2,7 +2,8 @@
 
 ### Cloud computing
 ```
-Delivery of technology services - including compute storage, database, networking, software, and many more - over the internet with pay-as-you-go pricing.
+Delivery of technology services 
+including compute storage, database, networking, software, and many more - over the internet with pay-as-you-go pricing.
 ```
 
 ### Use case: hosting a website
