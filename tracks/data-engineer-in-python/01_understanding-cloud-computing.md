@@ -1,9 +1,8 @@
 ## [Understanding Cloud Computing](https://app.datacamp.com/learn/courses/understanding-cloud-computing)
 
 ### Cloud computing
-```
 Delivery of technology services including compute storage, database, networking, software, and many more - over the internet with pay-as-you-go pricing.
-```
+
 
 ### Use case: hosting a website
 - Free week increases traffic
