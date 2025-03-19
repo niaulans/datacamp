@@ -62,7 +62,7 @@ spark = SparkSession.builder.appName("MySparkApp").getOrCreate()
 ```
 .builder()      -> sets up a session
 .appName()      -> helps manage multiple sessions
-.getOrCreate()   -> creates or retrieves a session 
+.getOrCreate()  -> creates or retrieves a session 
 ```
 
 ### PySpark dataframe
