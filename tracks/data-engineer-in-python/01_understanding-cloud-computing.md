@@ -50,13 +50,11 @@ Delivery of technology services including compute storage, database, networking,
 - SaaS -> Application software, data  
 
 ### Cloud Service Providers (CSP)
-```
-Microfost Azure
-Alibaba Cloud
-Tencent Cloud
-IBM Cloud
-AWS
-Salesforce
-Orcale Cloud
-Google Cloud
-```
+1. Microfost Azure
+2. Alibaba Cloud
+3. Tencent Cloud
+4. IBM Cloud
+5. AWS
+6. Salesforce
+7. Orcale Cloud
+8. Google Cloud
