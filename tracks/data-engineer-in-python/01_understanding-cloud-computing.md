@@ -26,32 +26,27 @@ Delivery of technology services including compute storage, database, networking,
 | Pay-as-you-go pricing | High upfront costs & maintenance |
 
 ### Other uses of cloud computing:
-```
 - Store, backup, and recover data
 - Create cloud-native applications
 - Stream audio and video
 - Deliver software on demand
 - Analyze data
 - Embed artificial intelligence models
-```
 
 ### Cloud services
-```
-Compute -> provide the brains to process your workload
-Storage -> save and store data
-```
+- Compute -> provide the brains to process your workload
+- Storage -> save and store data
 
 ### Types of cloud services
-```
-On premise -> car owned
-IaaS -> car rental
-PaaS -> taxi
-SaaS -> public transport
+- On premise -> car owned
+- IaaS -> car rental
+- PaaS -> taxi
+- SaaS -> public transport
 
-IaaS -> Servers, virtual machines, storage, networks
-PaaS -> Runtime, Operating system
-SaaS -> Application software, data
-```
+<br>
+- IaaS -> Servers, virtual machines, storage, networks
+- PaaS -> Runtime, Operating system
+- SaaS -> Application software, data
 
 ### Cloud Service Providers (CSP)
 ```
