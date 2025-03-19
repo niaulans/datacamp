@@ -10,32 +10,43 @@ str.lower() -> convert to lowercase
 
 ### List
 ```
-Store multiple values in a single variable, can contain different data types, mutable
-- List are ordered
+- Store multiple values in a single variable
+- Can contain different data types
+- Mutable
+- Ordered
 - Can use indexing to access elements
 - Counts from 0
 
 Accessing elements in a list:
 - List = []
 - Subsetting = a_list[index]
-a_list = [1, 2, 3, 4, 5]
-a_list[0] -> 1
-a_list[-1] -> 5
-a_list[1:3] -> [2, 3] -> 3rd element is not included
-a_list[:3] -> [1, 2, 3] -> 4th element is not included
-a_list[3:] -> [4, 5] -> 3rd element is included
-a_list[::2] -> [1, 3, 5] -> step size of 2
-a_list[1::3] -> [2, 5] -> start from 2nd element and step size of 3
 
-Dictionary = store key-value pairs, mutable, ordered, can contain different data types
+a_list = [1, 2, 3, 4, 5]
+a_list[0]     -> 1
+a_list[-1]    -> 5
+a_list[1:3]   -> [2, 3] -> 3rd element is not included
+a_list[:3]    -> [1, 2, 3] -> 4th element is not included
+a_list[3:]    -> [4, 5] -> 3rd element is included
+a_list[::2]   -> [1, 3, 5] -> step size of 2
+a_list[1::3]  -> [2, 5] -> start from 2nd element and step size of 3
+```
+
+### Dictionary
+```
+- Store key-value pairs
+- Mutable
+- Ordered
+- Can contain different data types
+
 a_dict = {'key1': 'value1', 'key2': 'value2'}
 
 Accessing elements in a dictionary:
-- a_dict['key1'] -> 'value1'
-- get all values -> a_dict.values()
-- get all keys -> a_dict.keys()
-- get all key-value pairs -> a_dict.items()
-- add a new key-value pair -> a_dict['key3'] = 'value3'
+- a_dict['key1']            -> 'value1'
+- get all values            -> a_dict.values()
+- get all keys              -> a_dict.keys()
+- get all key-value pairs   -> a_dict.items()
+- add a new key-value pair  -> a_dict['key3'] = 'value3'
+```
 
 Sets = store unique values, unordered, mutable, ideal to identify unique elements
 
