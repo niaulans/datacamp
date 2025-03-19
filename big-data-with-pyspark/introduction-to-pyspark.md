@@ -2,7 +2,7 @@
 
 ### Apache Spark
 ```
-- Source, distributed computing systen designed for fast processing of large-scale data
+- Open source, distributed computing systen designed for fast processing of large-scale data
 - Support various data formats including CSV, Parquet, and JSON
 - SQL integration allows querying of data using both Python and SQL syntax
 ```
