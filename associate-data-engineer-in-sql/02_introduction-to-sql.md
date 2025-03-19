@@ -112,7 +112,7 @@ SELECT id, name, year_hired
 FROM employees;                                                             
 ```
 
-### Create a view (2)
+### Create a view with DISTINCT
 ```sql
 CREATE VIEW library_authors AS          
 SELECT DISTINCT author AS unique_author 
@@ -147,7 +147,6 @@ FROM employees
 LIMIT 2;         
 
 -- SQL Server:
--
 SELECT TOP(2) id, name 
 FROM employees;        
 ```
