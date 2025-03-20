@@ -1,12 +1,12 @@
 ## [Data Warehousing Concepts](https://app.datacamp.com/learn/courses/data-warehousing-concepts)
 
--------------------------------------
-Data Warehousing Concept             |
--------------------------------------
+### Data warehouse
+```
+A computer system designed to store and analyze large amounts of data for an organization
+```
 
-Data warehouse: A computer system designed to store and analyze large amounts of data for an organization
-
-What does a data warehouse do?
+### What does a data warehouse do?
+```
 - Gathers data from different areas of an organization
 - Integrates and stores the data
 - Make it available for analysis
@@ -21,14 +21,18 @@ Common scenarios:
 - Product sales forecasting
 - Governance and regulation adherence
 - Insight and growth
+```
 
-Difference between data warehouses and data lakes:
+### Difference between data warehouses and data lakes
 
-Database:
+#### Database
+```
 - Structures data in rows and columns
 - Transactional databases store transactions
+```
 
-Data warehouse:
+#### Data warehouse
+```
 - Gather data, integrate, and make available for analysis
 - Many input data sources
 - Store structured data
@@ -36,17 +40,22 @@ Data warehouse:
     - Upstream and downstream effects must be considered
 - Typically > 10 gigabytes
 
-Why the data warehouse?
+Why the data warehouse
+
 - How quickly query will run on a large amount of data
 - Avoid slowing down transactional database
+```
 
-Data marts:
+#### Data marts
+```
 - a relational database for analysis
 - Data is focused on one subject area 
 - Few input data sources
 - Typically < 100 GBs
+```
 
-Data lakes:
+#### Data lakes
+```
 - Entire organization store of data
     - Contains data from many departments
     - Many data input sources
@@ -57,43 +66,52 @@ Example: video, audio, and documents
     - Fewer upstream and downstream effects to consider
 - Purpose to store data may not be known
     - Less organized
+```
 
-Data warehouse support organizational analysis:
-
+### Data warehouse support organizational analysis
+```
 High-level llife cycle data warehouse project
-Planning -> Business requirements (Analyst, DS), data modelling ( analysts, DS, DE, DB admin)
-Implementation -> ETL design & development (DE, DB admin), BI application development (Analyst, DS)
-Support/ maintenance -> Maintenance (DE), test & deploy (Analyst, DS, DE)
+Planning                -> Business requirements (Analyst, DS), data modelling ( analysts, DS, DE, DB admin)
+Implementation          -> ETL design & development (DE, DB admin), BI application development (Analyst, DS)
+Support/ maintenance    -> Maintenance (DE), test & deploy (Analyst, DS, DE)
+```
 
-Warehouse Architectures and Properties
-----------------------------------------
-
+### Warehouse Architectures and Properties
+```
 Layer overview - data staging
 
 Data source -> Data source 1 & 2 -> Data staging (ETL) -> Data storage (data warehouse & data mart) -> Data presentation (data analytics, reporting tools, analysis tools)
+```
 
-Data source layer:
+#### Data source layer
+```
 - All data sources for data warehouse
 - Example:
     - Transactional database
     - Log files
     - Spreadsheet
+```
 
-Data staging (ETL)
+#### Data staging (ETL)
+```
 - Layer extracts, transform, and clean data through ETL process
 - Contains ETL process and storage tables
 
-ETL process within data staging layer:
+ ETL process within data staging layer:
 - extracted
 - business rules applied and cleaned
 - staging database often used
 - must be able to extract valid data
 - batch / full loading
+```
 
-Data storage layer:
-- Data is stored in warehouse and data marts
+#### Data storage layer
+```
+Data is stored in warehouse and data marts
+```
 
-Data presentation layer:
+### Data presentation layer
+```
 - Users interact with stored data
 - Users:
     - Use BI (Business Intelligence) tools
@@ -134,9 +152,12 @@ Presentation layer groups:
         - Data scientists
         - Analysts
         - Data engineers
+```
 
-Data warehouse architecture:
-Bill Inmon - top-down approach
+### Data warehouse architecture
+
+#### Bill Inmon - top-down approach
+```     
 Must decide:
 - On all data definitions, cleaning, and business rules
 - Before any data enters warehouse
@@ -151,8 +172,10 @@ Pros and cons:
 - Cons:
     - More joins = slower response time
     - Lengthy upfront work
+```
 
-Kimball - bottom-up approach
+#### Kimball - bottom-up approach
+```
 Data source -> ETL -> Data mart -> Data warehouse -> BI tools
 
 - Denormalize data 
@@ -169,10 +192,12 @@ Pros and cons:
     - Increase ETL processing time
     - Greater possibility of duplicate data
     - Ongoing development needed
+```
 
-OLAP and OLTP Systems
--------------------------------
-OLAP (Online analytical processing)
+### OLAP and OLTP Systems
+
+#### OLAP (Online analytical processing)
+```
 - Designed to support analysis of large amounts of data
 - Example dimensional organization:
     - country, state, city
@@ -184,7 +209,13 @@ OLAP cube:
 - Faster processing vs. traditional relational databases
 - Hypercubes have more than three dimensions
 
-OLTP (Online transaction processing)
+OLAP:
+- Designed for analyzing purchase data 
+- Data organized by multiple dimensions
+```
+
+#### OLTP (Online transaction processing)
+```
 - Designed for processing simple database queries
 - Used in source systems to data warehouse
 
@@ -193,14 +224,12 @@ OLTP:
 - System tracks customer's purchase
 - Processes large amounts of simple database updates to account balances
 - Rows and columns
+```
 
-OLAP:
-- Designed for analyzing purchase data 
-- Data organized by multiple dimensions
+### Data warehouse data modeling
 
-Data warehouse data modeling
----------------------------------------
-Data models
+#### Data models
+```
 - Bottom-up, kimbal model = star & snowflake schemas
 - Denormalized data models
 
@@ -214,15 +243,19 @@ Example:
         - Dimensionns/attribute about a process
         - Holds reference data
         - Dimension tables add more detail to fact table
+```
 
+```
 Star schema:
 - A central fact table, with one or more dimensional tables
 - Easy for business users
 
 Snowflake schema:
 - Dimensional table connected through another dimensional table
+```
 
-Kimball's four step process:
+#### Kimball's four step process
+```
 1. Step 1- Select the organizational process
    - Ask questions about a process
    - Kimball bottom-ip approach starts with a business process
@@ -291,9 +324,10 @@ category = electric-crossover
 pastcategory = electric-veh
 - Can view past and current data together
 - Can require reporting changes and limited tracking
+```
 
-Row vs. column store data store
--------------------------------------
+### Row vs. column store data store
+```
 Why is it important?
 - Optimizing queries for speed
 - Column store format for data warehouse tables is best for analytic workloads
@@ -313,15 +347,18 @@ Column store:
 - Reads only the columns needed for a query
 - Good for OLAP systems
 - Better data compression
+```
 
-Implementation and Data Prep
--------------------------------------
+### Implementation and Data Prep
+
 ETL                 |       ELT
-1. Extract         |       1. Extract
-2. Transform       |       2. Load
-3. Load            |       3. Transform
+|-------------------|-------------------
+Extract         |       Extract
+Transform       |       Load
+Load            |       Transform
 
-ETL:
+### ETL
+```
 - Data transformed during the moves
 - Uses separate system to process data
 
@@ -332,8 +369,10 @@ Pros:
 Cons:
 - Transformation errors/changes require new data pulls
 - Costs of separate system for process data
+```
 
-ELT:
+#### ELT
+```
 - Data is loaded, then transformed
 - Uses the warehouse to transform the data
 
@@ -345,9 +384,10 @@ Pros:
 Cons:
 - Increases storage needs from raw data
 - Compliance with PII secutiry standards
+```
 
-Data cleaning
-----------------------------
+### Data cleaning
+```
 Data format cleaning:
 - Update values to an expected format
     - date
@@ -358,8 +398,10 @@ Data format cleaning:
 Address parsing:
 - dividing a street address into its components
 - can use tools to validate addresses
+```
 
-Data validation:
+#### Data validation
+```
 - Range check 
     - Is the value within expected range? - a person age
 - Type check 
@@ -367,10 +409,12 @@ Data validation:
 
 Duplicate row elimination
 - This process gets rid of duplicate entries
+```
 
-On premise and cloud data warehouse:
--------------------------------------
-On premise:
+### On premise and cloud data warehouse
+
+#### On premise
+```
 - purchase and install software and hardware
 - on the grounds of the organization
 
@@ -384,8 +428,10 @@ cons:
 - upfront hardware and software costs
 - Personnel/staff must maintain system
 - Must keep up with patches and security
+```
 
-In the cloud:
+#### In the cloud
+```
 - Rapid growth
 - Forecasted continued growth
 
@@ -399,8 +445,10 @@ Cons:
 - less control
 - cannot optimize warehouse workloads
 - possible unanticipated costs
+```
 
-Data warehouse design example:
+### Data warehouse design example
+```
 - New startup company
 - Photo sharing app
 
@@ -411,8 +459,10 @@ Top-down, or bottom-up approach?
 - Decision:
     - Bottom-up approach
     - Sales data mart must be the priority
+```
 
-Kimball 
+#### Kimball
+``` 
 Step 1 - Select the organizational process 
 Considerations:
 - What type of customers purchase large volume of photos?
@@ -450,18 +500,23 @@ dimension_table:
 cust_dim -> custid, custname, custaddress, custcity, custstate, custzip
 photo_dim -> photoid, photodesc, phototype, photoprice
 date_dim -> dateid, day, month, year
+```
 
-On premise vs. cloud data warehouse:
+### On premise vs. cloud data warehouse
+```
 Considerations:
 - we dont want upfront costs
 - small team
 decision:
 - cloud data warehouse
+```
 
-ETL vs. ELT:
+### ETL vs. ELT
+```
 Considerations:
 - Keep all data
 - Cloud implementation allows us to scale compute as needed
 
 Decision:
 - ELT
+```
