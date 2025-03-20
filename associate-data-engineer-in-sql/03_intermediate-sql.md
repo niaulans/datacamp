@@ -42,9 +42,9 @@ Order of execution:
 - SQL is not processed in its written order
 
 --Order of execution
-SELECT name 	(2)
-FROM people 	(1)
-LIMIT 10; 		(3)
+SELECT name		(3)
+FROM people		(1)
+LIMIT 5;		(2)
 ```
 
 ### Most common errors
