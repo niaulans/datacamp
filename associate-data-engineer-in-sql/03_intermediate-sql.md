@@ -97,7 +97,7 @@ WHERE country = 'Japan';
 SELECT item 			(3)
 FROM coats 				(1)
 WHERE color = 'green' 	(2)
-LIMIT 5; 				(4)
+LIMIT 6; 				(4)
 ```
 
 ### Filtering 
