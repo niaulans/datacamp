@@ -93,7 +93,7 @@ WHERE country = 'Japan';
 ```
 
 ```
--- Order of execution
+-- Order of executions
 SELECT item 			(3)
 FROM coats 				(1)
 WHERE color = 'green' 	(2)
