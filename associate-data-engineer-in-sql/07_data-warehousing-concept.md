@@ -357,7 +357,7 @@ Extract         |       Extract
 Transform       |       Load
 Load            |       Transform
 
-### ETL
+#### ETL
 ```
 - Data transformed during the moves
 - Uses separate system to process data
