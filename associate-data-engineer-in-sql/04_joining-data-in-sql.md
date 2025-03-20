@@ -202,8 +202,8 @@ ORDER BY region;
 
 ### Multiple FULL JOIN
 ```sql
-SELECT                  
-	c1.name AS country, 
+SELECT
+    c1.name AS country, 
     region,             
     l.name AS language, 
 	basic_unit,         
