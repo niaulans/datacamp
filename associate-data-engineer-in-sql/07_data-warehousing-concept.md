@@ -110,7 +110,7 @@ Data source -> Data source 1 & 2 -> Data staging (ETL) -> Data storage (data war
 Data is stored in warehouse and data marts
 ```
 
-### Data presentation layer
+#### Data presentation layer
 ```
 - Users interact with stored data
 - Users:
