@@ -44,7 +44,7 @@ Order of execution:
 --Order of execution
 SELECT name (2)
 FROM people (1)
-LIMIT 10; (3)
+LIMIT 10; 	(3)
 ```
 
 ### Most common errors
