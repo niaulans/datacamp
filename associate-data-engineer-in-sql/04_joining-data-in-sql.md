@@ -203,11 +203,8 @@ ORDER BY region;
 ### Multiple FULL JOIN
 ```sql
 SELECT
-    c1.name AS country, 
-    region,             
-    l.name AS language, 
-	basic_unit,         
-    frac_unit           
+    c1.name AS country, region,             
+    l.name AS language, basic_unit, frac_unit           
 FROM countries as c1    
 -- Full join with languages (alias as l)           
 FULL JOIN languages AS l
