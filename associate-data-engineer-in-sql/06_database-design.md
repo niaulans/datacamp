@@ -2,11 +2,11 @@
 
 ### How should we organize and manage data?
 ```
-- Schemas: How should my data be logically organized?
-- Normalization: Should my data have minimal dependency and redundancy?
-- Views: What joins will be done most often?
+- Schemas       : How should my data be logically organized?
+- Normalization : Should my data have minimal dependency and redundancy?
+- Views         : What joins will be done most often?
 - Access control: Should all users of the data have the same level access
-- DBMS: How do i pick between al the SQL and noSQL options?
+- DBMS          : How do i pick between al the SQL and noSQL options?
 
 Its depends on the intended use of the data.
 ```
@@ -109,7 +109,7 @@ Data sources (OLTP, APIs, Files, IoT Logs) - Data lake - Data warehouse - Data m
    - How is data going to be read and updates?
 - Uses database models: high-level specifications for database structure
   - Most popular: relational model
-  - Other: NoSQL, objct-oriented, graph, network model
+  - Other       : NoSQL, objct-oriented, graph, network model
 - Uses schemas: blueprint of the database
   - defines tables, fields, relationships, indexes, and views
   - When inserting data in relational databases, schemas must be respected
@@ -166,7 +166,7 @@ Dimensions tables:
 
 ### Snowflake schema (an extension)
 ```
-Star schema: one dimension
+Star schema     : one dimension
 Snowflake schema: more than one dimension
 
 Because dimension tables are normalized
@@ -191,10 +191,10 @@ Most likely to have repeating values:
 - genre
 
 divides tables:
-dim_book_sf: book_id, title, author_id, publisher_id, genre_id
-dim_genre_sf: genre_id, genre
+dim_book_sf     : book_id, title, author_id, publisher_id, genre_id
+dim_genre_sf    : genre_id, genre
 dim_publisher_sf: publisher_id, publisher
-dim_author_sf: author_id, author
+dim_author_sf   : author_id, author
 ```
 
 ```sql
@@ -408,9 +408,9 @@ What is risked if we don't normalize enough?
 2. Insert anomaly
 3. Delete anomaly
 
-update anomaly: data inconsistency cause by data redundancy when updating
-insertion anomaly: unable to add data because of missing data
-delete anomaly: unintentional loss of data when deleting
+update anomaly      : data inconsistency cause by data redundancy when updating
+insertion anomaly   : unable to add data because of missing data
+delete anomaly      : unintentional loss of data when deleting
 
 The more normalized the database, the less likely these anomalies are to occur
 ```
@@ -620,7 +620,7 @@ Materialized views:
 - querying a materialized view means accessing the stored result
 - refreshed or rematerialized to update the data when prompted
 
-when to use materialized views:
+When to use materialized views:
 - long running queries
 - underlying query result dont change often
 - data warehouse because OLAP is not write-intensive
@@ -707,8 +707,8 @@ REVOKE data_scientist FROM Marta;
 Why partition?
 Tables grow (100gb / 1tb / 10tb)
 
-Problem: queries/update become slower 
-Because: e.g. indices don't fit memory
+Problem : queries/update become slower 
+Because : e.g. indices don't fit memory
 
 Solution: split table into smaller tables (partitions)
 ```
@@ -866,7 +866,7 @@ Data source 1 (postgresql) ----
 Data source 2 (mongodb)  ----- Unified data model (Redshift)
 Data source 3 (csv)  ------
 
-Choosing a data integration toola:
+Choosing a data integration tools:
 flexible
 reliable
 scalable
@@ -874,6 +874,6 @@ scalable
 
 ### Different DBMS types
 ```
-SQL: RDBMS
-NoSQL: key-value store, document store, columnar database, graph database
+SQL     : RDBMS
+NoSQL   : key-value store, document store, columnar database, graph database
 ```
