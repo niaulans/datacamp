@@ -545,7 +545,8 @@ docker network rm <network-name>      # remove a network
 docker network prune -f               # remove all unused networks
 ```
 
-# Attaching containers to networks
+### Attaching containers to networks
+```bash
 docker run --network <network-name> <image-name>
 docker network connect <network-name> <container-name>
 ```
