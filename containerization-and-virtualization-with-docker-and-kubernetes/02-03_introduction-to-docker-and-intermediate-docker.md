@@ -150,12 +150,18 @@ RUN apt-get update
 RUN apt-get install -y python3
 ```
 
-### Building a Dockerfile
+### Building image with Dockerfile
 ```bash
 docker build /location/of/Dockerfile
 docker build .
 docker build -t <image-name> /location/of/Dockerfile
 docker build -t my-image .
+
+# Build image with specific Dockerfile name
+docker build -f <Dockerfile-name> -t <image-name> .
+docker build -f Dockerfile.backend -t my-backend-image .
+docker build -f Dockerfile.frontend -t my-frontend-image .
+docker build -f Dockerfile.db -t my-db-image .
 ```
 
 ### Write command from bash to Dockerfile
