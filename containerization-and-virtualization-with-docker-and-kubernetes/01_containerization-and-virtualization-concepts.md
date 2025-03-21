@@ -179,6 +179,7 @@ ENTRYPOINT:
     ENTRYPOINT ["python", "app.py"]
 ```
 
+### Dockerfile example
 ```bash
 FROM python:3.10
 
