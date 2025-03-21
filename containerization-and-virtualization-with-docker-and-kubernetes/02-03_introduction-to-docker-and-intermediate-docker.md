@@ -688,29 +688,6 @@ CMD ["/bin/app_runner"]
 - Specify containers, neworking, and storage volumes in a single file
 - docker-compose.yaml
 
-# Define the services
-services:
-    # Define the container(s), by name
-    webapp:
-        image: "webapp"
-        ports: 
-            - "8000:5000"
-    redis: 
-        image: "redis:alpine"
-```
-
-## Build multi-platform images from docker-compose
-```bash
-docker compose up             # start the services
-docker compose up -d --build  # rebuild the services
-docker compose down           # stop the services
-docker compose -f <file> up   # specify the file
-docker compose up -d          # run in detached mode
-docker compose ls             # list the services
-```
-
-### Docker-compose
-```
 - Yet Another Markup Language
 - Human-readable data serialization standard
 - Text file, but spacing is important
@@ -777,6 +754,17 @@ condition:
 - service_completed_successfully -> wait for the service to complete
 - service_healthy -> wait for the service to be healthy
 ```
+
+## Build multi-platform images from docker-compose
+```bash
+docker compose up             # start the services
+docker compose up -d --build  # rebuild the services
+docker compose down           # stop the services
+docker compose -f <file> up   # specify the file
+docker compose up -d          # run in detached mode
+docker compose ls             # list the services
+```
+
 
 ### Check status of services
 ```bash
