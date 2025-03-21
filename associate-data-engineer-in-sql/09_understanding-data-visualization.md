@@ -10,9 +10,10 @@
 
 ### Continuous and categorical variables
 ```    
-Continuous -> usually number -> heights, temperature, revenues
-Categorical -> usually text -> eye colors, countries, Industry
-Can be either -> age is continuous, but age group is categorical
+Continuous      -> usually number   -> heights, temperature, revenues
+Categorical     -> usually text     -> eye colors, countries, Industry
+
+Can be either   -> age is continuous, but age group is categorical
                  time is continuous, month of year is categorical
 ```
 
