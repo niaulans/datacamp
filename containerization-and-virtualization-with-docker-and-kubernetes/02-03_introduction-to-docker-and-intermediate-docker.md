@@ -46,7 +46,7 @@ docker stop <container_id/container_name>         # stop a container
 docker stop $(docker ps -aq)                      # stop all active and non-active containers
 docker rm <container_id/container_name>           # remove a container
 docker container rm <container_id/container_name> # remove a container (alternative)
-docker rm -f $(docker ps -aq)                     # forcely remove all container 
+docker rm -f $(docker ps -aq)                     # force remove all container 
 docker container prune -a                         # remove all unused containers
 ```
 
