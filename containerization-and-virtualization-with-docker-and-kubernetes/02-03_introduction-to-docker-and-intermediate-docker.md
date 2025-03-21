@@ -683,7 +683,7 @@ COPY --from=gobuild /bin/app_runner /bin/app_runner
 CMD ["/bin/app_runner"]
 ```
 
-### Multi-stage builds in Dockerfile using docker-compose
+### Multi-stage builds using docker-compose
 ```
 - Specify containers, neworking, and storage volumes in a single file
 - docker-compose.yaml
