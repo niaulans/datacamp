@@ -519,8 +519,8 @@ EXPOSE 8000
 ### Check docker container port mapping
 ```bash
 docker run pyserver
-docker run -P pyserver -> make the port reachable
-docker inspect <container-id> -> get the port mapping
+docker run -P pyserver # make the port reachable
+docker inspect <container-id> # get the port mapping
 ```
 
 ### Docker networking
@@ -544,8 +544,6 @@ docker network inspect <network-name> # get details
 docker network rm <network-name>      # remove a network
 docker network prune -f               # remove all unused networks
 ```
-
-docker network create mynetwork
 
 # Attaching containers to networks
 docker run --network <network-name> <image-name>
