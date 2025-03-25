@@ -31,7 +31,7 @@ ls -R          # shows the files and directories in the current directory and al
 ls -R -F       # shows the files and directories in the current directory and all its subdirectories with / for directories
 
 !head         # runs the last command starting with head
-!2 -          # runs the second command from the history 
+!2            # runs the second command from the history 
 history       # shows the history of commands
 ```
 
@@ -149,11 +149,11 @@ wildcards:
 ```
 
 ```bash
-head -n 5 seasonal/summer.csv > top.csv          # extracts the first 5 lines of summer.csv and writes to top.csv
-head -n 5 seasonal/summer.csv | tail -n 3        # extracts the first 5 lines of summer.csv and shows the last 3 lines
-cut -f 2 -d , seasonal/winter.csv | grep -v Tooth  # extracts the second column from winter.csv and shows lines not containing Tooth
-cut -f 2 -d , seasonal/winter.csv | grep -v Tooth | head -n 1 # extracts the second column from winter.csv, shows lines not containing Tooth, and shows the first line
-grep 2017-07 seasonal/winter.csv | wc -l ->      # counts the number of lines containing 2017-07 in winter.csv 
+head -n 5 seasonal/summer.csv > top.csv                         # extracts the first 5 lines of summer.csv and writes to top.csv
+head -n 5 seasonal/summer.csv | tail -n 3                       # extracts the first 5 lines of summer.csv and shows the last 3 lines
+cut -f 2 -d , seasonal/winter.csv | grep -v Tooth               # extracts the second column from winter.csv and shows lines not containing Tooth
+cut -f 2 -d , seasonal/winter.csv | grep -v Tooth | head -n 1   # extracts the second column from winter.csv, shows lines not containing Tooth, and shows the first line
+grep 2017-07 seasonal/winter.csv | wc -l ->                     # counts the number of lines containing 2017-07 in winter.csv 
 
 head -n 3 seasonal/s*.csv        # shows the first 3 lines of all csv files starting with s in seasonal
 [singh, johel]{*.csv, *.txt}     # shows all csv and txt files with singh or johel in the name
@@ -161,7 +161,7 @@ head -n 3 seasonal/s*.csv        # shows the first 3 lines of all csv files star
 
 ### Sorting and unique lines
 ```bash
-sort -flag <file_name>                           # sorts the lines in a file
+sort -flag <file_name>     # sorts the lines in a file
 sort 
     -n # sort numerically
     -r # sort in reverse order
@@ -171,7 +171,7 @@ sort
 
 cut -f 2 -d , seasonal/winter.csv | grep -v Tooth | sort -r # extracts the second column from winter.csv, shows lines not containing Tooth, and sorts in reverse order
 
-uniq -flag <file_name>                           # removes adjacent duplicate lines in a file
+uniq -flag <file_name>            # removes adjacent duplicate lines in a file
 uniq 
     -c # count occurrences
     -i # ignore case
@@ -188,7 +188,9 @@ echo $USER                                     # shows the current user -> repl
 testing=seasonal/winter.csv                    # assigns seasonal/winter.csv to testing
 head -n 1 $testing                             # shows the first line of the file assigned to testing
 ```
+```
 
+### For loops
 ```sh
 for filetype in gif jpg png; 
     do echo $filetype; # prints gif, jpg, png
@@ -202,14 +204,15 @@ done
 ```
 
 ```sh
-for file in seasonal/*.csv;  # loops through all csv files in seasonal
-    do head -n 2 $file | tail -n 1 # shows the second line of each file
+for file in seasonal/*.csv;         # loops through all csv files in seasonal
+    do head -n 2 $file | tail -n 1  # shows the second line of each file
 done
 ```
 
 ```sh
 for f in seasonal/*.csv; 
-    do echo $f; head -n 2 $f | tail -n 1;  # shows the second line of each csv file in seasonal
+    do echo $f;                # prints the name of each csv file in seasonal
+    head -n 2 $f | tail -n 1;  # shows the second line of each csv file in seasonal
 done
 ```
 
@@ -234,6 +237,7 @@ all-dates.sh > dates.out        # writes the output of all-dates.sh to dates.out
 
 ```sh
 #!/bin/bash
+# count-records.sh
 tail -q -n +2 $@ | wc -l        # extracts all lines except the first line from all files specified by the arguments and counts the number of lines
 ```
 
@@ -244,7 +248,7 @@ count-records.sh seasonal/*.csv > num-records.out       # counts the number of l
 ## Arguments
 ```sh
 #!/bin/bash
-
+# get-field.sh
 # $# -> number of arguments
 cut -d , -f $2 $1 # extracts the column specified by the second argument from the file specified by the first argument
 ```
