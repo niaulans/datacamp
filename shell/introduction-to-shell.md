@@ -243,6 +243,7 @@ count-records.sh
 
 # extracts all lines except the first line from all files specified by the arguments and counts the number of lines
 tail -q -n +2 $@ | wc -l        
+```
 
 ```bash
 # run count-records.sh with all csv files in seasonal and write the output to num-records.out
