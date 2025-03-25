@@ -188,7 +188,6 @@ echo $USER                                     # shows the current user -> repl
 testing=seasonal/winter.csv                    # assigns seasonal/winter.csv to testing
 head -n 1 $testing                             # shows the first line of the file assigned to testing
 ```
-```
 
 ### For loops
 ```sh
