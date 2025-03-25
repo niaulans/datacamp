@@ -228,21 +228,25 @@ ctrl+x # cancel the command
 all-dates.sh
 ```sh
 #!/bin/bash
-cut -d , -f 1 seasonal/*.csv | grep -v Date | sort | uniq # extracts the first column from all csv files in seasonal, shows lines not containing Date, sorts, and removes duplicates
+
+# extracts the first column from all csv files in seasonal, shows lines not containing Date, sorts, and removes duplicates
+cut -d , -f 1 seasonal/*.csv | grep -v Date | sort | uniq 
 ```
 
 ```bash
-all-dates.sh > dates.out        # writes the output of all-dates.sh to dates.out
+all-dates.sh > dates.out        # run all-dates.sh and write the output to dates.out
 ```
 
 count-records.sh
 ```sh
 #!/bin/bash
-tail -q -n +2 $@ | wc -l        # extracts all lines except the first line from all files specified by the arguments and counts the number of lines
-```
+
+# extracts all lines except the first line from all files specified by the arguments and counts the number of lines
+tail -q -n +2 $@ | wc -l        
 
 ```bash
-count-records.sh seasonal/*.csv > num-records.out       # counts the number of lines in all csv files in seasonal except the first line and writes to num-records.out
+# run count-records.sh with all csv files in seasonal and write the output to num-records.out
+count-records.sh seasonal/*.csv > num-records.out       
 ```
 
 ## Arguments
@@ -250,9 +254,11 @@ get-field.sh
 ```sh 
 #!/bin/bash
 # $# -> number of arguments
-cut -d , -f $2 $1 # extracts the column specified by the second argument from the file specified by the first argument
+
+# extracts the column specified by the second argument from the file specified by the first
+cut -d , -f $2 $1 
 ```
 
 ```bash
-get-field.sh seasonal/summer.csv 4 2 # extracts the second column from summer.csv
+get-field.sh seasonal/summer.csv 4  # run get-field.sh with summer.csv and 4 as arguments
 ```
