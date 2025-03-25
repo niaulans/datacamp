@@ -222,6 +222,10 @@ ctrl+k # delete from cursor to end of line
 ctrl+u # delete from cursor to start of line
 ctrl+o # save and run the command
 ctrl+x # cancel the command
+
+Write out:
+>  - overwrite the file
+>> - append to the file, create if it doesn't exist
 ```
 
 ### Shell scripts
