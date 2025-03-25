@@ -225,9 +225,9 @@ ctrl+x # cancel the command
 ```
 
 ### Shell scripts
+all-dates.sh
 ```sh
 #!/bin/bash
-# all-dates.sh
 cut -d , -f 1 seasonal/*.csv | grep -v Date | sort | uniq # extracts the first column from all csv files in seasonal, shows lines not containing Date, sorts, and removes duplicates
 ```
 
@@ -235,9 +235,9 @@ cut -d , -f 1 seasonal/*.csv | grep -v Date | sort | uniq # extracts the first c
 all-dates.sh > dates.out        # writes the output of all-dates.sh to dates.out
 ```
 
+count-records.sh
 ```sh
 #!/bin/bash
-# count-records.sh
 tail -q -n +2 $@ | wc -l        # extracts all lines except the first line from all files specified by the arguments and counts the number of lines
 ```
 
@@ -246,9 +246,9 @@ count-records.sh seasonal/*.csv > num-records.out       # counts the number of l
 ```
 
 ## Arguments
-```sh
+get-field.sh
+```sh 
 #!/bin/bash
-# get-field.sh
 # $# -> number of arguments
 cut -d , -f $2 $1 # extracts the column specified by the second argument from the file specified by the first argument
 ```
