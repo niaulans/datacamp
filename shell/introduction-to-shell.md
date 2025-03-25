@@ -32,7 +32,7 @@ ls -R -F       # shows the files and directories in the current directory and al
 
 !head         # runs the last command starting with head
 !2 -          # runs the second command from the history 
-history      # shows the history of commands
+history       # shows the history of commands
 ```
 
 ### Absolute vs relative paths
