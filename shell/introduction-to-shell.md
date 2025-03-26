@@ -115,7 +115,7 @@ cut -f <column_number> -d <delimiter> <file_name>  # extracts a column from a fi
 cut -f 2 -d , seasonal/winter.csv                  # extracts the second column from winter.csv with , as delimiter
 cut -f 2-5,8 -d , values.csv                       # extracts the second to fifth and eighth columns from values.csv with , as delimiter
 
-grep -flag <pattern> <file_name>                   # searches for a pattern in a file
+grep [option flags] <pattern> <file_name>                   # searches for a pattern in a file
 grep
     -c # count occurrences
     -h # don't print filenames
@@ -128,7 +128,7 @@ grep molar seasonal/autumn.csv                    # shows lines containing molar
 grep -v -n molar seasonal/autumn.csv              # shows lines not containing molar in autumn.csv with line numbers
 grep -c molar seasonal/autumn.csv                 # counts the number of lines containing molar in autumn.csv
 
-wc -flag <file_name>                              # counts the number of lines, words, and characters in a file
+wc [option flags] <file_name>                              # counts the number of lines, words, and characters in a file
 wc 
     -l # count lines
     -w # count words
@@ -161,7 +161,7 @@ head -n 3 seasonal/s*.csv        # shows the first 3 lines of all csv files star
 
 ### Sorting and unique lines
 ```bash
-sort -flag <file_name>     # sorts the lines in a file
+sort [option flags] <file_name>     # sorts the lines in a file
 sort 
     -n # sort numerically
     -r # sort in reverse order
@@ -171,7 +171,7 @@ sort
 
 cut -f 2 -d , seasonal/winter.csv | grep -v Tooth | sort -r # extracts the second column from winter.csv, shows lines not containing Tooth, and sorts in reverse order
 
-uniq -flag <file_name>            # removes adjacent duplicate lines in a file
+uniq [option flags] <file_name>            # removes adjacent duplicate lines in a file
 uniq 
     -c # count occurrences
     -i # ignore case

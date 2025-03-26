@@ -1,10 +1,7 @@
 ## [Data Processing in Shell](https://app.datacamp.com/learn/courses/data-processing-in-shell)
 
----------------------------------------------------------------------
-DATA PROCESSING IN SHELL
----------------------------------------------------------------------
-
-Downloading data using curl:
+### Downloading data using curl
+```
 - curl - client for URL
 - check curl installation -> man curl 
 - curl [option flags] [URL] 
@@ -16,8 +13,10 @@ Downloading data using curl:
     -I -> show headers only
     -H -> add headers
     -d -> data to send in POST request
+```
 
-curl -o file_name URL -> download file from URL with the specified file name
+```bash
+curl -o <file_name> <URL> # download file from URL with the specified file name
 curl -O https://websitename.com/datafilename*.txt
 curl -O https://websitename.com/datafilename[1-5].txt
 
@@ -29,9 +28,9 @@ curl -O https://s3.amazonaws.com/assets.datacamp.com/production/repositories/418
 
 # Print all downloaded files to directory
 ls datafile*.txt
+```
 
----------------------------------------------------------------------
-Downloading data using wget:
+### Downloading data using wget:
 - wget - non-interactive network downloader
 - World Wide Web, get
 - which wget -> check wget installation
