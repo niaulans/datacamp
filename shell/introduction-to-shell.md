@@ -182,7 +182,7 @@ cut -f 2 -d , seasonal/winter.csv | grep -v Tooth | sort | uniq -c # extracts th
 ```
 
 ### Batch processing
-```sh
+```bash
 echo $USER                                     # shows the current user -> repl
 
 testing=seasonal/winter.csv                    # assigns seasonal/winter.csv to testing
@@ -190,25 +190,25 @@ head -n 1 $testing                             # shows the first line of the fil
 ```
 
 ### For loops
-```sh
+```bash
 for filetype in gif jpg png; 
     do echo $filetype; # prints gif, jpg, png
 done  
 ```
 
-```sh
+```bash
 for filetype in docx odt pdf; 
     do echo $filetype; # prints docx, odt, pdf
 done  
 ```
 
-```sh
+```bash
 for file in seasonal/*.csv;         # loops through all csv files in seasonal
     do head -n 2 $file | tail -n 1  # shows the second line of each file
 done
 ```
 
-```sh
+```bash
 for f in seasonal/*.csv; 
     do echo $f;                # prints the name of each csv file in seasonal
     head -n 2 $f | tail -n 1;  # shows the second line of each csv file in seasonal
@@ -228,8 +228,8 @@ Write out:
 ```
 
 ### Shell scripts
-all-dates.sh
-```sh
+**all-dates.sh**
+```bash
 #!/bin/bash
 
 # extracts the first column from all csv files in seasonal, shows lines not containing Date, sorts, and removes duplicates
@@ -237,11 +237,11 @@ cut -d , -f 1 seasonal/*.csv | grep -v Date | sort | uniq
 ```
 
 ```bash
-all-dates.sh > dates.out        # run all-dates.sh and write the output to dates.out
+bash all-dates.sh > dates.out        # run all-dates.sh and write the output to dates.out
 ```
 
-count-records.sh
-```sh
+**count-records.sh**
+```bash
 #!/bin/bash
 
 # extracts all lines except the first line from all files specified by the arguments and counts the number of lines
@@ -250,12 +250,12 @@ tail -q -n +2 $@ | wc -l
 
 ```bash
 # run count-records.sh with all csv files in seasonal and write the output to num-records.out
-count-records.sh seasonal/*.csv > num-records.out       
+bash count-records.sh seasonal/*.csv > num-records.out       
 ```
 
 ## Arguments
-get-field.sh
-```sh 
+**get-field.sh**
+```bash
 #!/bin/bash
 # $# -> number of arguments
 
@@ -264,5 +264,5 @@ cut -d , -f $2 $1
 ```
 
 ```bash
-get-field.sh seasonal/summer.csv 4  # run get-field.sh with summer.csv and 4 as arguments
+bash get-field.sh seasonal/summer.csv 4  # run get-field.sh with summer.csv and 4 as arguments
 ```
