@@ -214,7 +214,7 @@ csvcut -c "track_id","popularity" Spotify201809.csv > Spotify201809_subset.csv
 csvstack -g "Sep2018","Oct2018" Spotify201809_subset.csv Spotify201810_subset.csv > Spotify_all_rankings.csv
 ```
 
-###```Database operations on the command line
+### Database operations on the command line
 ```
 sql2csv -> execute SQL queries on a database and output the results as CSV
 ```
