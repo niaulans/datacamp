@@ -332,5 +332,5 @@ echo "* * * * * python create_model.py" | crontab
 # Verify that the CRON job has been scheduled via CRONTAB
 crontab -l
 
-chmod +x run_etl.sh -> make the script executable
+chmod +x run_etl.sh # make the script executable
 ```
