@@ -44,7 +44,6 @@ print(sales.info())
 print(sales.describe())
 ```
 
-
 ### Data range constraints
 ```
 How to deal with out of range data:
@@ -125,15 +124,18 @@ height_weight[duplicates].sort_values(by = 'first_name')
 height_weight.drop_duplicates(subset=column_names, inplace=True)
 ```
 
-# Group by column names and produce statistical summaries
+### Group by column names and produce statistical summaries
+```python
 column_names = ['first_name', 'last_name', 'address']
 summaries = {'height': 'max', 'weight': 'mean'}
+
 height_weight = height_weight.groupby(column_names).agg(summaries).reset_index()
 duplicates = height_weight.duplicated(subset = column_names, keep = False)
 height_weight[duplicates].sort_values(by = 'first_name')
+```
 
----------------------------------------------------------------
-# Find duplicates
+### Find duplicates
+```python
 duplicates = ride_sharing.duplicated(subset = 'ride_id', keep=False)
 
 # Sort your duplicated rides
@@ -157,9 +159,10 @@ duplicated_rides = ride_unique[duplicates == True]
 
 # Assert duplicates are processed
 assert duplicated_rides.shape[0] == 0
----------------------------------------------------------------
-Finding inconsistent categories:
+```
 
+### Finding inconsistent categories
+```python
 inconsistent_categories = set(study_data['blood_type']).difference(categories['blood_type'])
 print(inconsistent_categories)
 
@@ -168,8 +171,10 @@ study_data[inconsistent_rows]
 
 # Drop inconsistent categories and get consistent data
 consistent_data = study_data[~inconsistent_rows]
+```
 
----------------------------------------------------------------
+### Finding consistent and inconsistent categories
+```python
 # Print categories DataFrame
 print(categories)
 
@@ -189,13 +194,17 @@ print(airlines[cat_clean_rows])
 
 # Print rows with consistent categories only
 print(airlines[~cat_clean_rows])
----------------------------------------------------------------
+```
+
+### Types of errors in categorical data
+```python
 What type of errors could we have?
 1. Value inconsistency
-2. Collapsign too many categories
-3. making sure data is of type category
+2. Collapsing too many categories
+3. Making sure data is of type category
+4. Value inconsistency
+```
 
-1. Value inconsistency:
 # Get marriage status column
 marriage_status = demographics['marriage_status']
 marriage_status.value_counts()
