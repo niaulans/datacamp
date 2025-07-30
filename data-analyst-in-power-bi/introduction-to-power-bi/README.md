@@ -93,3 +93,24 @@ VAR Gold21 = CALCULATE(
 )
 RETURN DIVIDE([Gold21]-GoldVolume20, GoldVolume20)
 ```
+
+```dax
+TotalSales_w_increase =
+VAR Increase = 0.05
+RETURN [TotalSales] + ([TotalSales]*Increase)
+```
+
+```dax
+SalesCount = DISTINCTCOUNT(Sales[OrderNo])
+```
+
+```dax
+2018 Bikes Revenue = CALCULATE(
+    SUM(Sales[LinePrice]),
+    FILTER(
+        Sales,
+        Sales[ProductCategory] = "Bikes"
+        && YEAR(Sales[OrderDate]) = 2018
+    )
+)
+```
