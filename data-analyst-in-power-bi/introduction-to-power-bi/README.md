@@ -114,3 +114,43 @@ SalesCount = DISTINCTCOUNT(Sales[OrderNo])
     )
 )
 ```
+
+#### Working with dates
+
+- Date and Time functions
+
+  - `YEAR()`
+  - `MONTH()`
+  - `DAY()`
+  - `WEEKDAY()`
+  - `DATE()`
+  - `DATEDIFF()`
+  - `QUARTER()`
+
+- Format dates using `FORMAT()`
+
+  - FORMAT(<date>, <"dddd">) -> Friday
+  - FORMAT(<date>, <"h"nn"ss">) -> 1:30:00
+
+- Time Intelligence functions
+
+  - `LASTDATE()`
+  - `DATESBETWEEN()`
+  - `DATEADD()`
+
+#### Creatung a Date Table
+
+- A dedicated date table is highly recommended for accurate reporting using time intelligence functions.
+- Filter by multiple date attributes such as Year and Month
+- Custom calendar view/definitions such as fiscal dates
+- Use of time-intelligence to select a time horizon (Today, Yesterday, Last 30 days, etc.)
+- Types of Analysis:
+  - Revenue by Day of Week, Fisca Performance, Public Holidays
+- `CALENDAR(start_date, end_date)` function to create a date table
+- `CALENDARAUTO()` function to automatically generate a date table based on the data model
+
+- Example
+
+```dax
+Dates = CALENDAR(MIN(Sales[OrderDate]), MAX(Sales[OrderDate]))
+```
