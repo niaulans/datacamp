@@ -76,6 +76,12 @@ Price_w_tax = Price + Price * tax_rate
   | **Filter Context** | Active filters applied during DAX evaluation | Slicers, chart legends, `CALCULATE()` |
   | **Query Context** | Instruction from Power BI to retrieve and display data | Dragging fields into visuals (e.g., rows/columns/values) |
 
+- Iterator functions like `SUMX`, `AVERAGEX`, and `FILTER` are used to iterate over rows in a table, applying calculations row by row.
+
+```dax
+SUMX(Sales, Sales[Quantity] * Sales[Price])
+```
+
 ```dax
 GoldVolume21 = CALCULATE(
   SUM(Commodities[Volume]),
