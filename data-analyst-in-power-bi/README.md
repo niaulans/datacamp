@@ -179,9 +179,9 @@ Dates = CALENDAR(MIN(Sales[OrderDate]), MAX(Sales[OrderDate]))
 
   - Free from typos
   - Consistenly formatted
-    - Data points are consistently reprented
+    - Data points are consistently represented
     - Uniform capitalization
-    - No leadin gor trailing whitespace
+    - No leading or trailing whitespace
   - Ideally, each column will only store one piece of information
     - Columns are split or merged to achieve
 
@@ -212,3 +212,30 @@ Dates = CALENDAR(MIN(Sales[OrderDate]), MAX(Sales[OrderDate]))
   - Column quality (Valid, Error, Empty)
   - Column profile (Statistcs, distribution, histogram)
 - By default, is based in top 1000 rows (but can be changed)
+
+## Data Transformation in Power BI
+
+### Reshaping and aggregating data
+
+- **Long data structure**:
+  - Repeating value in first column
+  - Usually only one numerical column
+  - Easier computer to interpret
+- **Wide Data Structure**:
+
+  - Unique values in first column
+  - Multiple numerical columns
+  - More human-readable
+
+- Long -> Wide (pivot)
+- Wide -> Long (unpivot)
+
+- **Transpose**: Change rows into columns and your column into rows
+
+- **Aggregating with group by transformation**:
+
+  - Grouping changes the granularity of your dataset
+  - After choosing a granularity (groups) you apply an aggregation such as:
+  - `SUM`, `AVERAGE`, `COUNT`, `MIN`, `MAX`
+
+- Demote the headers before transposing
